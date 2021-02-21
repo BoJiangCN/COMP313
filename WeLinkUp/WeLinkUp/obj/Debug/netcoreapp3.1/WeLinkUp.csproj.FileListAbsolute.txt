@@ -48,8 +48,6 @@ C:\Users\dayeo\OneDrive\Desktop\Assignment\COMP313\COMP313-Team5\WeLinkUp\WeLink
 C:\Users\dayeo\OneDrive\Desktop\Assignment\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\dayeo\OneDrive\Desktop\Assignment\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
 C:\Users\dayeo\OneDrive\Desktop\Assignment\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
-C:\Users\dayeo\OneDrive\Desktop\Assignment\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.csproj.CoreCompileInputs.cache
-C:\Users\dayeo\OneDrive\Desktop\Assignment\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\dayeo\OneDrive\Desktop\Assignment\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.Views.pdb
 C:\Users\dayeo\OneDrive\Desktop\Assignment\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.dll
 C:\Users\dayeo\OneDrive\Desktop\Assignment\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.pdb
