@@ -29,13 +29,14 @@ namespace WeLinkUp.Models
         [DataType(DataType.Time)]
         public string Freetime { get; set; }
 
-        [Required(ErrorMessage = "Please enter your password")]
-        [Compare("ConfirmPassword", ErrorMessage = "Password doesn't match")]
+        [Required(ErrorMessage = "Please enter your password")]        
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
         [Required(ErrorMessage = "Please confirm your password")]
         [Display(Name = "Confirm Password")]
+        [Compare("Password", ErrorMessage = "Password doesn't match")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
