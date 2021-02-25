@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\SEMESTER6\\Software Project2\\Project\\COMP313-Team5\\WeLinkUp\\APIWeLinkUp\\APIWeLinkUp.csproj": {}
+    "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\APIWeLinkUp\\APIWeLinkUp.csproj": {}
   },
   "projects": {
-    "C:\\SEMESTER6\\Software Project2\\Project\\COMP313-Team5\\WeLinkUp\\APIWeLinkUp\\APIWeLinkUp.csproj": {
+    "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\APIWeLinkUp\\APIWeLinkUp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\SEMESTER6\\Software Project2\\Project\\COMP313-Team5\\WeLinkUp\\APIWeLinkUp\\APIWeLinkUp.csproj",
+        "projectUniqueName": "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\APIWeLinkUp\\APIWeLinkUp.csproj",
         "projectName": "APIWeLinkUp",
-        "projectPath": "C:\\SEMESTER6\\Software Project2\\Project\\COMP313-Team5\\WeLinkUp\\APIWeLinkUp\\APIWeLinkUp.csproj",
-        "packagesPath": "C:\\Users\\ashas\\.nuget\\packages\\",
-        "outputPath": "C:\\SEMESTER6\\Software Project2\\Project\\COMP313-Team5\\WeLinkUp\\APIWeLinkUp\\obj\\",
+        "projectPath": "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\APIWeLinkUp\\APIWeLinkUp.csproj",
+        "packagesPath": "C:\\Users\\dayeo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\APIWeLinkUp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\ashas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\dayeo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -31,7 +29,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -43,7 +40,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
@@ -86,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
