@@ -9,8 +9,8 @@ using WeLinkUp.Data;
 namespace WeLinkUp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210225212017_AddUserToDb")]
-    partial class AddUserToDb
+    [Migration("20210223001931_adduser")]
+    partial class adduser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
