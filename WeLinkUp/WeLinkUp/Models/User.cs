@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,6 +9,8 @@ namespace WeLinkUp.Models
 {
     public class User
     {
+        
+
         public long Id { get; set; }
 
         [Required(ErrorMessage = "Please enter your username")]
@@ -39,6 +42,8 @@ namespace WeLinkUp.Models
         [Compare("Password", ErrorMessage = "Password doesn't match")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+
+        public IFormFile ProfileImage { get; set; }
 
     }
 }
