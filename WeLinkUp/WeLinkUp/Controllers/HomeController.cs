@@ -44,23 +44,27 @@ namespace WeLinkUp.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Signup(User ur)
         {
-            using (SqlConnection sqlconnection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            if (ModelState.IsValid)
             {
-                string sqlquery = "insert into users(Username,Email,DateofBirth,Freetime,Password) values ('" + ur.Username + "','" + ur.Email + "','" + ur.DateofBirth + "','" + ur.Freetime + "','" + ur.Password + "')";
-                using (SqlCommand sqlcommand = new SqlCommand(sqlquery, sqlconnection))
+                using (SqlConnection sqlconnection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
                 {
-                    sqlconnection.Open();
-                    sqlcommand.ExecuteNonQuery();
+                    string sqlquery = "insert into users(Username,Email,DateofBirth,Freetime,Password) values ('" + ur.Username + "','" + ur.Email + "','" + ur.DateofBirth + "','" + ur.Freetime + "','" + ur.Password + "')";
+                    using (SqlCommand sqlcommand = new SqlCommand(sqlquery, sqlconnection))
+                    {
+                        sqlconnection.Open();
+                        sqlcommand.ExecuteNonQuery();
+                        // ViewData["Message"] = "New User " + ur.Username + " is saved successfully!";
 
+                    }
+                    return RedirectToAction(nameof(Login));
                 }
-                ViewData["Message"] = "New User " + ur.Username + " is saved successfully!";
             }
             return View(ur);
 
-            //return RedirectToAction(nameof(Login));
         }
     }
 }
