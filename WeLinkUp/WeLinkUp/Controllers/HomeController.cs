@@ -57,11 +57,11 @@ namespace WeLinkUp.Controllers
                     {
                         sqlconnection.Open();
                         sqlcommand.ExecuteNonQuery();
-                        // ViewData["Message"] = "New User " + ur.Username + " is saved successfully!";
-
+                        ViewData["Message"] = "New User " + ur.Username + " is saved successfully!";
                     }
-                    return RedirectToAction(nameof(Login));
+                   
                 }
+                return RedirectToAction(nameof(Login));
             }
             return View(ur);
 
