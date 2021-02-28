@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -43,7 +44,10 @@ namespace WeLinkUp.Models
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
-        public IFormFile ProfileImage { get; set; }
+        public string Image { get; set; }
+
+        [NotMapped]
+        public IFormFile ImageFile{ get; set; }
 
     }
 }

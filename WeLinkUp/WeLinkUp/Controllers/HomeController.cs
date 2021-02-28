@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
@@ -18,11 +19,12 @@ namespace WeLinkUp.Controllers
         private readonly IConfiguration _configuration;
 
        // public readonly IWebHostEnvironment webHostEnvironment;
-        //private readonly IWebHostEnvironment WebHostEnvironment;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public HomeController(IConfiguration configuration)
+        public HomeController(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             this._configuration = configuration;
+            this._webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -55,19 +57,27 @@ namespace WeLinkUp.Controllers
 
         [HttpPost]
         public IActionResult Signup(User user)
-        {
-            
-            //ProfileImage = stringFileName;
-
-            if (ModelState.IsValid)
+        {               
+          if (ModelState.IsValid)
             {
-                string ProfileImage = UploadFile(user);
-                
+                //code for add imgae to db
+                //save image to wwwroot/image
+                string wwwroot = _webHostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(user.ImageFile.FileName);
+                string extension = Path.GetExtension(user.ImageFile.FileName);
+                user.Image= fileName = fileName + extension;
+                string path = Path.Combine(wwwroot + "/images/", fileName);
+                //using (var fileStream = new FileStream(path, FileMode.Create))
+                //{
+                //    user.ImageFile.CopyTo(fileStream);
+
+                //}                
+
+                //add signup information to db
                 using (SqlConnection sqlconnection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
                 {
                  
-                    string sqlquery = "insert into users(Username,Email,DateofBirth,Freetime,Password,ProfileImage) values ('" + user.Username + "','" + user.Email + "','" + user.DateofBirth + "','" + user.Freetime + "','" + user.Password +"'," +
-                        "'"+ user.ProfileImage + "')";
+                    string sqlquery = "insert into users(Username,Email,DateofBirth,Freetime,Password,Image) values ('" + user.Username + "','" + user.Email + "','" + user.DateofBirth + "','" + user.Freetime + "','" + user.Password +"','"+user.Image+"')";
                     using (SqlCommand sqlcommand = new SqlCommand(sqlquery, sqlconnection))
                     {
                         sqlconnection.Open();
@@ -81,23 +91,6 @@ namespace WeLinkUp.Controllers
             return View(user);
 
         }
-
-
-        private string UploadFile(User user)
-        {
-            string fileName = null;
-            if (user.ProfileImage != null)
-            {
-                //string uploadDir = ConfigurationPath.Combine(WebHostEnvironment.WebRootPath, "Images");
-                //fileName = Guid.NewGuid().ToString() + "-" + user.ProfileImage.FileName;
-                //string filePath = Path.Combine(uploadDir, fileName);
-                //using (var fileStream = new FileStream(filePath, FileMode.Create))
-                //{
-                //    user.ProfileImage.CopyTo(fileStream);
-
-                //}
-            }
-            return fileName;
-        }
+                
     }
 }

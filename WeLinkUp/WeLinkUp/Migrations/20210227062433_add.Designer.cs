@@ -9,8 +9,8 @@ using WeLinkUp.Data;
 namespace WeLinkUp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210226022232_addimage")]
-    partial class addimage
+    [Migration("20210227062433_add")]
+    partial class add
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,11 +43,11 @@ namespace WeLinkUp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
+                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProfileImage")
+                    b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
