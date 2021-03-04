@@ -29,6 +29,40 @@
           "lib/netstandard2.0/Humanizer.dll": {}
         }
       },
+      "Microsoft.AspNetCore.Cryptography.Internal/5.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Cryptography.KeyDerivation/5.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Cryptography.Internal": "5.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/5.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.3",
+          "Microsoft.Extensions.Identity.Stores": "5.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.1/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.7.0": {
         "type": "package",
         "compile": {
@@ -268,6 +302,35 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Identity.Core/5.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "5.0.3",
+          "Microsoft.Extensions.Logging": "5.0.0",
+          "Microsoft.Extensions.Options": "5.0.0",
+          "System.ComponentModel.Annotations": "5.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Identity.Stores/5.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "5.0.0",
+          "Microsoft.Extensions.Identity.Core": "5.0.3",
+          "Microsoft.Extensions.Logging": "5.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.dll": {}
         }
       },
       "Microsoft.Extensions.Logging/5.0.0": {
@@ -1682,6 +1745,61 @@
         "logo.png"
       ]
     },
+    "Microsoft.AspNetCore.Cryptography.Internal/5.0.3": {
+      "sha512": "4LtW8tSYWbwSXnerW/s2xLtEYJp2T3fPNfmn6JbFPXTaRQmOcEMv0rsZ3WgJsItjI5vfJfPGRfN/rFmX8YvGiA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.cryptography.internal/5.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.AspNetCore.Cryptography.Internal.dll",
+        "lib/net461/Microsoft.AspNetCore.Cryptography.Internal.xml",
+        "lib/net5.0/Microsoft.AspNetCore.Cryptography.Internal.dll",
+        "lib/net5.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
+        "microsoft.aspnetcore.cryptography.internal.5.0.3.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.internal.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Cryptography.KeyDerivation/5.0.3": {
+      "sha512": "rFMWHdgzaOnoNcHoKWzwpFv/7l3m6Xm8d4RDp8UbH5zNIVCGWs+NPjGQPtq42oVyWpWu3NfmMd6KXca9En3u0g==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.cryptography.keyderivation/5.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
+        "lib/net461/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
+        "lib/net5.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
+        "lib/net5.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
+        "microsoft.aspnetcore.cryptography.keyderivation.5.0.3.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/5.0.3": {
+      "sha512": "0wWhm7zz6C2mEyI3ewqSntfiMpfA/LgMhzGQn+VKtOjsCd1pNt0dp5gIoy0yMLxvUnnarK0TZF0/zeAEMdYWsQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.identity.entityframeworkcore/5.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net5.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
+        "lib/net5.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
+        "lib/netstandard2.1/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
+        "lib/netstandard2.1/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
+        "microsoft.aspnetcore.identity.entityframeworkcore.5.0.3.nupkg.sha512",
+        "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
+      ]
+    },
     "Microsoft.CSharp/4.7.0": {
       "sha512": "pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
       "type": "package",
@@ -2072,6 +2190,44 @@
         "version.txt"
       ]
     },
+    "Microsoft.Extensions.Identity.Core/5.0.3": {
+      "sha512": "0+TG/+gPHlltGx96Y5QcWl4PELvGG7ZEiTGuxJTX+CyI0A7CKwa8HMW6L0nxHCjsfXgpBIhtjoOqUR/Bx8pS0g==",
+      "type": "package",
+      "path": "microsoft.extensions.identity.core/5.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Identity.Core.dll",
+        "lib/net461/Microsoft.Extensions.Identity.Core.xml",
+        "lib/net5.0/Microsoft.Extensions.Identity.Core.dll",
+        "lib/net5.0/Microsoft.Extensions.Identity.Core.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.xml",
+        "microsoft.extensions.identity.core.5.0.3.nupkg.sha512",
+        "microsoft.extensions.identity.core.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.Identity.Stores/5.0.3": {
+      "sha512": "6xvJECyILal2mVeu7LPfrZwu2FrnVhyH6U9Xyv2ASL0TJMtqn2U09Ae7Ygy2B6HOBeYSNV+HCFJYg51iLbBVpQ==",
+      "type": "package",
+      "path": "microsoft.extensions.identity.stores/5.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Identity.Stores.dll",
+        "lib/net461/Microsoft.Extensions.Identity.Stores.xml",
+        "lib/net5.0/Microsoft.Extensions.Identity.Stores.dll",
+        "lib/net5.0/Microsoft.Extensions.Identity.Stores.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.xml",
+        "microsoft.extensions.identity.stores.5.0.3.nupkg.sha512",
+        "microsoft.extensions.identity.stores.nuspec"
+      ]
+    },
     "Microsoft.Extensions.Logging/5.0.0": {
       "sha512": "MgOwK6tPzB6YNH21wssJcw/2MKwee8b2gI7SllYfn6rvTpIrVvVS5HAjSU2vqSku1fwqRvWP0MdIi14qjd93Aw==",
       "type": "package",
@@ -2429,7 +2585,7 @@
       ]
     },
     "Newtonsoft.Json/10.0.1": {
-      "sha512": "ebWzW9j2nwxQeBo59As2TYn7nYr9BHicqqCwHOD1Vdo+50HBtLPuqdiCYJcLdTRknpYis/DSEOQz5KmZxwrIAg==",
+      "sha512": "MOUhQfeI43upq9QiEv+7YYTDQPtEZEj9xB50MgplO1XF/aumP0f+TCYIHpZEmfsiahJJaXt/gdRFYLFEoF2VyQ==",
       "type": "package",
       "path": "newtonsoft.json/10.0.1",
       "hasTools": true,
@@ -5053,7 +5209,7 @@
       ]
     },
     "System.Security.Cryptography.Cng/4.5.0": {
-      "sha512": "WG3r7EyjUe9CMPFSs6bty5doUqT+q9pbI80hlNzo2SkPkZ4VTuZkGWjpp77JB8+uaL4DFPRdBsAY+DX3dBK92A==",
+      "sha512": "O4tqXxWCD8y1IU1VTgzbuBFwoRahrADhDUxHjwezhHCsqyFNyQ5EytjWBxu0EsZuH14b4UO2pFkG063K2h/9Ug==",
       "type": "package",
       "path": "system.security.cryptography.cng/4.5.0",
       "files": [
@@ -5994,6 +6150,7 @@
     ".NETCoreApp,Version=v3.1": [
       "AWSSDK >= 2.3.55.2",
       "AWSSDK.Core >= 3.5.2.10",
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 5.0.3",
       "Microsoft.EntityFrameworkCore >= 5.0.3",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.3",
@@ -6002,27 +6159,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ashas\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\dayeo\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\SEMESTER6\\Software Project2\\FinalProject\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+      "projectUniqueName": "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
       "projectName": "WeLinkUp",
-      "projectPath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
-      "packagesPath": "C:\\Users\\ashas\\.nuget\\packages\\",
-      "outputPath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\obj\\",
+      "projectPath": "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+      "packagesPath": "C:\\Users\\dayeo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\ashas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\dayeo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -6033,7 +6187,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -6045,7 +6198,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "AWSSDK": {
             "target": "Package",
@@ -6054,6 +6206,10 @@
           "AWSSDK.Core": {
             "target": "Package",
             "version": "[3.5.2.10, )"
+          },
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[5.0.3, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
@@ -6098,7 +6254,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   },

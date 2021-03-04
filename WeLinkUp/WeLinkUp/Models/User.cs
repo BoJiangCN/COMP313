@@ -9,9 +9,7 @@ using System.Threading.Tasks;
 namespace WeLinkUp.Models
 {
     public class User
-    {
-        
-
+    {       
         public long Id { get; set; }
 
         [Required(ErrorMessage = "Please enter your username")]
