@@ -134,12 +134,26 @@ namespace WeLinkUp.Controllers
                     {
                         return RedirectToAction(nameof(HomeController.Index), "Home");
                     }
+                    else
+                    {
+                        ModelState.AddModelError("", "Invalid UserName or Password");
+                        return View();
+                    }
 
                 //}
             }
 
 
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _loginManager.SignOutAsync();
+
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }
