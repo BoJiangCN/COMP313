@@ -9,8 +9,7 @@ namespace WeLinkUp.Models
     public class Login
     {
         [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        public string Username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

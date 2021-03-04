@@ -50,12 +50,7 @@ namespace WeLinkUp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        // GET: User/Login
-        public IActionResult Login()
-        {
-            return View();
-        }
-
+        
 
         //Get User signup info
         [HttpGet]
@@ -88,39 +83,63 @@ namespace WeLinkUp.Controllers
                 //add signup information to db
                 var newUser = new ApplicationUser
                 {
-                    UserName = user.Email,
+                    UserName = user.Username,
                     Email = user.Email,
                     Image = user.Image,
                     DateofBirth = user.DateofBirth,
                     Freetime = user.Freetime
-
-
                 };
                 var result = await _securityManager.CreateAsync(newUser, user.Password);
                 if (result.Succeeded)
                 {
+                    // if signup is successful, user automatically logs in and go to homepage
                     await _loginManager.SignInAsync(newUser, isPersistent: false);
                     return RedirectToAction(nameof(HomeController.Index), "Home");
                 }
 
 
-                //using (SqlConnection sqlconnection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
-                //{
-
-                //    string sqlquery = "insert into users(Username,Email,DateofBirth,Freetime,Password,Image) values ('" + user.Username + "','" + user.Email + "','" + user.DateofBirth + "','" + user.Freetime + "','" + user.Password +"','"+user.Image+"')";
-                //    using (SqlCommand sqlcommand = new SqlCommand(sqlquery, sqlconnection))
-                //    {
-                //        sqlconnection.Open();
-                //        sqlcommand.ExecuteNonQuery();
-                //        ViewData["Message"] = "New User " + user.Username + " is saved successfully!";
-                //    }
-
-                //}
+           
                 return RedirectToAction(nameof(Login));
             }
             return View(user);
 
         }
-                
+
+
+        // GET: User/Login
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(Login model)
+        {
+            if (ModelState.IsValid)
+            {
+                //// find user using username
+                //ApplicationUser user = await _securityManager.FindByNameAsync(model.Username);
+                //// if there is a returned user
+                //if (user != null)
+                //{
+                   
+                    // login with user's email and password. Somehow this methods doesn't work with username 
+                    var result = await _loginManager.PasswordSignInAsync(model.Username, model.Password, false, lockoutOnFailure: false);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction(nameof(HomeController.Index), "Home");
+                    }
+
+                //}
+            }
+
+
+            return View(model);
+        }
     }
 }
