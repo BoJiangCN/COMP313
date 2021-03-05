@@ -37,6 +37,8 @@ namespace WeLinkUp
             })
               .AddEntityFrameworkStores<ApplicationDbContext>()
              .AddDefaultTokenProviders();
+
+            //Navigate users to login page if they are trying to access to authorized page while not logged in
             services.ConfigureApplicationCookie(options => options.LoginPath = "/Home/LogIn");
 
         }

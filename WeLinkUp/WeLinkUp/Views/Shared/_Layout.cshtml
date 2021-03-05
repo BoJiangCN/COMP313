@@ -42,13 +42,14 @@
                     <a href="#" class="w3-bar-item w3-button">Upcoming Events</a>
                 </div>
             </div>
+            <a asp-controller="Event" asp-action="CreateEvent" class="w3-bar-item w3-button w3-padding-large w3-hide-small">FRIENDS</a>
             <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
             @if (signInManager.IsSignedIn(User))
             {
-                <form method="post" asp-action="Logout" asp-controller="Home"class="w3-padding-large w3-hover-red w3-hide-small w3-right">
+                <form method="post" asp-action="Logout" asp-controller="Home" class="w3-padding-large w3-hover-red w3-hide-small w3-right">
                     <button type="submit">LOG OUT</button>
                 </form>
-             }
+            }
             else
             {
 
