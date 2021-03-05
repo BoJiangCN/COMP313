@@ -37,6 +37,7 @@ namespace WeLinkUp
             })
               .AddEntityFrameworkStores<ApplicationDbContext>()
              .AddDefaultTokenProviders();
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/Home/LogIn");
 
         }
 

@@ -38,13 +38,13 @@ namespace WeLinkUp.Models
         public string Description { get; set; }
 
         [Display(Name = "IsAdultOnly")]
-        public bool IsAdultOnly { get; set; }
+        public int IsAdultOnly { get; set; } // 1 for true, 0 for false
 
         public string Image { get; set; }
 
 
         [Display(Name = "EventType")]
-        public bool EventType { get; set; } //true for group event(send invitation to friends) & false for personal event(no invitation to others)
+        public int EventType { get; set; } //1 = true for group event(send invitation to friends) & 0 = false for personal event(no invitation to others)
 
     }
 }
