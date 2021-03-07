@@ -2776,7 +2776,7 @@
       ]
     },
     "Newtonsoft.Json/10.0.1": {
-      "sha512": "MOUhQfeI43upq9QiEv+7YYTDQPtEZEj9xB50MgplO1XF/aumP0f+TCYIHpZEmfsiahJJaXt/gdRFYLFEoF2VyQ==",
+      "sha512": "ebWzW9j2nwxQeBo59As2TYn7nYr9BHicqqCwHOD1Vdo+50HBtLPuqdiCYJcLdTRknpYis/DSEOQz5KmZxwrIAg==",
       "type": "package",
       "path": "newtonsoft.json/10.0.1",
       "hasTools": true,
@@ -5502,7 +5502,7 @@
       ]
     },
     "System.Security.Cryptography.Cng/4.5.0": {
-      "sha512": "O4tqXxWCD8y1IU1VTgzbuBFwoRahrADhDUxHjwezhHCsqyFNyQ5EytjWBxu0EsZuH14b4UO2pFkG063K2h/9Ug==",
+      "sha512": "WG3r7EyjUe9CMPFSs6bty5doUqT+q9pbI80hlNzo2SkPkZ4VTuZkGWjpp77JB8+uaL4DFPRdBsAY+DX3dBK92A==",
       "type": "package",
       "path": "system.security.cryptography.cng/4.5.0",
       "files": [
@@ -6453,24 +6453,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dayeo\\.nuget\\packages\\": {},
+    "C:\\Users\\ashas\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+      "projectUniqueName": "C:\\SEMESTER6\\Software Project2\\FinalProject\\Version5.3\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
       "projectName": "WeLinkUp",
-      "projectPath": "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
-      "packagesPath": "C:\\Users\\dayeo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\obj\\",
+      "projectPath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\Version5.3\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+      "packagesPath": "C:\\Users\\ashas\\.nuget\\packages\\",
+      "outputPath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\Version5.3\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\dayeo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\ashas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -6481,6 +6484,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -6492,6 +6496,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "AWSSDK": {
             "target": "Package",
@@ -6552,7 +6557,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   },

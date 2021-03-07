@@ -42,27 +42,59 @@
                 
                 <div class="form-group">
                     <label>Freetime</label>
-                    <input asp-for="Freetime" class="w3-input w3-border" />
-                    <span asp-validation-for="Freetime" class="text-danger"></span>
+                    <br />
+                    <label class="custom-checkbox">
+                        @Html.CheckBox("sunday", false)
+                        Sunday
+                    </label>
+                    <br />
+                    <label class="custom-checkbox">
+                        @Html.CheckBox("monday", false)
+                        Monday
+                    </label>
+                    <br />
+                    <label class="custom-checkbox">
+                        @Html.CheckBox("tuesday", false)
+                        Tuesday
+                    </label>
+                    <br />
+                    <label class="custom-checkbox">
+                        @Html.CheckBox("wednesday", false)
+                        Wednesday
+                    </label>
+                    <br />
+                    <label class="custom-checkbox">
+                        @Html.CheckBox("thursday", false)
+                        Thursday
+                    </label>
+                    <br />
+                    <label class="custom-checkbox">
+                        @Html.CheckBox("friday", false)
+                        Friday
+                    </label>
+                    <br />
+                    <label class="custom-checkbox">
+                        @Html.CheckBox("saturday", false)
+                        Saturday
+                    </label>
                 </div>
-               
-                <div class="form-group">
-                    <label>Password</label>
-                    <input asp-for="Password" class="w3-input w3-border" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-               
-                <div class="form-group">
-                    <label>Confirm Password</label>
-                    <input asp-for="ConfirmPassword" class="w3-input w3-border" />
-                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                </div>
-                <br/>
-                <div class="form-group">
-                    <input type="submit" value="Signup" class="btn btn-primary" />
-                </div>
-                <b>@ViewData["Message"]</b>
-            </form>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input asp-for="Password" class="w3-input w3-border" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input asp-for="ConfirmPassword" class="w3-input w3-border" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" value="Signup" class="btn btn-primary" />
+                    </div>
+                    <b>@ViewData["Message"]</b>
+</form>
         </div>
     </div>
 

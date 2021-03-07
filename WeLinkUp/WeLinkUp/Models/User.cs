@@ -27,9 +27,17 @@ namespace WeLinkUp.Models
         [DataType(DataType.Date)]
         public string DateofBirth { get; set; }
 
-        [Required(ErrorMessage = "Please enter your free time")]
-        [DataType(DataType.Time)]
-        public string Freetime { get; set; }
+        //[Required(ErrorMessage = "Please select your free time")]
+        [Display(Name = "Freetime")]        
+        public bool Sunday { get; set; }
+        public bool Monday { get; set; }
+        public bool Tuesday { get; set; }
+        public bool Wednesday { get; set; }
+        public bool Thursday { get; set; }
+        public bool Friday { get; set; }
+        public bool Saturday { get; set; }
+        //public List<Freetime> Freetime { get; set; }
+        //public List<CheckBoxItem> Freetimes { get; set; }
 
         [Required(ErrorMessage = "Please enter your password")]        
         [Display(Name = "Password")]

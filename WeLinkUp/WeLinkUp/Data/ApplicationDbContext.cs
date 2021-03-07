@@ -18,6 +18,6 @@ namespace WeLinkUp.Data
 
         }
 
-        //public DbSet<User> Users { get; set; }
+        
     }
 }
