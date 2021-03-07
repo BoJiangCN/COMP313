@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\SEMESTER6\\Software Project2\\FinalProject\\Version5.3\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj": {}
   },
   "projects": {
@@ -12,15 +13,33 @@
         "projectPath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\Version5.3\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
         "packagesPath": "C:\\Users\\ashas\\.nuget\\packages\\",
         "outputPath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\Version5.3\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\obj\\",
+=======
+    "C:\\Users\\ybinh\\Desktop\\Sem6\\software project2\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\ybinh\\Desktop\\Sem6\\software project2\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ybinh\\Desktop\\Sem6\\software project2\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+        "projectName": "WeLinkUp",
+        "projectPath": "C:\\Users\\ybinh\\Desktop\\Sem6\\software project2\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+        "packagesPath": "C:\\Users\\ybinh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ybinh\\Desktop\\Sem6\\software project2\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\obj\\",
+>>>>>>> 5feb76f5cbe2379ac9b0b1532d361294e4671cfc
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\ashas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+=======
+          "C:\\Users\\ybinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> 5feb76f5cbe2379ac9b0b1532d361294e4671cfc
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -104,7 +123,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+>>>>>>> 5feb76f5cbe2379ac9b0b1532d361294e4671cfc
         }
       }
     }
