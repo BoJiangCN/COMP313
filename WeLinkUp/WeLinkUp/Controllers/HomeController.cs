@@ -24,17 +24,16 @@ namespace WeLinkUp.Controllers
         private readonly SignInManager<ApplicationUser> _loginManager;
 
         private readonly IConfiguration _configuration;
-        private readonly ApplicationDbContext _context;
-        // public readonly IWebHostEnvironment webHostEnvironment;
+        //private readonly ApplicationDbContext _context;        
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public HomeController(IConfiguration configuration, IWebHostEnvironment webHostEnvironment, UserManager<ApplicationUser> secMgr, SignInManager<ApplicationUser> loginManager, ApplicationDbContext context)
+        public HomeController(IConfiguration configuration, IWebHostEnvironment webHostEnvironment, UserManager<ApplicationUser> secMgr, SignInManager<ApplicationUser> loginManager)
         {
             this._configuration = configuration;
             this._webHostEnvironment = webHostEnvironment;
             this._securityManager = secMgr;
             this._loginManager = loginManager;
-            this._context = context;
+            
         }
 
         public IActionResult Index()
@@ -59,40 +58,30 @@ namespace WeLinkUp.Controllers
         [AllowAnonymous]
         public IActionResult Signup()
         {
-            //var item = _context.Freetime.ToList();
-            //User m1 = new User();
-            //m1.Freetime = item.Select(vm => new Freetime()
-            //{
-            //    FreeID = vm.FreeID,
-            //    Days = vm.Days,
-            //    IsChecked = false
-            //}).ToList();
-
-            //return View(m1);
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Signup(User user,string sunday,string monday,string tuesday,string wednesday,string thursday,string friday,string saturday)
+        public async Task<IActionResult> Signup(User user, string sunday, string monday, string tuesday, string wednesday, string thursday, string friday, string saturday)
         {
             if (ModelState.IsValid)
             {
                 //code for add imgae to db
-                //save image to wwwroot/image
                 string wwwroot = _webHostEnvironment.WebRootPath;
                 string fileName = Path.GetFileNameWithoutExtension(user.ImageFile.FileName);
                 string extension = Path.GetExtension(user.ImageFile.FileName);
                 user.Image = fileName = fileName + extension;
                 string path = Path.Combine(wwwroot + "/images/", fileName);
+
                 //using (var fileStream = new FileStream(path, FileMode.Create))
                 //{
                 //    user.ImageFile.CopyTo(fileStream);
 
                 //} 
 
-                if (sunday=="true")
+                if (sunday == "true")
                 {
                     user.Sunday = true;
                 }
@@ -148,7 +137,7 @@ namespace WeLinkUp.Controllers
                 {
                     user.Saturday = false;
                 }
-                
+
 
                 //var Freetime= freetime.ToList();
                 //add signup information to db
@@ -158,7 +147,7 @@ namespace WeLinkUp.Controllers
                     Email = user.Email,
                     Image = user.Image,
                     DateofBirth = user.DateofBirth,
-                    Sunday=user.Sunday,
+                    Sunday = user.Sunday,
                     Monday = user.Monday,
                     Tuesday = user.Tuesday,
                     Wednesday = user.Wednesday,

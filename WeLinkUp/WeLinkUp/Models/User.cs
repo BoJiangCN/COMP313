@@ -37,7 +37,7 @@ namespace WeLinkUp.Models
         public bool Friday { get; set; }
         public bool Saturday { get; set; }
         //public List<Freetime> Freetime { get; set; }
-        //public List<CheckBoxItem> Freetimes { get; set; }
+        
 
         [Required(ErrorMessage = "Please enter your password")]        
         [Display(Name = "Password")]
@@ -48,11 +48,11 @@ namespace WeLinkUp.Models
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Password doesn't match")]
         [DataType(DataType.Password)]
-        public string ConfirmPassword { get; set; }
-
+        public string ConfirmPassword { get; set; }     
         public string Image { get; set; }
 
         [NotMapped]
+        [Required(ErrorMessage = "Please Upload your picture")]
         public IFormFile ImageFile{ get; set; }
 
     }
