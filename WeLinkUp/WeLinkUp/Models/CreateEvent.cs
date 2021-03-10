@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,7 +10,8 @@ namespace WeLinkUp.Models
 {
     public class CreateEvent
     {
-        public long EventId { get; set; }
+        [Key]
+        public int EventId { get; set; }
 
         [Required(ErrorMessage = "Please enter event title")]
         [Display(Name = "EventTitle")]
@@ -42,6 +45,9 @@ namespace WeLinkUp.Models
 
         public string Image { get; set; }
 
+        //[NotMapped]
+        //[Required(ErrorMessage = "Please Upload your picture")]
+        //public IFormFile ImageFile { get; set; }
 
         [Display(Name = "EventType")]
         public int EventType { get; set; } //1 = true for group event(send invitation to friends) & 0 = false for personal event(no invitation to others)
