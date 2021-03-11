@@ -77,6 +77,7 @@ namespace WeLinkUp.Controllers
                     Image = e.Image,
                     IsAdultOnly = e.IsAdultOnly,
                     EventType = e.EventType
+                    EventHost = User.Identity.Name
 
                 };
 
@@ -93,7 +94,7 @@ namespace WeLinkUp.Controllers
                 //else
                 //{
                 //ModelState.AddModelError("", "Invalid UserName or Password");
-                return View("EventDetail");
+                return View("EventDetail", newEvent);
                 //return RedirectToAction(nameof(HomeController.Index), "Home");
                 //}
             //}// else
