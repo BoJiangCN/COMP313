@@ -76,7 +76,7 @@ namespace WeLinkUp.Controllers
                     Description = e.Description,
                     Image = e.Image,
                     IsAdultOnly = e.IsAdultOnly,
-                    EventType = e.EventType
+                    EventType = e.EventType,
                     EventHost = User.Identity.Name
 
                 };
