@@ -45,9 +45,9 @@ namespace WeLinkUp.Models
 
         public string Image { get; set; }
 
-        //[NotMapped]
+        [NotMapped]
         //[Required(ErrorMessage = "Please Upload your picture")]
-        //public IFormFile ImageFile { get; set; }
+        public IFormFile ImageFile { get; set; }
 
         [Display(Name = "EventType")]
         public int EventType { get; set; } //1 = true for group event(send invitation to friends) & 0 = false for personal event(no invitation to others)

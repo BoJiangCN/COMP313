@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.FileProviders;
 using WeLinkUp.Data;
 using WeLinkUp.Models;
 
@@ -32,18 +33,31 @@ namespace WeLinkUp.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateEvent(CreateEvent e, int isAdultOnly)
+        public IActionResult CreateEvent(CreateEvent e, bool isAdultOnlyChecked)
         {
             //if (ModelState.IsValid)
             //{
-                //code for add imgae to db
-                //string wwwroot = _webHostEnvironment.WebRootPath;
-                //string fileName = Path.GetFileNameWithoutExtension(e.ImageFile.FileName);
-                //string extension = Path.GetExtension(e.ImageFile.FileName);
-                //e.Image = fileName = fileName + extension;
-                //string path = Path.Combine(wwwroot + "/images/", fileName);
 
-                if (isAdultOnly == 1)
+            //code for add imgae to db
+            string wwwroot = _webHostEnvironment.WebRootPath;
+            string fileName = String.Empty;
+            if (e.ImageFile.FileName == null)
+            {
+                var provider = new PhysicalFileProvider(_webHostEnvironment.WebRootPath);
+                string content = provider.GetDirectoryContents(Path.Combine(wwwroot + "/images/No_Image_Available.jpg")).ToString();
+                e.Image = content;
+                
+            } else
+            {
+                //string wwwroot = _webHostEnvironment.WebRootPath;
+                fileName = Path.GetFileNameWithoutExtension(e.ImageFile.FileName);
+                string extension = Path.GetExtension(e.ImageFile.FileName);
+                e.Image = fileName = fileName + extension;
+                string path = Path.Combine(wwwroot + "/images/", fileName);
+            }
+
+
+            if (isAdultOnlyChecked == true)
                 {
                     e.IsAdultOnly = 1; //true
                 }
@@ -60,9 +74,9 @@ namespace WeLinkUp.Controllers
                     StartTime = e.StartTime,
                     EndTime = e.EndTime,
                     Description = e.Description,
-                    //Image = e.Image,
-                    //IsAdultOnly = e.IsAdultOnly,
-                    //EventType = e.EventType
+                    Image = e.Image,
+                    IsAdultOnly = e.IsAdultOnly,
+                    EventType = e.EventType
 
                 };
 
@@ -92,6 +106,13 @@ namespace WeLinkUp.Controllers
 
         [HttpGet]
         public IActionResult EventSummary()
+        {
+            return View();
+        }
+
+        [HttpGet]
+
+        public IActionResult Calendar()
         {
             return View();
         }

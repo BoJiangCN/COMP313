@@ -260,3 +260,4 @@ C:\Users\ybinh\Desktop\Sem6\sproject2-v1\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Deb
 C:\Users\ybinh\Desktop\Sem6\sproject2-v1\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\ybinh\Desktop\Sem6\sproject2-v1\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\ybinh\Desktop\Sem6\sproject2-v1\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Event\EventSummary.cshtml.g.cs
+C:\Users\ybinh\Desktop\Sem6\sproject2-v1\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Event\Calendar.cshtml.g.cs

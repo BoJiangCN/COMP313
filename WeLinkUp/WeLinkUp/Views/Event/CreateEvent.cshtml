@@ -14,8 +14,10 @@
         Create Event page: CreateEvent Model is already created. Check Models Folder
     </h1>
 
-        <!--This button is used to link to event summary page-->
-    <input type="submit" value="View event summary" asp-action="EventSummary"/>
+    <!--This button is used to link to event summary page-->
+    <a asp-controller="Event" asp-action="EventSummary">
+        <input type="submit" value="View event summary"  />
+    </a>
 
     <form id="createEvent" asp-action="CreateEvent" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -27,7 +29,7 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label>Location</label>
-            <input asp-for="Location" class="w3-input w3-border" />
+            <input asp-for="Location" ID="" class="w3-input w3-border" />
             @*<asp:TextBox ID="txtLocation" runat="server"></asp:TextBox>*@
             @*<input asp-for="Location" id="txtLocation"   class="w3-input w3-border" />*@
             @*<label>Address</label>
@@ -54,17 +56,27 @@
             <input asp-for="Description" class="w3-input w3-border" />
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
-        @*<div class="form-control">
+        <div class="form-control">
             <label>Image</label>
             <input type="file" id="files" asp-for="Image" accept="image/*" class="w3-input w3-border" />
             <span asp-validation-for="ImageFile" class="text-danger"></span>
-        </div>*@
+        </div>
         <div class="form-group">
             <label>Is Adult only event?</label>
             <br />
             <label class="custom-checkbox">
-                @Html.CheckBox("isAdultOnly", false)
+                @*@Html.CheckBox("isAdultOnly", false)*@
+                <input type="checkbox" name="isAdultOnlyChecked" value="true" />
                 Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Is Adult only event?</label>
+            <br />
+            <label class="custom-radio">
+                @*@Html.CheckBox("isAdultOnly", false)*@
+                <input type="radio" asp-for="EventType" value="0" />Group Event
+                <input type="radio" asp-for="EventType" value="1" />Personal Event
             </label>
         </div>
         <input type="submit" value="Add new event" />
@@ -80,7 +92,7 @@
             });
         });
     </script>
-    <div id="dp"></div>
+    @*<div id="dp"></div>*@
     <!--script to load the calendar from daypilot library-->
     <script>
         var dp = new DayPilot.Month("dp");
