@@ -26,6 +26,10 @@ namespace WeLinkUp.Models
         [Display(Name = "Date")]
         [DataType(DataType.Date)]
         public string Date { get; set; }
+        
+        [Required]
+        [Display(Name = "HostName")]
+        public string Date { get; set; }
 
         [Required(ErrorMessage = "Please enter start time")]
         [Display(Name = "StartTime")]
