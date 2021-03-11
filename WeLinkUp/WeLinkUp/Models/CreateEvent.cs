@@ -28,8 +28,8 @@ namespace WeLinkUp.Models
         public string Date { get; set; }
         
         [Required]
-        [Display(Name = "HostName")]
-        public string Date { get; set; }
+        [Display(Name = "EventHost")]
+        public string EventHost { get; set; }
 
         [Required(ErrorMessage = "Please enter start time")]
         [Display(Name = "StartTime")]
