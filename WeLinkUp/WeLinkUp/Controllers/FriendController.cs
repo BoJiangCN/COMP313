@@ -22,11 +22,6 @@ namespace WeLinkUp.Controllers
             this._context = context;
         }
 
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
-
         [HttpGet]
         public async Task<IActionResult> Friends()
         {

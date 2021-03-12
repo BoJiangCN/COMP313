@@ -10,7 +10,7 @@
     <h1 class="w3-content">Event Details</h1>
     <hr />
     <h3>Event Title:    @Html.DisplayFor(model => model.EventTitle)</h3>
-    <h3>Event Host:    @Html.DisplayFor(model => model.EventId)</h3>
+    <h3>Event Host:    @Html.DisplayFor(model => model.HostId)</h3>
     <h3>Location:   @Html.DisplayFor(model => model.Location)</h3>
     <h3>Date:    @Html.DisplayFor(model => model.Date)</h3>
     <h3>Start Time:    @Html.DisplayFor(model => model.StartTime)</h3>
@@ -21,11 +21,11 @@
 
     @if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Date)) > 0)
     {
-        <h3>Event is already passed</h3>
+        <h3>Event is already passed 1</h3>
     }
-    else if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.EndTime)) > 0)
+    else if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Date)) == 0 && DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.EndTime)) > 0)
     {
-        <h3>Event is already passed</h3>
+        <h3>Event is already passed 2</h3>
     }
     else
     {

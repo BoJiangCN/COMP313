@@ -86,7 +86,13 @@ namespace WeLinkUp.Controllers
             _context.Events.Add(newEvent);
             _context.SaveChanges();
 
-        
+            // invite friends if the event is a group event
+            if (e.EventType == 1) 
+            {
+                await InviteFriendsAsync(newEvent);
+            }
+            
+
             // show Event Detail Page
             return View("EventDetail", newEvent);
            
@@ -96,6 +102,60 @@ namespace WeLinkUp.Controllers
         public IActionResult EventSummary()
         {
             return View();
+        }
+
+        public async Task InviteFriendsAsync(CreateEvent e) 
+        {
+            System.Diagnostics.Debug.WriteLine("Calling Invite Friends");
+
+            // get current user
+            var user = await _securityManager.GetUserAsync(User);
+            
+
+            // get list of friends
+            var query_getFriends_attendeeList = (from f in _context.FriendLists
+                            join u in _context.Users on f.FriendId equals u.Id
+                            where f.UserId == user.Id
+                            select new AttendeeList
+                            {
+                                EventId = e.EventId,
+                                UserId = f.FriendId,
+                                Status = "Invited"
+                            });
+
+            
+            // 1. Add friends to Attendee
+            
+            // convert to List<AttendeeList>
+            List<AttendeeList> attendeeList = new List<AttendeeList>(query_getFriends_attendeeList);
+            // Add to AttendeeList
+            foreach (AttendeeList attendee in attendeeList)
+            {
+                _context.AttendeeList.Add(attendee);
+            }
+
+            _context.SaveChanges();
+
+            // 2. Send Notification to Friends
+            var query_getFriends_notification = (from f in _context.FriendLists
+                                                 join u in _context.Users on f.FriendId equals u.Id
+                                                 where f.UserId == user.Id
+                                                 select new Notification
+                                                 {
+                                                     EventId = e.EventId,
+                                                     RecipientId = f.FriendId,
+                                                     SenderId = f.UserId,
+                                                     Message = user.UserName+" invited you to an event!"
+                                                 });
+            // convert to List<Notification>
+            List<Notification> notifications  = new List<Notification>(query_getFriends_notification);
+            // Add to Notification
+            foreach (Notification notification in notifications)
+            {
+                _context.Notifications.Add(notification);
+            }
+
+            _context.SaveChanges();
         }
 
       
