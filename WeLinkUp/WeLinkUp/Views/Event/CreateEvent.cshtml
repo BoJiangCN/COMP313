@@ -10,16 +10,16 @@
     <br />
     <script src="~/js/daypilot/daypilot-all.min.js" asp-append-version="true"></script>
 
-    <h1>
-        Create Event page: CreateEvent Model is already created. Check Models Folder
+    <h1 class="w3-content">
+        Create Event page
     </h1>
 
-    <!--This button is used to link to event summary page-->
-    <a asp-controller="Event" asp-action="EventSummary">
-        <input type="submit" value="View event summary"  />
-    </a>
+   <div class="w3-content"><a asp-controller="Event" asp-action="EventSummary">
+    <input type="submit" value="View event summary" />
+</a></div> <!--This button is used to link to event summary page-->
+    
 
-    <form id="createEvent" asp-action="CreateEvent" method="post">
+    <form class="w3-content" id="createEvent" asp-action="CreateEvent" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label>Event title</label>
