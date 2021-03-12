@@ -23,4 +23,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\EventPicture\" />
+    <Folder Include="wwwroot\images\UserProfile\" />
+  </ItemGroup>
+
 </Project>

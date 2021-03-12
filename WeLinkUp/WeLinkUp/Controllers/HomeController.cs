@@ -72,7 +72,7 @@ namespace WeLinkUp.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(user.ImageFile.FileName);
                 string extension = Path.GetExtension(user.ImageFile.FileName);
                 user.Image = fileName = fileName + extension;
-                string path = Path.Combine(wwwroot + "/images/", fileName);
+                string path = Path.Combine(wwwroot + "/images/UserProfile/", fileName);
 
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {

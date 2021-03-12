@@ -578,7 +578,6 @@ C:\SEMESTER6\Software Project2\FinalProject\Version 5.6\COMP313-Team5\WeLinkUp\W
 C:\SEMESTER6\Software Project2\FinalProject\Version 5.6\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.TagHelpers.input.cache
 C:\SEMESTER6\Software Project2\FinalProject\Version 5.6\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.TagHelpers.output.cache
 C:\SEMESTER6\Software Project2\FinalProject\Version 5.6\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.RazorCoreGenerate.cache
-C:\SEMESTER6\Software Project2\FinalProject\Version 5.6\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Event\Calendar.cshtml.g.cs
 C:\SEMESTER6\Software Project2\FinalProject\Version 5.6\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Event\CreateEvent.cshtml.g.cs
 C:\SEMESTER6\Software Project2\FinalProject\Version 5.6\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Event\EventDetail.cshtml.g.cs
 C:\SEMESTER6\Software Project2\FinalProject\Version 5.6\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Event\EventSummary.cshtml.g.cs
@@ -769,3 +768,5 @@ D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.pdb
 D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.genruntimeconfig.cache
 C:\Users\dayeo\OneDrive\Desktop\Assignment\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Calendar\Calendar.cshtml.g.cs
 C:\Users\dayeo\OneDrive\Desktop\Assignment\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Friend\Friends.cshtml.g.cs
+C:\SEMESTER6\Software Project2\FinalProject\Version 5.6\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Calendar\Calendar.cshtml.g.cs
+C:\SEMESTER6\Software Project2\FinalProject\Version 5.6\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Friend\Friends.cshtml.g.cs
