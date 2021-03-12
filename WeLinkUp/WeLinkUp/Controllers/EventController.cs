@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -86,15 +87,20 @@ namespace WeLinkUp.Controllers
             _context.Events.Add(newEvent);
             _context.SaveChanges();
 
+            List<AttendeeList> attendee = new List<AttendeeList>();
             // invite friends if the event is a group event
             if (e.EventType == 1) 
             {
-                await InviteFriendsAsync(newEvent);
+                attendee = await InviteFriendsAsync(newEvent);
             }
-            
+
+            EventDetailModel eventDetailModel = new EventDetailModel();
+            eventDetailModel.AttendeeList = attendee;
+            eventDetailModel.Events = newEvent;
+
 
             // show Event Detail Page
-            return View("EventDetail", newEvent);
+            return View("EventDetail", eventDetailModel);
            
         }
 
@@ -104,7 +110,7 @@ namespace WeLinkUp.Controllers
             return View();
         }
 
-        public async Task InviteFriendsAsync(CreateEvent e) 
+        public async Task<List<AttendeeList>> InviteFriendsAsync(CreateEvent e) 
         {
             System.Diagnostics.Debug.WriteLine("Calling Invite Friends");
 
@@ -123,13 +129,13 @@ namespace WeLinkUp.Controllers
                                 Status = "Invited"
                             });
 
-
+            List<AttendeeList> attendeeList = new List<AttendeeList>();
             // 1. Add friends to Attendee
 
             if (query_getFriends_attendeeList.Any()) // check if the user has any friend
             {
                 // convert to List<AttendeeList>
-                List<AttendeeList> attendeeList = new List<AttendeeList>(query_getFriends_attendeeList);
+                attendeeList = new List<AttendeeList>(query_getFriends_attendeeList);
                 // Add to AttendeeList
                 foreach (AttendeeList attendee in attendeeList)
                 {
@@ -159,7 +165,9 @@ namespace WeLinkUp.Controllers
                 }
 
                 _context.SaveChanges();
+
             }
+             return attendeeList;
         }
 
       
