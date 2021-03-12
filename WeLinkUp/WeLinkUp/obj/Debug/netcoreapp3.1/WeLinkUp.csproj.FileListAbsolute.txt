@@ -767,5 +767,5 @@ D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.cspr
 D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.dll
 D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.pdb
 D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.genruntimeconfig.cache
-C:\Users\dayeo\OneDrive\Desktop\Assignment\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Event\Friends.cshtml.g.cs
 C:\Users\dayeo\OneDrive\Desktop\Assignment\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Calendar\Calendar.cshtml.g.cs
+C:\Users\dayeo\OneDrive\Desktop\Assignment\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Friend\Friends.cshtml.g.cs
