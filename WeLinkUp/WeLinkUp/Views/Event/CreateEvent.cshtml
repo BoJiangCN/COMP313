@@ -76,8 +76,8 @@
             <br />
             <label class="custom-radio">
                 @*@Html.CheckBox("isAdultOnly", false)*@
-                <input type="radio" asp-for="EventType" value="0" />Group Event
-                <input type="radio" asp-for="EventType" value="1" />Personal Event
+                <input type="radio" asp-for="EventType" value="1" checked/>Group Event
+                <input type="radio" asp-for="EventType" value="0" />Personal Event
             </label>
         </div>
         <input type="submit" value="Add new event" />

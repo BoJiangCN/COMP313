@@ -77,7 +77,13 @@ namespace WeLinkUp.Controllers
             _context.Events.Add(newEvent);
             _context.SaveChanges();
 
-        
+            // invite friends if the event is a group event
+            if (e.EventType == 1) 
+            {
+                await InviteFriendsAsync(newEvent);
+            }
+            
+
             // show Event Detail Page
             return View("EventDetail", newEvent);
            
@@ -87,6 +93,38 @@ namespace WeLinkUp.Controllers
         public IActionResult EventSummary()
         {
             return View();
+        }
+
+        public async Task InviteFriendsAsync(CreateEvent e) 
+        {
+            System.Diagnostics.Debug.WriteLine("Calling Invite Friends");
+
+            // get current user
+            var user = await _securityManager.GetUserAsync(User);
+
+            // get list of friends
+            var query_getFriends = (from f in _context.FriendLists
+                            join u in _context.Users on f.FriendId equals u.Id
+                            where f.UserId == user.Id
+                            select new AttendeeList
+                            {
+                                EventId = e.EventId,
+                                UserId = f.FriendId,
+                                Status = "Invited"
+                            });
+
+            
+            List<AttendeeList> attendeeList = new List<AttendeeList>(query_getFriends);
+            
+            
+            System.Diagnostics.Debug.WriteLine("UserId\tFriendId\tStatus");
+
+            foreach (AttendeeList attendee in attendeeList)
+            {
+                _context.AttendeeList.Add(attendee);
+            }
+
+            _context.SaveChanges();
         }
 
       

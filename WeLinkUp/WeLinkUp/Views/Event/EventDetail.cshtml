@@ -21,11 +21,11 @@
 
     @if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Date)) > 0)
     {
-        <h3>Event is already passed</h3>
+        <h3>Event is already passed 1</h3>
     }
-    else if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.EndTime)) > 0)
+    else if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Date)) == 0 && DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.EndTime)) > 0)
     {
-        <h3>Event is already passed</h3>
+        <h3>Event is already passed 2</h3>
     }
     else
     {
