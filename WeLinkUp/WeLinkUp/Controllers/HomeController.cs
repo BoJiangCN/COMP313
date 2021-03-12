@@ -23,8 +23,7 @@ namespace WeLinkUp.Controllers
         private readonly UserManager<ApplicationUser> _securityManager;
         private readonly SignInManager<ApplicationUser> _loginManager;
 
-        private readonly IConfiguration _configuration;
-        //private readonly ApplicationDbContext _context;        
+        private readonly IConfiguration _configuration;       
         private readonly IWebHostEnvironment _webHostEnvironment;
 
         public HomeController(IConfiguration configuration, IWebHostEnvironment webHostEnvironment, UserManager<ApplicationUser> secMgr, SignInManager<ApplicationUser> loginManager)
@@ -138,8 +137,6 @@ namespace WeLinkUp.Controllers
                     user.Saturday = false;
                 }
 
-
-                //var Freetime= freetime.ToList();
                 //add signup information to db
                 var newUser = new ApplicationUser
                 {
@@ -154,7 +151,6 @@ namespace WeLinkUp.Controllers
                     Thursday = user.Thursday,
                     Friday = user.Friday,
                     Saturday = user.Saturday
-                    //Freetime = user.Freetime.ToString()
                 };
                 var result = await _securityManager.CreateAsync(newUser, user.Password);
                 if (result.Succeeded)
@@ -173,7 +169,6 @@ namespace WeLinkUp.Controllers
                     return View();
                 }
 
-                // return RedirectToAction(nameof(Login));
             }
             return View(user);
 
@@ -195,12 +190,7 @@ namespace WeLinkUp.Controllers
         public async Task<IActionResult> Login(Login model)
         {
             if (ModelState.IsValid)
-            {
-                //// find user using username
-                //ApplicationUser user = await _securityManager.FindByNameAsync(model.Username);
-                //// if there is a returned user
-                //if (user != null)
-                //{
+            {             
 
                 // login with user's email and password. Somehow this methods doesn't work with username 
                 var result = await _loginManager.PasswordSignInAsync(model.Username, model.Password, false, lockoutOnFailure: false);
@@ -214,7 +204,6 @@ namespace WeLinkUp.Controllers
                     return View();
                 }
 
-                //}
             }
 
 
