@@ -75,11 +75,11 @@ namespace WeLinkUp.Controllers
                 user.Image = fileName = fileName + extension;
                 string path = Path.Combine(wwwroot + "/images/", fileName);
 
-                //using (var fileStream = new FileStream(path, FileMode.Create))
-                //{
-                //    user.ImageFile.CopyTo(fileStream);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    user.ImageFile.CopyTo(fileStream);
 
-                //} 
+                }
 
                 if (sunday == "true")
                 {
