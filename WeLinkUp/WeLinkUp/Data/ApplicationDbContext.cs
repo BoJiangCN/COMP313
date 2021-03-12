@@ -21,5 +21,7 @@ namespace WeLinkUp.Data
         public DbSet<CreateEvent> Events { get; set; }
         
         public DbSet<FriendLists> FriendLists {get;set;}
+
+        public DbSet<AttendeeList> AttendeeList { get; set; }
     }
 }
