@@ -123,39 +123,43 @@ namespace WeLinkUp.Controllers
                                 Status = "Invited"
                             });
 
-            
+
             // 1. Add friends to Attendee
-            
-            // convert to List<AttendeeList>
-            List<AttendeeList> attendeeList = new List<AttendeeList>(query_getFriends_attendeeList);
-            // Add to AttendeeList
-            foreach (AttendeeList attendee in attendeeList)
+
+            if (query_getFriends_attendeeList.Any()) // check if the user has any friend
             {
-                _context.AttendeeList.Add(attendee);
+                // convert to List<AttendeeList>
+                List<AttendeeList> attendeeList = new List<AttendeeList>(query_getFriends_attendeeList);
+                // Add to AttendeeList
+                foreach (AttendeeList attendee in attendeeList)
+                {
+                    _context.AttendeeList.Add(attendee);
+                }
+
+                _context.SaveChanges();
+
+
+                // 2. Send Notification to Friends
+                var query_getFriends_notification = (from f in _context.FriendLists
+                                                     join u in _context.Users on f.FriendId equals u.Id
+                                                     where f.UserId == user.Id
+                                                     select new Notification
+                                                     {
+                                                         EventId = e.EventId,
+                                                         RecipientId = f.FriendId,
+                                                         SenderId = f.UserId,
+                                                         Message = user.UserName + " invited you to an event!"
+                                                     });
+                // convert to List<Notification>
+                List<Notification> notifications = new List<Notification>(query_getFriends_notification);
+                // Add to Notification
+                foreach (Notification notification in notifications)
+                {
+                    _context.Notifications.Add(notification);
+                }
+
+                _context.SaveChanges();
             }
-
-            _context.SaveChanges();
-
-            // 2. Send Notification to Friends
-            var query_getFriends_notification = (from f in _context.FriendLists
-                                                 join u in _context.Users on f.FriendId equals u.Id
-                                                 where f.UserId == user.Id
-                                                 select new Notification
-                                                 {
-                                                     EventId = e.EventId,
-                                                     RecipientId = f.FriendId,
-                                                     SenderId = f.UserId,
-                                                     Message = user.UserName+" invited you to an event!"
-                                                 });
-            // convert to List<Notification>
-            List<Notification> notifications  = new List<Notification>(query_getFriends_notification);
-            // Add to Notification
-            foreach (Notification notification in notifications)
-            {
-                _context.Notifications.Add(notification);
-            }
-
-            _context.SaveChanges();
         }
 
       

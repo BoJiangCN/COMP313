@@ -13,6 +13,7 @@ namespace WeLinkUp.Models
         [Key]
         public int EventId { get; set; }
 
+        [MaxLength(40)]
         [Required(ErrorMessage = "Please enter event title")]
         [Display(Name = "EventTitle")]
         public string EventTitle { get; set; }
