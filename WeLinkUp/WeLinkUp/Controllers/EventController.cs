@@ -38,10 +38,15 @@ namespace WeLinkUp.Controllers
           [HttpGet]
         public async Task<IActionResult> Friends()
         {
+            // get current user
             var user = await _securityManager.GetUserAsync(User);
+
+            // get list of friends
             List<FriendLists> friends = _context.FriendLists.Where(fr => fr.UserId == user.Id)
                 .Select(fr => new FriendLists { UserId = fr.UserId, FriendId = fr.FriendId }).ToList();
             List<ApplicationUser> userFriends = new List<ApplicationUser>();
+
+            // get information of each friends
             foreach (FriendLists friend in friends)
             {
                 ApplicationUser userFriend = _context.Users.Where(us => us.Id == friend.FriendId)
@@ -56,29 +61,12 @@ namespace WeLinkUp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateEventAsync(CreateEvent e, bool isAdultOnlyChecked)
         {
-            //if (ModelState.IsValid)
-            //{
 
             //code for add imgae to db
             string wwwroot = _webHostEnvironment.WebRootPath;
             string fileName = String.Empty;
 
-            // THIS NEEDS TO BE CHANGED!!!!!!!!!!!!!! <- DELETE THIS MSG AFTER IT WORKS
-            //if (e.ImageFile.FileName == null)
-            //{
-            //    var provider = new PhysicalFileProvider(_webHostEnvironment.WebRootPath);
-            //    string content = provider.GetDirectoryContents(Path.Combine(wwwroot + "/images/No_Image_Available.jpg")).ToString();
-            //    e.Image = content;
-
-            //} else
-            //{
-            //    //string wwwroot = _webHostEnvironment.WebRootPath;
-            //    fileName = Path.GetFileNameWithoutExtension(e.ImageFile.FileName);
-            //    string extension = Path.GetExtension(e.ImageFile.FileName);
-            //    e.Image = fileName = fileName + extension;
-            //    string path = Path.Combine(wwwroot + "/images/", fileName);
-            //}
-
+            // get current user to get its id(host)
             var user = await _securityManager.GetUserAsync(User);
 
 
@@ -106,27 +94,14 @@ namespace WeLinkUp.Controllers
 
             };
 
-
-            // login with user's email and password. Somehow this methods doesn't work with username 
-            //var result = 
-            _context.Add(newEvent);
+            //save event in database
+            _context.Events.Add(newEvent);
             _context.SaveChanges();
 
-            //if (result != null)
-            //{
-            //return RedirectToAction(nameof(HomeController.Index), "Home");
-            //}
-            //else
-            //{
-            //ModelState.AddModelError("", "Invalid UserName or Password");
+        
+            // show Event Detail Page
             return View("EventDetail", newEvent);
-            //return RedirectToAction(nameof(HomeController.Index), "Home");
-            //}
-            //}// else
-            //{
-            //ModelState.AddModelError("", "Please fill out the form properly");
-            //return View(e);
-            //}
+           
         }
 
         [HttpGet]
@@ -135,11 +110,6 @@ namespace WeLinkUp.Controllers
             return View();
         }
 
-        [HttpGet]
-
-        public IActionResult Calendar()
-        {
-            return View();
-        }
+      
     }
 }
