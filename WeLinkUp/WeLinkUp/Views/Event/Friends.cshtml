@@ -1,0 +1,14 @@
+@model List<WeLinkUp.Models.ApplicationUser>
+
+
+<html>
+    <body>
+        @foreach (ApplicationUser user in Model)
+        {
+        <form>
+            <input type="text" value="@user.UserName"/>
+            <input type="submit" value="Send Message" />
+        </form>
+        }
+    </body>
+</html>
