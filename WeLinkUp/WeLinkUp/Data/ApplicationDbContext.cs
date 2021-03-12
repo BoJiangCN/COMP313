@@ -23,5 +23,7 @@ namespace WeLinkUp.Data
         public DbSet<FriendLists> FriendLists {get;set;}
 
         public DbSet<AttendeeList> AttendeeList { get; set; }
+
+        public DbSet<Notification> Notifications { get; set; }
     }
 }

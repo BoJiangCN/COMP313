@@ -101,9 +101,10 @@ namespace WeLinkUp.Controllers
 
             // get current user
             var user = await _securityManager.GetUserAsync(User);
+            
 
             // get list of friends
-            var query_getFriends = (from f in _context.FriendLists
+            var query_getFriends_attendeeList = (from f in _context.FriendLists
                             join u in _context.Users on f.FriendId equals u.Id
                             where f.UserId == user.Id
                             select new AttendeeList
@@ -114,14 +115,35 @@ namespace WeLinkUp.Controllers
                             });
 
             
-            List<AttendeeList> attendeeList = new List<AttendeeList>(query_getFriends);
+            // 1. Add friends to Attendee
             
-            
-            System.Diagnostics.Debug.WriteLine("UserId\tFriendId\tStatus");
-
+            // convert to List<AttendeeList>
+            List<AttendeeList> attendeeList = new List<AttendeeList>(query_getFriends_attendeeList);
+            // Add to AttendeeList
             foreach (AttendeeList attendee in attendeeList)
             {
                 _context.AttendeeList.Add(attendee);
+            }
+
+            _context.SaveChanges();
+
+            // 2. Send Notification to Friends
+            var query_getFriends_notification = (from f in _context.FriendLists
+                                                 join u in _context.Users on f.FriendId equals u.Id
+                                                 where f.UserId == user.Id
+                                                 select new Notification
+                                                 {
+                                                     EventId = e.EventId,
+                                                     RecipientId = f.FriendId,
+                                                     SenderId = f.UserId,
+                                                     Message = user.UserName+" invited you to an event!"
+                                                 });
+            // convert to List<Notification>
+            List<Notification> notifications  = new List<Notification>(query_getFriends_notification);
+            // Add to Notification
+            foreach (Notification notification in notifications)
+            {
+                _context.Notifications.Add(notification);
             }
 
             _context.SaveChanges();
