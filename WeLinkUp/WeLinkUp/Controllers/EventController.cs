@@ -34,6 +34,24 @@ namespace WeLinkUp.Controllers
         {
             return View();
         }
+        
+          [HttpGet]
+        public async Task<IActionResult> Friends()
+        {
+            var user = await _securityManager.GetUserAsync(User);
+            List<FriendLists> friends = _context.FriendLists.Where(fr => fr.UserId == user.Id)
+                .Select(fr => new FriendLists { UserId = fr.UserId, FriendId = fr.FriendId }).ToList();
+            List<ApplicationUser> userFriends = new List<ApplicationUser>();
+            foreach (FriendLists friend in friends)
+            {
+                ApplicationUser userFriend = _context.Users.Where(us => us.Id == friend.FriendId)
+                    .Select(fr => new ApplicationUser { UserName = fr.UserName}).FirstOrDefault();
+                userFriends.Add(userFriend);
+            }
+
+            
+            return View(userFriends);
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreateEventAsync(CreateEvent e, bool isAdultOnlyChecked)
