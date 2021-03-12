@@ -9,8 +9,8 @@ namespace WeLinkUp.Models
     [Keyless]
     public class AttendeeList
     {
-        int EventId { get; set; }
-        string UserId { get; set; }
-        string Status { get; set; }
+        public int EventId { get; set; }
+        public string UserId { get; set; }
+        public string Status { get; set; }
     }
 }
