@@ -109,7 +109,6 @@ namespace WeLinkUp.Controllers
             //ModelState.AddModelError("", "Please fill out the form properly");
             //return View(e);
             //}
-
         }
 
         [HttpGet]
