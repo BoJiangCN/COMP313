@@ -43,7 +43,16 @@ namespace WeLinkUp.Controllers
 
             //code for add imgae to db
             string wwwroot = _webHostEnvironment.WebRootPath;
-            string fileName = String.Empty;
+            string fileName = Path.GetFileNameWithoutExtension(e.Image);
+            string extension = Path.GetExtension(e.Image);
+            e.Image = fileName = fileName + extension;
+            string path = Path.Combine(wwwroot + "/images/EventPicture/", fileName);
+
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            {
+                
+
+            }
 
             // get current user to get its id(host)
             var user = await _securityManager.GetUserAsync(User);

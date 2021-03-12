@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2SOX20bW6NBqKNWm9A311ZmsjdwKMa7RM26d27IzT8LHuyi4pSIYFEn0o8lhd65gfH41WvWko4vL+JbrzUIMyQ==",
+  "dgSpecHash": "b4p/BGJCE0KRuG9ybvygkO4Xs6IsleRkE4ExVOcLwxsL9qeiPiQSuBewaJzmUgfLakZYzq2tsQ/ErJesyYVXJA==",
   "success": true,
-  "projectFilePath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\Version 5.6\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+  "projectFilePath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\Version5.7\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ashas\\.nuget\\packages\\awssdk\\2.3.55.2\\awssdk.2.3.55.2.nupkg.sha512",
     "C:\\Users\\ashas\\.nuget\\packages\\awssdk.core\\3.5.2.10\\awssdk.core.3.5.2.10.nupkg.sha512",
