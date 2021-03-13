@@ -168,8 +168,36 @@ namespace WeLinkUp.Controllers
 
             }
              return attendeeList;
+
+
+
         }
 
-      
+        [HttpGet]
+        public IActionResult  Notification()
+        {
+            List<Notification> notifications = _context.Notifications.Select(n => new Notification
+            { NotificationId = n.NotificationId,EventId= n.EventId,Message= n.Message }).ToList();
+            List<Notification> userNotification = new List<Notification>();
+            return View(notifications);
+            
+        }
+
+        [HttpGet("EventSummary/{id}")]
+        public ViewResult ViewNotificationDetails(string id)
+        {
+           /* List<CreateEvent> events = _context.Events.Select(n => new CreateEvent
+            {EventId = n.EventId, EventTitle = n.EventTitle, Location = n.Location, Date=n.Date, StartTime=n.StartTime,EndTime=n.EndTime,
+                Description=n.Description, IsAdultOnly=n.IsAdultOnly, Image=n.Image}).ToList();
+            List<CreateEvent> userEvents = new List<CreateEvent>();
+           */
+
+            
+            return View("Hii");
+        }
+
+
+
+
     }
 }

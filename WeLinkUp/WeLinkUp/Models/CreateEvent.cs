@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -56,6 +57,9 @@ namespace WeLinkUp.Models
 
         [Display(Name = "EventType")]
         public int EventType { get; set; } //1 = true for group event(send invitation to friends) & 0 = false for personal event(no invitation to others)
+
+
+ 
 
     }
 }
