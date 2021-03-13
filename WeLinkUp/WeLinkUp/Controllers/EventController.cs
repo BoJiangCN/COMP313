@@ -89,20 +89,16 @@ namespace WeLinkUp.Controllers
                 _context.Events.Add(newEvent);
                 _context.SaveChanges();
 
-                List<AttendeeList> attendee = new List<AttendeeList>();
+                
                 // invite friends if the event is a group event
                 if (e.EventType == 1)
                 {
-                    attendee = await InviteFriendsAsync(newEvent);
+                   await InviteFriendsAsync(newEvent);
                 }
-
-                EventDetailModel eventDetailModel = new EventDetailModel();
-                eventDetailModel.AttendeeList = attendee;
-                eventDetailModel.Events = newEvent;
-
-                //empty push 
+   
                 // show Event Detail Page
-                return View("EventDetail", eventDetailModel);
+                return RedirectToAction("EventDetail", new { eventId = newEvent.EventId });
+
             } else
             {
                 var errors = ModelState
@@ -192,7 +188,7 @@ namespace WeLinkUp.Controllers
             return View(eventDetailModel);
         }
 
-        public async Task<List<AttendeeList>> InviteFriendsAsync(CreateEvent e) 
+        public async Task InviteFriendsAsync(CreateEvent e) 
         {
             System.Diagnostics.Debug.WriteLine("Calling Invite Friends");
 
@@ -250,7 +246,7 @@ namespace WeLinkUp.Controllers
                 _context.SaveChanges();
 
             }
-             return attendeeList;
+        
         }
 
         
