@@ -100,7 +100,7 @@ namespace WeLinkUp.Controllers
                 eventDetailModel.AttendeeList = attendee;
                 eventDetailModel.Events = newEvent;
 
-
+                //empty push 
                 // show Event Detail Page
                 return View("EventDetail", eventDetailModel);
             } else
