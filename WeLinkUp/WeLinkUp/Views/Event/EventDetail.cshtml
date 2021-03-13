@@ -20,14 +20,28 @@
 
     <Image src="@Url.Content("~/images/EventPicture/" + Model.Events.Image)"></Image>
 
+    @foreach (AttendeeList user in Model.AttendeeList)
+    {
+
+        @if (user.UserId == signInManager.UserManager.GetUserId(User))
+        {
+            <input type="button" id="joinBtn" value="Click to Join">
+        }
+        <form>
+            <input type="text" value="@user.Username" />
+            <input type="text" value="@user.Status" />
+        </form>
+    }
+
     @if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Events.Date)) > 0)
     {
-        <h3>Event is already passed 1</h3>
+        <h3>Event is already passed</h3>
     }
     else if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Events.Date)) == 0 && DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Events.EndTime)) > 0)
     {
-        <h3>Event is already passed 2</h3>
+        <h3>Event is already passed</h3>
     }
+
     else
     {
         @if (Model.Events.HostId == signInManager.UserManager.GetUserId(User))
@@ -38,19 +52,6 @@
         {
             <h3>You are not related in this event</h3>
         }
-    }
-
-    @foreach (AttendeeList user in Model.AttendeeList)
-    {
-
-        @if (user.UserId == signInManager.UserManager.GetUserId(User))
-        {
-        <input type="button" id="joinBtn" value="Click to Join">
-        }
-        <form>
-            <input type="text" value="@user.UserId" />
-            <input type="text" value="@user.Status" />
-        </form>
     }
 </body>
 </html>

@@ -193,14 +193,14 @@ namespace WeLinkUp.Controllers
             {             
 
                 // login with user's email and password. Somehow this methods doesn't work with username 
-                var result = await _loginManager.PasswordSignInAsync(model.Username, model.Password, false, lockoutOnFailure: false);
+                var result = await _loginManager.PasswordSignInAsync(model.Username.Trim(), model.Password, false, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     return RedirectToAction(nameof(HomeController.Index), "Home");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid UserName or Password");
+                    ModelState.AddModelError("", "The username and/or password is incorrect");
                     return View();
                 }
 

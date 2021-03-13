@@ -35,8 +35,8 @@ namespace WeLinkUp.Controllers
         {
             return View();
         }
-        
-         
+
+
 
         [HttpPost]
         public async Task<IActionResult> CreateEventAsync(CreateEvent e, bool isAdultOnlyChecked)
@@ -109,18 +109,87 @@ namespace WeLinkUp.Controllers
                     .Where(x => x.Value.Errors.Count > 0)
                     .Select(x => new { x.Key, x.Value.Errors })
                     .ToArray();
-                System.Diagnostics.Debug.WriteLine("Number of Errors: "+ModelState.ErrorCount);
-               
+                System.Diagnostics.Debug.WriteLine("Number of Errors: " + ModelState.ErrorCount);
+
 
                 return View();
             }
-           
+
         }
 
         [HttpGet]
         public IActionResult EventSummary()
         {
             return View();
+        }
+
+        [HttpGet("Event/EventDetail/{eventId:int?}")]
+        public async Task<IActionResult> EventDetailAsync(int eventId)
+        {
+            var query_getEvent = (from e in _context.Events
+                                  where e.EventId == eventId
+                                  select new CreateEvent
+                                  {
+                                      EventTitle = e.EventTitle,
+                                      Location = e.Location,
+                                      Date = e.Date,
+                                      StartTime = e.StartTime,
+                                      EndTime = e.EndTime,
+                                      Description = e.Description,
+                                      Image = e.Image,
+                                      IsAdultOnly = e.IsAdultOnly,
+                                      EventType = e.EventType,
+                                      HostId = e.HostId
+
+                                  });
+            EventDetailModel eventDetailModel = new EventDetailModel();
+            CreateEvent eventToView = new CreateEvent();
+           
+
+            List<CreateEvent> l_eventToView = _context.Events.Where(e => e.EventId == eventId)
+             .Select(e => new CreateEvent {
+                 EventTitle = e.EventTitle,
+                 Location = e.Location,
+                 Date = e.Date,
+                 StartTime = e.StartTime,
+                 EndTime = e.EndTime,
+                 Description = e.Description,
+                 Image = e.Image,
+                 //IsAdultOnly = e.IsAdultOnly,
+                // EventType = e.EventType,
+                 HostId = e.HostId
+             }).ToList();
+
+            eventDetailModel.Events = l_eventToView.FirstOrDefault();
+
+            // get current user
+            var user = await _securityManager.GetUserAsync(User);
+
+            // get list of friends
+            var query_getFriends_attendeeList = (from a in _context.AttendeeList
+                                                 join u in _context.Users on a.UserId equals u.Id
+                                                 where a.EventId == eventId
+                                                 select new AttendeeList
+                                                 {
+                                                     EventId = a.EventId,
+                                                     UserId = a.UserId,
+                                                     Status = a.Status,
+                                                     Username = u.UserName
+                                                 });
+
+            List<AttendeeList> attendeeList = new List<AttendeeList>();
+            // 1. Add friends to Attendee
+            
+            if (query_getFriends_attendeeList.Any()) // check if the user has any friend
+            {
+                // convert to List<AttendeeList>
+                attendeeList = new List<AttendeeList>(query_getFriends_attendeeList);
+             
+
+            }
+
+            eventDetailModel.AttendeeList = attendeeList;
+            return View(eventDetailModel);
         }
 
         public async Task<List<AttendeeList>> InviteFriendsAsync(CreateEvent e) 
