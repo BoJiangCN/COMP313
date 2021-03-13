@@ -9222,23 +9222,41 @@
     ]
   },
   "packageFolders": {
+<<<<<<< Updated upstream
     "C:\\Users\\ybinh\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+=======
+    "C:\\Users\\WindowsReport\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+>>>>>>> Stashed changes
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< Updated upstream
       "projectUniqueName": "C:\\Users\\ybinh\\Desktop\\Sem6\\projectv5\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
       "projectName": "WeLinkUp",
       "projectPath": "C:\\Users\\ybinh\\Desktop\\Sem6\\projectv5\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
       "packagesPath": "C:\\Users\\ybinh\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ybinh\\Desktop\\Sem6\\projectv5\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\obj\\",
+=======
+      "projectUniqueName": "D:\\COMP313\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+      "projectName": "WeLinkUp",
+      "projectPath": "D:\\COMP313\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+      "packagesPath": "C:\\Users\\WindowsReport\\.nuget\\packages\\",
+      "outputPath": "D:\\COMP313\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\obj\\",
+>>>>>>> Stashed changes
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+<<<<<<< Updated upstream
         "C:\\Users\\ybinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\WindowsReport\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> Stashed changes
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9250,6 +9268,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -9261,6 +9280,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "AWSSDK": {
             "target": "Package",
@@ -9325,7 +9345,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< Updated upstream
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+>>>>>>> Stashed changes
       }
     }
   },

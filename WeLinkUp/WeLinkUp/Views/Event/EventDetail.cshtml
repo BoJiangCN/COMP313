@@ -1,5 +1,6 @@
 @model WeLinkUp.Models.EventDetailModel
-
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> signInManager;
 
 @{ ViewData["Title"] = "Event Details"; }
 
@@ -17,8 +18,7 @@
     <h3>Start Time:    @Html.DisplayFor(model => model.Events.StartTime)</h3>
     <h3>End Time:    @Html.DisplayFor(model => model.Events.EndTime)</h3>
 
-    <asp:Image runat="server" ID="image1" enable="false" imageUrl=""></asp:Image>
-    <asp:Button runat="server" id="btnShowImg" Text="Show Image" OnClick="btnShowImg_Click"> </asp:Button>
+    <Image src="@Url.Content("~/images/EventPicture/" + Model.Events.Image)"></Image>
 
     @if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Events.Date)) > 0)
     {
@@ -30,38 +30,32 @@
     }
     else
     {
-        <asp:Button ID="joinBtn"
-                    runat="server"
-                    Text="Join Event"
-                    Font-Bold="true"
-                    width="200%"></asp:Button>
-        <asp:Button ID="modiBtn"
-                    runat="server"
-                    Text="Modify Event"
-                    width="200%"> </asp:Button>
-        <asp:Button ID="cancelBtn"
-                    runat="server"
-                    Text="Cancel Event"
-                    width="200%"> </asp:Button>
+        @if (Model.Events.HostId == signInManager.UserManager.GetUserId(User))
+        {
+            <input type="button" id="ModiBtn" value="Click to modify"><input type="button" id="cancelBtn" value="Click to cancel">
+        }
+        else
+        {
+            <h3>You are not related in this event</h3>
+        }
     }
 
     @foreach (AttendeeList user in Model.AttendeeList)
     {
-<form>
-    <input type="text" value="@user.UserId" />
-    <input type="text" value="@user.Status" />
 
-</form>
+        @if (user.UserId == signInManager.UserManager.GetUserId(User))
+        {
+
+        <input type="button" id="joinBtn" value="Click to Join">
+        }
+        <form>
+            <input type="text" value="@user.UserId" />
+            <input type="text" value="@user.Status" />
+        </form>
     }
 </body>
 </html>
+
 <script>
-        protected void btnShowImg_Click(object sender, EventArgs e)
-        {
-            if (image1.enable = "false") {
-                image1.enable = "true";
-            } else {
-                image1.enable = "false";
-            }
-        }
+    
 </script>
