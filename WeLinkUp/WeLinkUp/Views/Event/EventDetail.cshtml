@@ -41,7 +41,6 @@
     else
     {
 
-
         @if (ViewData["Attendance"].ToString() == "1")
         {
             <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="location.href='@Url.Action("JoinEvent", new { eventId = Model.Events.EventId })';return false;">Join Event</button>
@@ -50,6 +49,13 @@
         {
             <p>You are coming to this event</p>
         }
+
+        else if (Model.Events.HostId.Equals(signInManager.UserManager.GetUserId(User)))
+        {
+            <button name="modifyEvent" id="btnModifyEvent" class="btn btn-secondary">Modify Event</button>
+            <button name="cancelEvent" id="btnCancelEvent" class="btn btn-secondary">Cancel Event</button>
+        }
+
 
     }
 </body>
