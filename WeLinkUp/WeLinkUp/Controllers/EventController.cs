@@ -44,16 +44,17 @@ namespace WeLinkUp.Controllers
 
             if (ModelState.IsValid)
             {
+                
                 //code for add imgae to db
                 string wwwroot = _webHostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(e.Image);
-                string extension = Path.GetExtension(e.Image);
+                string fileName = Path.GetFileNameWithoutExtension(e.ImageFile.FileName);
+                string extension = Path.GetExtension(e.ImageFile.FileName);
                 e.Image = fileName = fileName + extension;
                 string path = Path.Combine(wwwroot + "/images/EventPicture/", fileName);
 
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
-
+                    e.ImageFile.CopyTo(fileStream);
 
                 }
 
@@ -106,6 +107,7 @@ namespace WeLinkUp.Controllers
                     .Select(x => new { x.Key, x.Value.Errors })
                     .ToArray();
                 System.Diagnostics.Debug.WriteLine("Number of Errors: " + ModelState.ErrorCount);
+                System.Diagnostics.Debug.WriteLine(errors[0]);
 
 
                 return View();

@@ -47,10 +47,10 @@ namespace WeLinkUp.Models
         [Display(Name = "IsAdultOnly")]
         public int IsAdultOnly { get; set; } // 1 for true, 0 for false
 
-        [Required(ErrorMessage = "Please add a picture for your event")]
         public string Image { get; set; }
 
         [NotMapped]
+        [Required(ErrorMessage = "Please upload event picture")]
         public IFormFile ImageFile { get; set; }
 
         [Display(Name = "EventType")]
