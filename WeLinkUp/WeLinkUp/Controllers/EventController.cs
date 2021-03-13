@@ -155,8 +155,8 @@ namespace WeLinkUp.Controllers
                  EndTime = e.EndTime,
                  Description = e.Description,
                  Image = e.Image,
-                 //IsAdultOnly = e.IsAdultOnly,
-                // EventType = e.EventType,
+                 IsAdultOnly = e.IsAdultOnly == 1?1:0,
+                 EventType = e.EventType == 1?1:0,
                  HostId = e.HostId
              }).ToList();
 
