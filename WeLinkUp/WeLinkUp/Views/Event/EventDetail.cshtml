@@ -23,11 +23,6 @@
 
     @foreach (AttendeeList user in Model.AttendeeList)
     {
-
-        @if (user.UserId == signInManager.UserManager.GetUserId(User))
-        {
-            <input type="button" id="joinBtn" value="Click to Join">
-        }
         <form>
             <input type="text" value="@user.Username" />
             <input type="text" value="@user.Status" />
@@ -45,28 +40,21 @@
 
     else
     {
-        @if (Model.Events.HostId == signInManager.UserManager.GetUserId(User))
+
+
+        @if (ViewData["Attendance"].ToString() == "1")
         {
-            <input type="button" id="ModiBtn" value="Click to modify"><input type="button" id="cancelBtn" value="Click to cancel">
+            <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="location.href='@Url.Action("JoinEvent", new { eventId = Model.Events.EventId })';return false;">Join Event</button>
         }
-        else
+        else if (ViewData["Attendance"].ToString() == "2")
         {
-            <h3>You are not related in this event</h3>
+            <p>You are coming to this event</p>
         }
+
     }
-    <input type="button" id="joinBtn" value="Click to Join" asp-action="JoinEvent" asp-controller="Event">
-    <button name="nameButton" id="idButton" title="your title" class="btn btn-secondary" onclick="location.href='@Url.Action( "JoinEvent",new {  eventId = Model.Events.EventId })';return false;">valueButton</button>
-    <p class="text-danger">
-     
-        @ViewData["UserComing"]
-    </p>
 </body>
 </html>
 
 <script>
-    if ('@TempData["Success"]' == true)
-{
-    alert("Form successfully submitted");
-    // handle refreshing the view, or redirect to another View (window.location.href = "")
-}
+  
 </script>

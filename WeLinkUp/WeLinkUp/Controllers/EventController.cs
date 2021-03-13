@@ -170,19 +170,19 @@ namespace WeLinkUp.Controllers
 
             eventDetailModel.AttendeeList = attendeeList;
 
-            // check user's status
+            // check user's attendance status
 
-            if (!attendeeList.Exists(a => a.UserId.Equals(user.Id))) // is user invited?
+            if (!attendeeList.Exists(a => a.UserId.Equals(user.Id))) // is user in the attendee list?
             {
-                ViewData["UserComing"] = "Not invited";
+                ViewData["Attendance"] = 0; // not invited
             }
-            else if (attendeeList.Find(a => a.UserId.Equals(user.Id)).Status == "Confirmed")
+            else if (attendeeList.Find(a => a.UserId.Equals(user.Id)).Status == "Confirmed") 
             {
-                ViewData["UserComing"] = "Coming";
+                ViewData["Attendance"] = 2; // user confirmed to join
             }
             else 
             {
-                ViewData["UserComing"] = "Invited";
+                ViewData["Attendance"] = 1; // user invited to the event
             }
 
             return View(eventDetailModel);
