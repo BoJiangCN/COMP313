@@ -27,8 +27,7 @@ namespace WeLinkUp.Models
         [Display(Name = "Date")]
         [DataType(DataType.Date)]
         public string Date { get; set; }
-        
-        [Required]
+
         [Display(Name = "HostId")]
         public string HostId { get; set; }
 
@@ -52,7 +51,6 @@ namespace WeLinkUp.Models
         public string Image { get; set; }
 
         [NotMapped]
-        //[Required(ErrorMessage = "Please Upload your picture")]
         public IFormFile ImageFile { get; set; }
 
         [Display(Name = "EventType")]
