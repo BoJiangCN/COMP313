@@ -122,7 +122,7 @@ namespace WeLinkUp.Controllers
         [HttpGet("Event/EventDetail/{eventId:int?}")]
         public async Task<IActionResult> EventDetailAsync(int eventId)
         {
-      
+   
             EventDetailModel eventDetailModel = new EventDetailModel();                      
 
             List<CreateEvent> l_eventToView = _context.Events.Where(e => e.EventId == eventId)
@@ -169,6 +169,22 @@ namespace WeLinkUp.Controllers
             }
 
             eventDetailModel.AttendeeList = attendeeList;
+
+            // check user's status
+
+            if (!attendeeList.Exists(a => a.UserId.Equals(user.Id))) // is user invited?
+            {
+                ViewData["UserComing"] = "Not invited";
+            }
+            else if (attendeeList.Find(a => a.UserId.Equals(user.Id)).Status == "Confirmed")
+            {
+                ViewData["UserComing"] = "Coming";
+            }
+            else 
+            {
+                ViewData["UserComing"] = "Invited";
+            }
+
             return View(eventDetailModel);
         }
 
@@ -235,6 +251,7 @@ namespace WeLinkUp.Controllers
       
         public async Task<IActionResult> JoinEventAsync(int eventId)
         {
+
             System.Diagnostics.Debug.WriteLine("In Join event");
             // get current user
             var user = await _securityManager.GetUserAsync(User);
@@ -242,10 +259,18 @@ namespace WeLinkUp.Controllers
 
 
             // after passing the validation
-            var attendance = _context.AttendeeList.FirstOrDefault(a => a.UserId == user.Id && a.EventId == eventId);
-            attendance.Status = "Confirmed";
-            _context.SaveChanges();
-            return RedirectToAction("EventDetail", new { eventId = eventId });
+            try
+            {
+                var attendance = _context.AttendeeList.FirstOrDefault(a => a.UserId == user.Id && a.EventId == eventId);
+                attendance.Status = "Confirmed";
+                _context.SaveChanges();
+                
+            }
+            catch (Exception e) 
+            {
+                
+            }
+            return RedirectToAction("EventDetail", new { eventId = eventId }); ;
          
         }
         

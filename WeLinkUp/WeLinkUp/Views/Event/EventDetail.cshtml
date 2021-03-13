@@ -56,9 +56,17 @@
     }
     <input type="button" id="joinBtn" value="Click to Join" asp-action="JoinEvent" asp-controller="Event">
     <button name="nameButton" id="idButton" title="your title" class="btn btn-secondary" onclick="location.href='@Url.Action( "JoinEvent",new {  eventId = Model.Events.EventId })';return false;">valueButton</button>
+    <p class="text-danger">
+     
+        @ViewData["UserComing"]
+    </p>
 </body>
 </html>
 
 <script>
-    
+    if ('@TempData["Success"]' == true)
+{
+    alert("Form successfully submitted");
+    // handle refreshing the view, or redirect to another View (window.location.href = "")
+}
 </script>
