@@ -11,6 +11,7 @@
 
     <h1 class="w3-content">Event Details</h1>
     <hr />
+    <h3>Event Id:    @Html.DisplayFor(model => model.Events.EventId)</h3>
     <h3>Event Title:    @Html.DisplayFor(model => model.Events.EventTitle)</h3>
     <h3>Event Host:    @Html.DisplayFor(model => model.Events.HostId)</h3>
     <h3>Location:   @Html.DisplayFor(model => model.Events.Location)</h3>
@@ -53,6 +54,8 @@
             <h3>You are not related in this event</h3>
         }
     }
+    <input type="button" id="joinBtn" value="Click to Join" asp-action="JoinEvent" asp-controller="Event">
+    <button name="nameButton" id="idButton" title="your title" class="btn btn-secondary" onclick="location.href='@Url.Action( "JoinEvent",new {  eventId = Model.Events.EventId })';return false;">valueButton</button>
 </body>
 </html>
 

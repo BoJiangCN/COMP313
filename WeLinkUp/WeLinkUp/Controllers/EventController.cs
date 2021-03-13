@@ -122,28 +122,12 @@ namespace WeLinkUp.Controllers
         [HttpGet("Event/EventDetail/{eventId:int?}")]
         public async Task<IActionResult> EventDetailAsync(int eventId)
         {
-            var query_getEvent = (from e in _context.Events
-                                  where e.EventId == eventId
-                                  select new CreateEvent
-                                  {
-                                      EventTitle = e.EventTitle,
-                                      Location = e.Location,
-                                      Date = e.Date,
-                                      StartTime = e.StartTime,
-                                      EndTime = e.EndTime,
-                                      Description = e.Description,
-                                      Image = e.Image,
-                                      IsAdultOnly = e.IsAdultOnly,
-                                      EventType = e.EventType,
-                                      HostId = e.HostId
-
-                                  });
-            EventDetailModel eventDetailModel = new EventDetailModel();
-            CreateEvent eventToView = new CreateEvent();
-           
+      
+            EventDetailModel eventDetailModel = new EventDetailModel();                      
 
             List<CreateEvent> l_eventToView = _context.Events.Where(e => e.EventId == eventId)
              .Select(e => new CreateEvent {
+                 EventId = e.EventId,
                  EventTitle = e.EventTitle,
                  Location = e.Location,
                  Date = e.Date,
@@ -248,8 +232,26 @@ namespace WeLinkUp.Controllers
             }
         
         }
+      
+        public async Task<IActionResult> JoinEventAsync(int eventId)
+        {
+            System.Diagnostics.Debug.WriteLine("In Join event");
+            // get current user
+            var user = await _securityManager.GetUserAsync(User);
+            //To Bo Jiang: Checking(Age, Schedule, Friend, etc) goes here
 
+
+            // after passing the validation
+            var attendance = _context.AttendeeList.FirstOrDefault(a => a.UserId == user.Id && a.EventId == eventId);
+            attendance.Status = "Confirmed";
+            _context.SaveChanges();
+            return RedirectToAction("EventDetail", new { eventId = eventId });
+         
+        }
         
+
+
+
     }
 
       
