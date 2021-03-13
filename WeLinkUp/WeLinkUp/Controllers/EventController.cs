@@ -42,65 +42,71 @@ namespace WeLinkUp.Controllers
         public async Task<IActionResult> CreateEventAsync(CreateEvent e, bool isAdultOnlyChecked)
         {
 
-            //code for add imgae to db
-            string wwwroot = _webHostEnvironment.WebRootPath;
-            string fileName = Path.GetFileNameWithoutExtension(e.Image);
-            string extension = Path.GetExtension(e.Image);
-            e.Image = fileName = fileName + extension;
-            string path = Path.Combine(wwwroot + "/images/EventPicture/", fileName);
-
-            using (var fileStream = new FileStream(path, FileMode.Create))
+            if (ModelState.IsValid)
             {
-                
+                //code for add imgae to db
+                string wwwroot = _webHostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(e.Image);
+                string extension = Path.GetExtension(e.Image);
+                e.Image = fileName = fileName + extension;
+                string path = Path.Combine(wwwroot + "/images/EventPicture/", fileName);
 
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+
+
+                }
+
+                // get current user to get its id(host)
+                var user = await _securityManager.GetUserAsync(User);
+
+
+                if (isAdultOnlyChecked == true)
+                {
+                    e.IsAdultOnly = 1; //true
+                }
+                else
+                {
+                    e.IsAdultOnly = 0; //false
+                }
+                //Create new event instance
+                var newEvent = new CreateEvent
+                {
+                    EventTitle = e.EventTitle,
+                    Location = e.Location,
+                    Date = e.Date,
+                    StartTime = e.StartTime,
+                    EndTime = e.EndTime,
+                    Description = e.Description,
+                    Image = e.Image,
+                    IsAdultOnly = e.IsAdultOnly,
+                    EventType = e.EventType,
+                    HostId = user.Id
+
+                };
+
+                //save event in database
+                _context.Events.Add(newEvent);
+                _context.SaveChanges();
+
+                List<AttendeeList> attendee = new List<AttendeeList>();
+                // invite friends if the event is a group event
+                if (e.EventType == 1)
+                {
+                    attendee = await InviteFriendsAsync(newEvent);
+                }
+
+                EventDetailModel eventDetailModel = new EventDetailModel();
+                eventDetailModel.AttendeeList = attendee;
+                eventDetailModel.Events = newEvent;
+
+
+                // show Event Detail Page
+                return View("EventDetail", eventDetailModel);
+            } else
+            {
+                return View();
             }
-
-            // get current user to get its id(host)
-            var user = await _securityManager.GetUserAsync(User);
-
-
-            if (isAdultOnlyChecked == true)
-            {
-                e.IsAdultOnly = 1; //true
-            }
-            else
-            {
-                e.IsAdultOnly = 0; //false
-            }
-            //Create new event instance
-            var newEvent = new CreateEvent
-            {
-                EventTitle = e.EventTitle,
-                Location = e.Location,
-                Date = e.Date,
-                StartTime = e.StartTime,
-                EndTime = e.EndTime,
-                Description = e.Description,
-                Image = e.Image,
-                IsAdultOnly = e.IsAdultOnly,
-                EventType = e.EventType,
-                HostId = user.Id
-
-            };
-
-            //save event in database
-            _context.Events.Add(newEvent);
-            _context.SaveChanges();
-
-            List<AttendeeList> attendee = new List<AttendeeList>();
-            // invite friends if the event is a group event
-            if (e.EventType == 1) 
-            {
-                attendee = await InviteFriendsAsync(newEvent);
-            }
-
-            EventDetailModel eventDetailModel = new EventDetailModel();
-            eventDetailModel.AttendeeList = attendee;
-            eventDetailModel.Events = newEvent;
-
-
-            // show Event Detail Page
-            return View("EventDetail", eventDetailModel);
            
         }
 

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj": {}
+    "C:\\Users\\ybinh\\Desktop\\Sem6\\projectv5\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj": {
+    "C:\\Users\\ybinh\\Desktop\\Sem6\\projectv5\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+        "projectUniqueName": "C:\\Users\\ybinh\\Desktop\\Sem6\\projectv5\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
         "projectName": "WeLinkUp",
-        "projectPath": "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
-        "packagesPath": "C:\\Users\\dayeo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dayeo\\OneDrive\\Desktop\\Assignment\\COMP313\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\obj\\",
+        "projectPath": "C:\\Users\\ybinh\\Desktop\\Sem6\\projectv5\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+        "packagesPath": "C:\\Users\\ybinh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ybinh\\Desktop\\Sem6\\projectv5\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\dayeo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ybinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -104,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,14 +1,18 @@
 ﻿@model WeLinkUp.Models.CreateEvent
 
 <head>
-
+    <style>
+        .text-danger {
+            color: red;
+        }
+    </style>
 
 </head>
 <html>
 <body>
     <br />
     <br />
-    <script src="~/js/daypilot/daypilot-all.min.js" asp-append-version="true"></script>
+
 
     <h1 class="w3-content">
         Create Event page
@@ -93,49 +97,7 @@
             });
         });
     </script>
-    @*<div id="dp"></div>*@
-    <!--script to load the calendar from daypilot library-->
-    <script>
-        var dp = new DayPilot.Month("dp");
-
-
-        //Create new event:
-        //dp.onTimeRangeSelected = function (args) {
-        //    DayPilot.Modal.prompt("Create a new event:", "CreateEvent").then(function (modal) {
-        //        var dp = args.control;
-        //        dp.clearSelection();
-        //        if (modal.canceled) {
-        //            return;
-        //        }
-        //        var param = {
-        //            eventTitle : args.eventTitle,
-        //            location : args.location,
-        //            startTime : args.startTime,
-        //            endTime : args.endTime,
-        //            description : args.description//,
-        //            //isAdultOnly = args.isAdultOnly//,
-
-        //        };
-        //        DayPilot.Http.ajax({
-        //            method: 'POST',
-        //            url: '/createEvents',
-        //            data: params,
-        //            success: function (ajax) {
-        //                console.log("created");
-        //                var data = ajax.data;
-        //                dp.events.add(data);
-        //                dp.message("Event created");
-        //            }
-        //        });
-        //    })
-        //}
-
-        //Load the existing events?
-        //dp.events.load("createEvents"); //why "/api/events"?
-
-        //Configuration
-        dp.init();
-    </script>
+    
 
 </body>
 </html>
