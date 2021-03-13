@@ -105,6 +105,13 @@ namespace WeLinkUp.Controllers
                 return View("EventDetail", eventDetailModel);
             } else
             {
+                var errors = ModelState
+                    .Where(x => x.Value.Errors.Count > 0)
+                    .Select(x => new { x.Key, x.Value.Errors })
+                    .ToArray();
+                System.Diagnostics.Debug.WriteLine("Number of Errors: "+ModelState.ErrorCount);
+               
+
                 return View();
             }
            
@@ -132,7 +139,8 @@ namespace WeLinkUp.Controllers
                             {
                                 EventId = e.EventId,
                                 UserId = f.FriendId,
-                                Status = "Invited"
+                                Status = "Invited",
+                                Username = u.UserName
                             });
 
             List<AttendeeList> attendeeList = new List<AttendeeList>();
