@@ -258,22 +258,63 @@ namespace WeLinkUp.Controllers
             // get current user
             var user = await _securityManager.GetUserAsync(User);
             //To Bo Jiang: Checking(Age, Schedule, Friend, etc) goes here
+            var userAge = getAge(Convert.ToDateTime(user.DateofBirth));
+
+            EventDetailModel eventDetailModel = new EventDetailModel();
+
+            List<CreateEvent> l_eventToView = _context.Events.Where(e => e.EventId == eventId)
+              .Select(e => new CreateEvent
+              {
+                  EventId = e.EventId,
+                  EventTitle = e.EventTitle,
+                  Location = e.Location,
+                  Date = e.Date,
+                  StartTime = e.StartTime,
+                  EndTime = e.EndTime,
+                  Description = e.Description,
+                  Image = e.Image,
+                  IsAdultOnly = e.IsAdultOnly == 1 ? 1 : 0,
+                  EventType = e.EventType == 1 ? 1 : 0,
+                  HostId = e.HostId
+              }).ToList();
+
+            eventDetailModel.Events = l_eventToView.FirstOrDefault();
 
 
-            // after passing the validation
-            try
+            if (userAge < 18 && eventDetailModel.Events.IsAdultOnly == 1)
             {
                 var attendance = _context.AttendeeList.FirstOrDefault(a => a.UserId == user.Id && a.EventId == eventId);
-                attendance.Status = "Confirmed";
+                attendance.Status = "Dissatisfy";
                 _context.SaveChanges();
-                
             }
-            catch (Exception e) 
-            {
-                
+            else 
+            {             
+                // after passing the validation
+                try
+                {
+                    var attendance = _context.AttendeeList.FirstOrDefault(a => a.UserId == user.Id && a.EventId == eventId);
+                    attendance.Status = "Confirmed";
+                    _context.SaveChanges();
+
+                }
+                catch (Exception e)
+                {
+
+                }
             }
             return RedirectToAction("EventDetail", new { eventId = eventId }); ;
          
+        }
+
+        public int getAge(DateTime birthdate) 
+        {
+            int age;
+
+            age = DateTime.Now.Year - birthdate.Year;
+
+            if (birthdate.Date > DateTime.Now.AddYears(-age)) age--;
+
+            return age;
         }
         
 
