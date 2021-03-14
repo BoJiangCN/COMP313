@@ -138,6 +138,7 @@ namespace WeLinkUp.Controllers
                                 where e.EventId == eventId
                                 select new EventDetailModel
                                 {
+                                    EventId = e.EventId,
                                     EventTitle = e.EventTitle,
                                     Location = e.Location,
                                     Date = e.Date,
@@ -147,32 +148,13 @@ namespace WeLinkUp.Controllers
                                     Image = e.Image,
                                     IsAdultOnly = e.IsAdultOnly == 1 ? 1 : 0,
                                     EventType = e.EventType == 1 ? 1 : 0,
-                                    Host = u.UserName
+                                    Host = u.UserName,
+                                    HostId = e.HostId
                                 });
 
             List<EventDetailModel> eventList = new List<EventDetailModel>();
 
-            //List<EventDetailModel> l_eventToView = _context.Events.Where(e => e.EventId == eventId)
-            // .Select(e => new EventDetailModel
-            // {
-            //     EventId = e.EventId,
-            //     EventTitle = e.EventTitle,
-            //     Location = e.Location,
-            //     Date = e.Date,
-            //     StartTime = e.StartTime,
-            //     EndTime = e.EndTime,
-            //     Description = e.Description,
-            //     Image = e.Image,
-            //     IsAdultOnly = e.IsAdultOnly == 1?1:0,
-            //     EventType = e.EventType == 1?1:0,
-            //     HostId = e.HostId
-            // }).ToList();
-
-            //if (l_eventToView.Count == 0) // event does not exist
-            //{
-
-            //    return View("Error");
-            //}
+           
             if (!q_eventToView.Any()) // event does not exist
             {
 
@@ -184,7 +166,7 @@ namespace WeLinkUp.Controllers
                 //eventDetailModel.Events = l_eventToView.FirstOrDefault();
                 eventList = new List<EventDetailModel>(q_eventToView);
                 eventDetailModel = eventList.FirstOrDefault();
-                 
+                eventDetailModel.DayOfWeek = Convert.ToDateTime(eventDetailModel.Date).DayOfWeek.ToString();
 
                 // get current user
                 var user = await _securityManager.GetUserAsync(User);
@@ -217,7 +199,6 @@ namespace WeLinkUp.Controllers
                 ViewData["Freeday"] = scheduleResult;
 
                 // check user's age if the event is adult only
-                //if (eventDetailModel.Events.IsAdultOnly == 1) {
                 if (eventDetailModel.IsAdultOnly == 1)
                 {
                     int userAge = getAge(Convert.ToDateTime(user.DateofBirth));
@@ -313,7 +294,6 @@ namespace WeLinkUp.Controllers
             // get current user
             var user = await _securityManager.GetUserAsync(User);
 
-            EventDetailModel eventDetailModel = new EventDetailModel();
 
             // get event entity from database using event id
             List<CreateEvent> l_eventToView = _context.Events.Where(e => e.EventId == eventId)
@@ -335,7 +315,6 @@ namespace WeLinkUp.Controllers
 
             if (l_eventToView.Any()) // check the event exists in Events table
             {
-                eventDetailModel.Events = l_eventToView.FirstOrDefault();
 
                 try
                 {

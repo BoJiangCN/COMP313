@@ -7,8 +7,7 @@ namespace WeLinkUp.Models
 {
     public class EventDetailModel
     {
-        public CreateEvent Events { get; set; }
-   
+        public int EventId { get; set; }
 
         public string EventTitle { get; set; }
 
@@ -20,13 +19,16 @@ namespace WeLinkUp.Models
 
 
         public string Host { get; set; }
+        public string HostId { get; set; }
 
    
         public string StartTime { get; set; }
+        public string StartTimeToShow { get; set; }
 
         public string EndTime { get; set; }
+        public string EndTimeToShow { get; set; }
 
-       
+
         public string Description { get; set; }
 
     

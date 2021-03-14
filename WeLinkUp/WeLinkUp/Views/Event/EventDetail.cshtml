@@ -1,4 +1,4 @@
-@model WeLinkUp.Models.EventDetailModel
+ï»¿@model WeLinkUp.Models.EventDetailModel
 @using Microsoft.AspNetCore.Identity;
 @inject SignInManager<ApplicationUser> signInManager;
 
@@ -72,47 +72,73 @@
                     </p>
                     <div class="w3-row">
                         <div class="w3-col m8 s12">
-                            <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+                            <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE ï¿½</b></button></p>
                         </div>
                         <div class="w3-col m4 w3-hide-small">
-                            <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-tag">0</span></span></p>
+                            <p><span class="w3-padding-large w3-right"><b>Comments ï¿½</b> <span class="w3-tag">0</span></span></p>
                         </div>
                     </div>
                 </div>
+                <h3><b>Invitation List</b></h3>
+                @foreach (AttendeeList user in Model.AttendeeList)
+                {
+                    <form>
+                        <input type="text" value="@user.Username" />
+                        <input type="text" value="@user.Status" />
+                    </form>
+                }
             </div>
+            @if (DateTime.Compare(DateTime.Now.Date, Convert.ToDateTime(Model.Date)) > 0)
+            {
+                <h3>Event is already passed1</h3>
+            }
+            else if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Date)) == 0 && DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.EndTime)) > 0)
+            {
+                <h3>@DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.EndTime))</h3>
+                <h3>Event is already passed2</h3>
+            }
+
+            else
+            {
+
+                @if (ViewData["Attendance"].ToString() == "1")
+                {
+                    @if (ViewData["BlockTeenager"] != null && ViewData["BlockTeenager"].ToString() == "1")
+                    {
+                        <button disabled>This event is adult only</button>
+                    }
+                    else
+                    {
+                        if (ViewData["Freeday"].ToString() == "0")
+                        {
+                            <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="timeAlert(); location.href = '@Url.Action("JoinEvent", new { eventId = Model.EventId })'; return false;">Join Event</button>
+                        }
+                        else
+                        {
+                            <p1>@ViewData["Freeday"].ToString()</p1>
+                            <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="location.href = '@Url.Action("JoinEvent", new { eventId = Model.EventId })'; return false;">Join Event</button>
+                        }
+                    }
+                }
+
+                else if (ViewData["Attendance"].ToString() == "2")
+                {
+                    <p>You are coming to this event</p>
+                }
+
+                else if (Model.HostId.Equals(signInManager.UserManager.GetUserId(User)))
+                {
+                    <button name="modifyEvent" id="btnModifyEvent" class="btn btn-secondary">Modify Event</button>
+                    <button name="cancelEvent" id="btnCancelEvent" class="btn btn-secondary">Cancel Event</button>
+                }
+
+
+            }
+
             <hr>
-
-            <!-- Blog entry -->
-            <div class="w3-card-4 w3-margin w3-white">
-                <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
-                <div class="w3-container">
-                    <h3><b>BLOG ENTRY</b></h3>
-                    <h5>Title description, <span class="w3-opacity">April 2, 2014</span></h5>
-                </div>
-
-                <div class="w3-container">
-                    <p>
-                        Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed
-                        tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.
-                    </p>
-                    <div class="w3-row">
-                        <div class="w3-col m8 s12">
-                            <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
-                        </div>
-                        <div class="w3-col m4 w3-hide-small">
-                            <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-badge">2</span></span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END BLOG ENTRIES -->
-
 
 
         </div>
-
-
-
 
         <!-- Info -->
         <div class="w3-col l4">
@@ -126,9 +152,8 @@
             <!-- DateTime -->
             <div class="w3-card w3-margin w3-margin-top">
                 <div class="w3-container w3-white">
-                    <h4><b>Date</b></h4>
-                    <img src="/images/clock.png" alt="Schedule" style="width:10%" >
-                    <p>@Model.Date</p>
+                    <h4><b>Date</b></h4>                   
+                    <p>@Model.DayOfWeek, @Model.Date</p>
                     <p>@Model.StartTime To @Model.EndTime</p>
                 </div>
             </div><hr>
@@ -149,76 +174,12 @@
 
     </div>
 
-    @*<br />
+    <br />
     <br />
 
-    <h1 class="w3-content">Event Details</h1>
-    <hr />
-    <h3>Event Id:    @Html.DisplayFor(model => model.Events.EventId)</h3>
-    <h3>Event Title:    @Html.DisplayFor(model => model.Events.EventTitle)</h3>
-    <h3>Event Host:    @Html.DisplayFor(model => model.Events.HostId)</h3>
-    <h3>Location:   @Html.DisplayFor(model => model.Events.Location)</h3>
-    <h3>Date:    @Html.DisplayFor(model => model.Events.Date)</h3>
-    <h3>Start Time:    @Html.DisplayFor(model => model.Events.StartTime)</h3>
-    <h3>End Time:    @Html.DisplayFor(model => model.Events.EndTime)</h3>
+    
 
-    <Image src="@Url.Content("~/images/EventPicture/" + Model.Events.Image)"></Image>
-
-    @foreach (AttendeeList user in Model.AttendeeList)
-    {
-        <form>
-            <input type="text" value="@user.Username" />
-            <input type="text" value="@user.Status" />
-        </form>
-    }
-
-    @if (DateTime.Compare(DateTime.Now.Date, Convert.ToDateTime(Model.Events.Date)) > 0)
-    {
-        <h3>Event is already passed1</h3>
-    }
-    else if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Events.Date)) == 0 && DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Events.EndTime)) > 0)
-    {
-        <h3>@DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Events.EndTime))</h3>
-        <h3>Event is already passed2</h3>
-    }
-
-    else
-    {
-
-        @if (ViewData["Attendance"].ToString() == "1")
-        {
-            @if (ViewData["BlockTeenager"] != null && ViewData["BlockTeenager"].ToString() == "1")
-            {
-                <button disabled>This event is adult only</button>
-            }
-            else
-            {
-                if (ViewData["Freeday"].ToString() == "0")
-                {
-                    <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="timeAlert(); location.href = '@Url.Action("JoinEvent", new { eventId = Model.Events.EventId })'; return false;">Join Event</button>
-                }
-                else
-                {
-                    <p1>@ViewData["Freeday"].ToString()</p1>
-                    <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="location.href = '@Url.Action("JoinEvent", new { eventId = Model.Events.EventId })'; return false;">Join Event</button>
-                }
-            }
-        }
-
-        else if (ViewData["Attendance"].ToString() == "2")
-        {
-            <p>You are coming to this event</p>
-        }
-
-        else if (Model.Events.HostId.Equals(signInManager.UserManager.GetUserId(User)))
-        {
-            <button name="modifyEvent" id="btnModifyEvent" class="btn btn-secondary">Modify Event</button>
-            <button name="cancelEvent" id="btnCancelEvent" class="btn btn-secondary">Cancel Event</button>
-        }
-
-
-    }*@
-
+    
 
 </body>
 </html>
