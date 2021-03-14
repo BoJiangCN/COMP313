@@ -251,7 +251,8 @@ namespace WeLinkUp.Controllers
                                                          EventId = a.EventId,
                                                          UserId = a.UserId,
                                                          Status = a.Status,
-                                                         Username = u.UserName
+                                                         Username = u.UserName,
+                                                         Image = u.Image
                                                      });
 
                 List<AttendeeList> attendeeList = new List<AttendeeList>();

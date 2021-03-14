@@ -19,5 +19,7 @@ namespace WeLinkUp.Models
 
         [NotMapped]
         public string Username { get; set; }
+        [NotMapped]
+        public string Image { get; set; }
     }
 }

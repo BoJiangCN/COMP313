@@ -10,25 +10,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    @*<link href="~/scss/UserList.css" rel="stylesheet" />*@
+
     <style>
         body, h1, h2, h3, h4, h5 {
             font-family: "Lato", sans-serif
         }
-       
+
         .image {
             height: 200px;
             width: 100%;
             object-fit: contain;
         }
+
         .w3-row {
             margin-left: 20%;
             width: 60%;
         }
-        .w3-col l8 s12 {
-        
-            width:20%;
-        }
 
+        .w3-col l8 s12 {
+            width: 20%;
+        }
+        img {
+            border-radius: 50%;
+            height: 60px;
+            width: 60px;
+        }
     </style>
 </head>
 <body class="w3-light-grey">
@@ -47,7 +54,7 @@
             <!-- Blog entry -->
             <div class="w3-card-4 w3-margin w3-white">
                 <div class="image">
-                    <img src="@Url.Content("~/images/EventPicture/" + Model.Image)" alt="Nature" style='height: 100%; width: 100%; object-fit: contain'>
+                    <img src="@Url.Content("~/images/EventPicture/" + Model.Image)" alt="" style='height: 100%; width: 100%; object-fit: contain'>
 
                 </div>
                 <div class="w3-container">
@@ -58,19 +65,55 @@
 
                 <div class="w3-padding-large w3-left">
                     <h3><b>Invitation List</b></h3>
-          
-                  
-                            <b># of invitation </b><span class="w3-tag">@Model.NumberOfInvitation</span>
+
+                    <b># of invitation </b><span class="w3-tag">@Model.NumberOfInvitation</span>
+                    <table>
+                        <tr>
+                            <th> </th>
+                            <th> User </th>
+                            <th> Status </th>
+                        </tr>
+
+                        @foreach (AttendeeList user in Model.AttendeeList)
+                        {
+                    <tr>
+                        <td>
+                            <img src="@Url.Content("~/images/UserProfile/" + user.Image)" alt="" />
+                        </td>
+
+                        <td>@user.Username</td>
+                        <td>@user.Status</td>
+
+
+                    </tr>
+                        }
+                    </table>
+                    @*<div class="table-users">
+                        <table>
+                            <tr>
+                                <th> </th>
+                                <th>Username</th>
+                                <th>Status</th>
+
+                            </tr>
                             @foreach (AttendeeList user in Model.AttendeeList)
                             {
-                                <form>
-                                    <input type="text" value="@user.Username" />
-                                    <input type="text" value="@user.Status" />
-                                </form>
+                                <tr>
+                                    <td> <img src="@Url.Content("~/images/UserProfile/" + user.Image)" alt="" /></td>
+                                    <td>@user.Username</td>
+                                    <td>@user.Status</td>
+
+                                </tr>
+                               
+                               
                             }
-                            
-                    
-            
+
+
+
+                        </table>
+                    </div>*@
+
+
                 </div>
                 <div class="w3-container">
                     <div class="w3-row">
@@ -156,25 +199,10 @@
 
 
         </div>
-
-
-
-
-
-
-
-
-
-
-
     </div>
 
     <br />
     <br />
-
-    
-
-    
 
 </body>
 </html>
