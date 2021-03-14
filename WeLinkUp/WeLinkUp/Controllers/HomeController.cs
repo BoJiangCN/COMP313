@@ -65,6 +65,7 @@ namespace WeLinkUp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Signup(User user, string sunday, string monday, string tuesday, string wednesday, string thursday, string friday, string saturday)
         {
+            
             if (ModelState.IsValid)
             {
                 //code for add imgae to db

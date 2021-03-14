@@ -121,10 +121,15 @@ namespace WeLinkUp.Controllers
             return View();
         }
 
-        [HttpGet("Event/EventDetail/{eventId:int?}")]
-        public async Task<IActionResult> EventDetailAsync(int eventId)
+        public IActionResult Error() 
         {
-   
+            return View();
+        }
+
+        [HttpGet("Event/EventDetail/{eventId:int?}")]
+        public async Task<IActionResult> EventDetailAsync(int eventId, string errorMessage ="")
+        {
+            ViewBag.MyErrorMessage = errorMessage;
             EventDetailModel eventDetailModel = new EventDetailModel();                      
 
             List<CreateEvent> l_eventToView = _context.Events.Where(e => e.EventId == eventId)
@@ -142,52 +147,61 @@ namespace WeLinkUp.Controllers
                  HostId = e.HostId
              }).ToList();
 
-            eventDetailModel.Events = l_eventToView.FirstOrDefault();
-
-            // get current user
-            var user = await _securityManager.GetUserAsync(User);
-
-            // get list of friends
-            var query_getFriends_attendeeList = (from a in _context.AttendeeList
-                                                 join u in _context.Users on a.UserId equals u.Id
-                                                 where a.EventId == eventId
-                                                 select new AttendeeList
-                                                 {
-                                                     EventId = a.EventId,
-                                                     UserId = a.UserId,
-                                                     Status = a.Status,
-                                                     Username = u.UserName
-                                                 });
-
-            List<AttendeeList> attendeeList = new List<AttendeeList>();
-            // 1. Add friends to Attendee
-            
-            if (query_getFriends_attendeeList.Any()) // check if the user has any friend
+            if (l_eventToView.Count == 0) // event does not exist
             {
-                // convert to List<AttendeeList>
-                attendeeList = new List<AttendeeList>(query_getFriends_attendeeList);
-             
 
+                return View("Error");
             }
 
-            eventDetailModel.AttendeeList = attendeeList;
-
-            // check user's attendance status
-
-            if (!attendeeList.Exists(a => a.UserId.Equals(user.Id))) // is user in the attendee list?
-            {
-                ViewData["Attendance"] = 0; // not invited
-            }
-            else if (attendeeList.Find(a => a.UserId.Equals(user.Id)).Status == "Confirmed") 
-            {
-                ViewData["Attendance"] = 2; // user confirmed to join
-            }
             else 
             {
-                ViewData["Attendance"] = 1; // user invited to the event
-            }
+                eventDetailModel.Events = l_eventToView.FirstOrDefault();
 
-            return View(eventDetailModel);
+                // get current user
+                var user = await _securityManager.GetUserAsync(User);
+
+                // get list of friends
+                var query_getFriends_attendeeList = (from a in _context.AttendeeList
+                                                     join u in _context.Users on a.UserId equals u.Id
+                                                     where a.EventId == eventId
+                                                     select new AttendeeList
+                                                     {
+                                                         EventId = a.EventId,
+                                                         UserId = a.UserId,
+                                                         Status = a.Status,
+                                                         Username = u.UserName
+                                                     });
+
+                List<AttendeeList> attendeeList = new List<AttendeeList>();
+                // 1. Add friends to Attendee
+            
+                if (query_getFriends_attendeeList.Any()) // check if the user has any friend
+                {
+                    // convert to List<AttendeeList>
+                    attendeeList = new List<AttendeeList>(query_getFriends_attendeeList);
+             
+
+                }
+
+                eventDetailModel.AttendeeList = attendeeList;
+
+                // check user's attendance status
+
+                if (!attendeeList.Exists(a => a.UserId.Equals(user.Id))) // is user in the attendee list?
+                {
+                    ViewData["Attendance"] = 0; // not invited
+                }
+                else if (attendeeList.Find(a => a.UserId.Equals(user.Id)).Status == "Confirmed") 
+                {
+                    ViewData["Attendance"] = 2; // user confirmed to join
+                }
+                else 
+                {
+                    ViewData["Attendance"] = 1; // user invited to the event
+                }
+
+                return View(eventDetailModel);
+            }
         }
 
         public async Task InviteFriendsAsync(CreateEvent e) 
@@ -253,8 +267,7 @@ namespace WeLinkUp.Controllers
       
         public async Task<IActionResult> JoinEventAsync(int eventId)
         {
-
-            System.Diagnostics.Debug.WriteLine("In Join event");
+            eventId = 152;
             // get current user
             var user = await _securityManager.GetUserAsync(User);
             //To Bo Jiang: Checking(Age, Schedule, Friend, etc) goes here
@@ -264,15 +277,28 @@ namespace WeLinkUp.Controllers
             try
             {
                 var attendance = _context.AttendeeList.FirstOrDefault(a => a.UserId == user.Id && a.EventId == eventId);
-                attendance.Status = "Confirmed";
-                _context.SaveChanges();
+                // when the event does not exist
+                if (attendance == null)
+                {
+                    ViewBag.MyErrorMessage = "BABABABABABABABABAB";
+                    return RedirectToAction("EventDetail", new { eventId = eventId, errorMessage = "BABAABABABABAB" });
+                }
+                else
+                {
+                    attendance.Status = "Confirmed";
+                    _context.SaveChanges();
+                } 
+                
                 
             }
-            catch (Exception e) 
+            catch (NullReferenceException e) 
             {
-                
+                System.Diagnostics.Debug.WriteLine(e.ToString());
+                System.Diagnostics.Debug.WriteLine("NOTHING FOUND ON EVENT");
+                ViewBag.MyErrorMessage = "BABABABABABABABABAB";
+                return View("EventDetail", new { eventId = eventId });
             }
-            return RedirectToAction("EventDetail", new { eventId = eventId }); ;
+            return RedirectToAction("EventDetail", new { eventId = eventId }); 
          
         }
         

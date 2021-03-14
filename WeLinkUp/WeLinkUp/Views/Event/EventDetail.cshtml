@@ -29,13 +29,14 @@
         </form>
     }
 
-    @if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Events.Date)) > 0)
+    @if (DateTime.Compare(DateTime.Now.Date, Convert.ToDateTime(Model.Events.Date)) > 0)
     {
-        <h3>Event is already passed</h3>
+        <h3>Event is already passed1</h3>
     }
     else if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Events.Date)) == 0 && DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Events.EndTime)) > 0)
     {
-        <h3>Event is already passed</h3>
+        <h3>@DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Events.EndTime))</h3>
+        <h3>Event is already passed2</h3>
     }
 
     else
@@ -58,9 +59,9 @@
 
 
     }
+
+   
 </body>
 </html>
 
-<script>
-  
-</script>
+
