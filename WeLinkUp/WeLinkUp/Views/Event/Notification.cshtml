@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WeLinkUp.Models.Notification>
+
+@{
+    ViewData["Title"] = "Notification";
+}
+
+<h1>Notification</h1>
+
+<p>
+
+</p>
+<table class="table">
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventId)
+            </td>
+            <td>
+
+            </td>
+            <td>
+               
+                <a asp-action="EventSummary" asp-route-id="@item.NotificationId">Details</a> 
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
