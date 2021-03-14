@@ -142,6 +142,7 @@ namespace WeLinkUp.Controllers
                 events.Add(userEvent);
             }
 
+            ViewData["Title"] = "Upcoming Events";
             return View("EventList", events);
         }
 
@@ -158,6 +159,7 @@ namespace WeLinkUp.Controllers
                     HostId = e.HostId
                 }).ToList();
 
+            ViewData["Title"] = "My Events";
             return View(events);
         }
 
