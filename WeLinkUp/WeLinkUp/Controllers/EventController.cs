@@ -12,6 +12,7 @@ using Microsoft.Extensions.FileProviders;
 using WeLinkUp.Data;
 using WeLinkUp.Models;
 
+
 namespace WeLinkUp.Controllers
 {
     [Authorize]
@@ -288,18 +289,48 @@ namespace WeLinkUp.Controllers
                 _context.SaveChanges();
             }
             else 
-            {             
-                // after passing the validation
-                try
+            {
+                if (user.Monday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 1)
                 {
-                    var attendance = _context.AttendeeList.FirstOrDefault(a => a.UserId == user.Id && a.EventId == eventId);
-                    attendance.Status = "Confirmed";
-                    _context.SaveChanges();
-
+                    ViewData["Freeday"] = 0; //0 for not free                   
                 }
-                catch (Exception e)
+                else if (user.Tuesday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 2)
                 {
+                    ViewData["Freeday"] = 0;
+                }
+                else if (user.Wednesday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 3)
+                {
+                    ViewData["Freeday"] = 0;
+                }
+                else if (user.Thursday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 4)
+                {
+                    ViewData["Freeday"] = 0;
+                }
+                else if (user.Friday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 5)
+                {
+                    ViewData["Freeday"] = 0;
+                }
+                else if (user.Saturday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 6)
+                {
+                    ViewData["Freeday"] = 0;
+                }
+                else if (user.Sunday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 7) 
+                {
+                    ViewData["Freeday"] = 0;
+                }
+                else { 
+                    // after passing the validation
+                    try
+                    {
+                        var attendance = _context.AttendeeList.FirstOrDefault(a => a.UserId == user.Id && a.EventId == eventId);
+                        attendance.Status = "Confirmed";
+                        _context.SaveChanges();
 
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
                 }
             }
             return RedirectToAction("EventDetail", new { eventId = eventId }); ;

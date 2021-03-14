@@ -43,8 +43,16 @@
 
         @if (ViewData["Attendance"].ToString() == "1")
         {
-            <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="location.href='@Url.Action("JoinEvent", new { eventId = Model.Events.EventId })';return false;">Join Event</button>
+            @if (ViewData["Freeday"].ToString() == "0")
+            {
+                <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="location.href = '@Url.Action("JoinEvent", new { eventId = Model.Events.EventId })'; return false; timeAlert()">Join Event</button>
+            }
+            else
+            { 
+                <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="location.href = '@Url.Action("JoinEvent", new { eventId = Model.Events.EventId })'; return false;">Join Event</button>
+            }
         }
+
         else if (ViewData["Attendance"].ToString() == "2")
         {
             <p>You are coming to this event</p>
@@ -62,5 +70,7 @@
 </html>
 
 <script>
-  
+    function timeAlert() {
+        alert("Time is confliect with your free time");
+    }
 </script>
