@@ -3,10 +3,10 @@
 <html>
 <body>
     @foreach (CreateEvent e in Model) {
-            <form>
-                <input type="text" value="@e.EventTitle" />
-                <input type="submit" value="Details" />
+            <form method="post" asp-action="Detail">
+                <p>@e.EventTitle </p>
                 <input type="hidden" value="@e.EventId" name="Id"/>
+                <input type="submit" value="Details" />
             </form>
             }
 </body>

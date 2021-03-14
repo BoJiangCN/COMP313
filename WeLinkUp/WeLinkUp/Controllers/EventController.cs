@@ -116,6 +116,12 @@ namespace WeLinkUp.Controllers
 
         }
         
+        [HttpPost]
+        public IActionResult Detail(string id)
+        {
+            return RedirectToAction("EventDetail", new { eventId = id });
+        }
+
         public async Task<IActionResult> UpcomingEvents()
         {
             // get current user
