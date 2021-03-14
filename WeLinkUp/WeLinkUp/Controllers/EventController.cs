@@ -184,9 +184,14 @@ namespace WeLinkUp.Controllers
 
                 eventDetailModel.AttendeeList = attendeeList;
                 int scheduleResult = checkScheduleAsync(eventDetailModel, user.Id);
-
                 ViewData["Freeday"] = scheduleResult;
 
+                int userAge = getAge(Convert.ToDateTime(user.DateofBirth));
+                System.Diagnostics.Debug.WriteLine(userAge);
+                if (userAge < 18 && eventDetailModel.Events.IsAdultOnly == 1) 
+                {
+                    ViewData["BlockTeenager"] = 1;
+                }
                 // check user's attendance status
 
                 if (!attendeeList.Exists(a => a.UserId.Equals(user.Id))) // is user in the attendee list?
@@ -297,36 +302,27 @@ namespace WeLinkUp.Controllers
             eventDetailModel.Events = l_eventToView.FirstOrDefault();
 
 
-            if (userAge < 18 && eventDetailModel.Events.IsAdultOnly == 1)
+            // after passing the validation
+            try
             {
                 var attendance = _context.AttendeeList.FirstOrDefault(a => a.UserId == user.Id && a.EventId == eventId);
-                attendance.Status = "Dissatisfy";
-                _context.SaveChanges();
-            }
-                          
-            else
-            {
-                // after passing the validation
-                try
+                if (attendance == null) // user is not invited or event does not exist
                 {
-                    var attendance = _context.AttendeeList.FirstOrDefault(a => a.UserId == user.Id && a.EventId == eventId);
-                    if (attendance == null) // user is not invited or event does not exist
-                    {
-                        return RedirectToAction("EventDetail", new { eventId = eventId }); ;
-                    }
-                    else
-                    {
-                        attendance.Status = "Confirmed";
-                        _context.SaveChanges();
-                    }
-
-                }
-                catch (Exception e)
-                {
-                    System.Diagnostics.Debug.WriteLine(e.Message);
                     return RedirectToAction("EventDetail", new { eventId = eventId }); ;
                 }
+                else
+                {
+                    attendance.Status = "Confirmed";
+                    _context.SaveChanges();
+                }
+
             }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+                return RedirectToAction("EventDetail", new { eventId = eventId }); ;
+            }
+                
             return RedirectToAction("EventDetail", new { eventId = eventId });
 
         }

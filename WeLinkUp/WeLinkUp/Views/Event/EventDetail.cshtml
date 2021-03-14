@@ -44,15 +44,22 @@
 
         @if (ViewData["Attendance"].ToString() == "1")
         {
-            @if (ViewData["Freeday"].ToString() == "0")
+            @if (ViewData["BlockTeenager"] != null && ViewData["BlockTeenager"].ToString() == "1")
             {
-                <p1>viewData Freeday is 0</p1>
-                <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="location.href = '@Url.Action("JoinEvent", new { eventId = Model.Events.EventId })'; return false; timeAlert()">Join Event</button>
+                <button disabled>This event is adult only</button>  
             }
             else
             {
-<p1>@ViewData["Freeday"].ToString()</p1>
-                <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="location.href = '@Url.Action("JoinEvent", new { eventId = Model.Events.EventId })'; return false;">Join Event</button>
+                if (ViewData["Freeday"].ToString() == "0")
+                {
+                    <p1>viewData Freeday is 0</p1>
+                    <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="location.href = '@Url.Action("JoinEvent", new { eventId = Model.Events.EventId })'; return false; timeAlert()">Join Event</button>
+                }
+                else
+                {
+                    <p1>@ViewData["Freeday"].ToString()</p1>
+                    <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="location.href = '@Url.Action("JoinEvent", new { eventId = Model.Events.EventId })'; return false;">Join Event</button>
+                }
             }
         }
 
