@@ -1,16 +1,73 @@
 @model List<WeLinkUp.Models.CreateEvent>
 
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paginatejs | Ligne</title>
+    <link rel="stylesheet" href="~/css/paginate.css">
+    <link rel="stylesheet" href="~/css/ligne.css">
+    <script type="text/javascript" src="~/js/paginate.js"></script>
+
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
 <body>
-    <br/>
-    <br/>
-    <br/>
-    @foreach (CreateEvent e in Model) {
-            <form method="post" asp-action="Detail">
-                      <input value="@e.EventTitle"/>
-                <input type="hidden" value="@e.EventId" name="Id"/>
-                <input type="submit" value="Details" />
-            </form>
-            }
+    <br />
+    <br />
+    <br />
+
+    <div class="container">
+        <div>
+            <h1>Events</h1>
+        </div>
+        <div class="panel">
+            <div class="body">
+                <div class="input-group">
+                    <label for="searchBox">Filtrar</label>
+                    <input type="search" id="searchBox" placeholder="Filtrar...">
+                </div>
+            </div>
+        </div>
+        <table class="myTable table hover">
+            <tbody>
+                <tr>
+                    <th>Title</th>
+                    <th>Action</th>
+                </tr>
+                @foreach (CreateEvent e in Model)
+                {
+                    <tr>
+                        <td>
+                               <p>@e.EventTitle</p>
+                        </td>
+                        <td>
+
+                            <form method="post" asp-action="Detail">
+                                <input type="hidden" value="@e.EventId" name="Id" />
+                                <input type="submit" value="Details" />
+                            </form>
+                        </td>
+                    </tr>
+                }
+                
+</table>
+    </div>
+    <script>
+
+        let options = {
+            numberPerPage: 5, //Cantidad de datos por pagina
+            goBar: true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
+            pageCounter: true, //Contador de paginas, en cual estas, de cuantas paginas
+        };
+
+        let filterOptions = {
+            el: '#searchBox' //Caja de texto para filtrar, puede ser una clase o un ID
+        };
+
+        paginate.init('.myTable', options, filterOptions);
+    </script>
 </body>
 </html>
