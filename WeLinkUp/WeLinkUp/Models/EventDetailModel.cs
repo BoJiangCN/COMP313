@@ -41,5 +41,6 @@ namespace WeLinkUp.Models
 
         public IEnumerable<AttendeeList> AttendeeList { get; set; }
         public User User { get; set; }
+        public int NumberOfInvitation { get; set; }
     }
 }

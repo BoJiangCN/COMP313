@@ -209,6 +209,7 @@ namespace WeLinkUp.Controllers
                 }
 
                 eventDetailModel.AttendeeList = attendeeList;
+                eventDetailModel.NumberOfInvitation = attendeeList.Count;
 
                 // check if user is free for this event
                 int scheduleResult = checkScheduleAsync(eventDetailModel, user.Id);
