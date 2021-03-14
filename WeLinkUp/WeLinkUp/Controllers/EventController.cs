@@ -128,10 +128,9 @@ namespace WeLinkUp.Controllers
         }
 
         [HttpGet("Event/EventDetail/{eventId:int?}")]
-        public async Task<IActionResult> EventDetailAsync(int eventId, string errorMessage ="")
+        public async Task<IActionResult> EventDetailAsync(int eventId)
         {
-            
-            ViewBag.MyErrorMessage = errorMessage;
+
             EventDetailModel eventDetailModel = new EventDetailModel();                      
 
             List<CreateEvent> l_eventToView = _context.Events.Where(e => e.EventId == eventId)
@@ -180,13 +179,13 @@ namespace WeLinkUp.Controllers
                 if (query_getFriends_attendeeList.Any()) // check if the user has any friend
                 {
                     // convert to List<AttendeeList>
-                    attendeeList = new List<AttendeeList>(query_getFriends_attendeeList);
-             
-
+                    attendeeList = new List<AttendeeList>(query_getFriends_attendeeList);             
                 }
 
                 eventDetailModel.AttendeeList = attendeeList;
-                
+                int scheduleResult = checkScheduleAsync(eventDetailModel, user.Id);
+
+                ViewData["Freeday"] = scheduleResult;
 
                 // check user's attendance status
 
@@ -206,7 +205,7 @@ namespace WeLinkUp.Controllers
                 return View(eventDetailModel);
             }
         }
-
+        //commit
         public async Task InviteFriendsAsync(CreateEvent e) 
         {
             System.Diagnostics.Debug.WriteLine("Calling Invite Friends");
@@ -271,7 +270,7 @@ namespace WeLinkUp.Controllers
       
         public async Task<IActionResult> JoinEventAsync(int eventId)
         {
-            eventId = 152;
+
             // get current user
             var user = await _securityManager.GetUserAsync(User);
             //To Bo Jiang: Checking(Age, Schedule, Friend, etc) goes here
@@ -304,58 +303,28 @@ namespace WeLinkUp.Controllers
                 attendance.Status = "Dissatisfy";
                 _context.SaveChanges();
             }
+                          
             else
             {
-                if (user.Monday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 1)
+                // after passing the validation
+                try
                 {
-                    ViewData["Freeday"] = 0; //0 for not free                   
-                }
-                else if (user.Tuesday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 2)
-                {
-                    ViewData["Freeday"] = 0;
-                }
-                else if (user.Wednesday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 3)
-                {
-                    ViewData["Freeday"] = 0;
-                }
-                else if (user.Thursday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 4)
-                {
-                    ViewData["Freeday"] = 0;
-                }
-                else if (user.Friday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 5)
-                {
-                    ViewData["Freeday"] = 0;
-                }
-                else if (user.Saturday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 6)
-                {
-                    ViewData["Freeday"] = 0;
-                }
-                else if (user.Sunday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 7)
-                {
-                    ViewData["Freeday"] = 0;
-                }
-                else
-                {
-                    // after passing the validation
-                    try
+                    var attendance = _context.AttendeeList.FirstOrDefault(a => a.UserId == user.Id && a.EventId == eventId);
+                    if (attendance == null) // user is not invited or event does not exist
                     {
-                        var attendance = _context.AttendeeList.FirstOrDefault(a => a.UserId == user.Id && a.EventId == eventId);
-                        if (attendance == null) // user is not invited or event does not exist
-                        {
-                            return RedirectToAction("EventDetail", new { eventId = eventId }); ;
-                        }
-                        else
-                        {
-                            attendance.Status = "Confirmed";
-                            _context.SaveChanges();
-                        }
-
-                    }
-                    catch (Exception e)
-                    {
-                        System.Diagnostics.Debug.WriteLine(e.Message);
                         return RedirectToAction("EventDetail", new { eventId = eventId }); ;
                     }
+                    else
+                    {
+                        attendance.Status = "Confirmed";
+                        _context.SaveChanges();
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+                    return RedirectToAction("EventDetail", new { eventId = eventId }); ;
                 }
             }
             return RedirectToAction("EventDetail", new { eventId = eventId });
@@ -373,39 +342,65 @@ namespace WeLinkUp.Controllers
             return age;
         }
 
-        public async Task checkScheduleAsync(EventDetailModel eventDetailModel) 
+        public int checkScheduleAsync(EventDetailModel eventDetailModel, string userId) 
         {
+            int result = 0;
             // get current user
-            var user = await _securityManager.GetUserAsync(User);
+            
 
-            if (user.Monday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 1)
+            int eventDayOfWeek = Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek);
+            System.Diagnostics.Debug.WriteLine(eventDayOfWeek);
+            switch (eventDayOfWeek)
             {
-                ViewData["Freeday"] = 0; //0 for not free                   
+                case 0: //sunday
+                    var users0 = from u in _context.Users
+                                where (u.Id == userId && u.Sunday == true)
+                                select u;
+                    if (users0.Any()) { result = 1; }
+
+                    break;
+                case 1: // monday
+                    var users1 = from u in _context.Users
+                                 where (u.Id == userId && u.Sunday == true)
+                                 select u;
+                    if (users1.Any()) { result = 1; }
+                    break;
+                case 2: // tuesday
+                    var users2 = from u in _context.Users
+                                 where (u.Id == userId && u.Sunday == true)
+                                 select u;
+                    if (users2.Any()) { result = 1; }
+                    break;
+                case 3: // wednesday
+                    var users3 = from u in _context.Users
+                                 where (u.Id == userId && u.Sunday == true)
+                                 select u;
+                    if (users3.Any()) { result = 1; }
+                    break;
+                case 4: // thursday
+                    var users4 = from u in _context.Users
+                                 where (u.Id == userId && u.Sunday == true)
+                                 select u;
+                    if (users4.Any()) { result = 1; }
+                    break;
+                case 5: // friday
+                    var users5 = from u in _context.Users
+                                 where (u.Id == userId && u.Sunday == true)
+                                 select u;
+                    if (users5.Any()) { result = 1; }
+                    break;
+                case 6: // saturday
+                    var users6 = from u in _context.Users
+                                where (u.Id == userId && u.Saturday == true)
+                                select u;
+                    if (users6.Any()) { result = 1; }
+                    break;
+
             }
-            else if (user.Tuesday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 2)
-            {
-                ViewData["Freeday"] = 0;
-            }
-            else if (user.Wednesday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 3)
-            {
-                ViewData["Freeday"] = 0;
-            }
-            else if (user.Thursday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 4)
-            {
-                ViewData["Freeday"] = 0;
-            }
-            else if (user.Friday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 5)
-            {
-                ViewData["Freeday"] = 0;
-            }
-            else if (user.Saturday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 6)
-            {
-                ViewData["Freeday"] = 0;
-            }
-            else if (user.Sunday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 7)
-            {
-                ViewData["Freeday"] = 0;
-            }
+
+    
+
+            return result;
         }
         
 
