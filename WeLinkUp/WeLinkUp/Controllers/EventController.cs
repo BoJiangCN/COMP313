@@ -142,11 +142,11 @@ namespace WeLinkUp.Controllers
                 events.Add(userEvent);
             }
 
-            return View("MyEvents", events);
+            return View("EventList", events);
         }
 
         
-        public async Task<IActionResult> MyEvents()
+        public async Task<IActionResult> EventList()
         {
             // get current user
             var user = await _securityManager.GetUserAsync(User);
