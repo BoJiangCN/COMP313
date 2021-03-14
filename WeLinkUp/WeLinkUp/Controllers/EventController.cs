@@ -131,24 +131,49 @@ namespace WeLinkUp.Controllers
         public async Task<IActionResult> EventDetailAsync(int eventId)
         {
 
-            EventDetailModel eventDetailModel = new EventDetailModel();                      
+            EventDetailModel eventDetailModel = new EventDetailModel();
 
-            List<CreateEvent> l_eventToView = _context.Events.Where(e => e.EventId == eventId)
-             .Select(e => new CreateEvent {
-                 EventId = e.EventId,
-                 EventTitle = e.EventTitle,
-                 Location = e.Location,
-                 Date = e.Date,
-                 StartTime = e.StartTime,
-                 EndTime = e.EndTime,
-                 Description = e.Description,
-                 Image = e.Image,
-                 IsAdultOnly = e.IsAdultOnly == 1?1:0,
-                 EventType = e.EventType == 1?1:0,
-                 HostId = e.HostId
-             }).ToList();
+            var q_eventToView = (from e in _context.Events
+                                join u in _context.Users on e.HostId equals u.Id
+                                where e.EventId == eventId
+                                select new EventDetailModel
+                                {
+                                    EventTitle = e.EventTitle,
+                                    Location = e.Location,
+                                    Date = e.Date,
+                                    StartTime = e.StartTime,
+                                    EndTime = e.EndTime,
+                                    Description = e.Description,
+                                    Image = e.Image,
+                                    IsAdultOnly = e.IsAdultOnly == 1 ? 1 : 0,
+                                    EventType = e.EventType == 1 ? 1 : 0,
+                                    Host = u.UserName
+                                });
 
-            if (l_eventToView.Count == 0) // event does not exist
+            List<EventDetailModel> eventList = new List<EventDetailModel>();
+
+            //List<EventDetailModel> l_eventToView = _context.Events.Where(e => e.EventId == eventId)
+            // .Select(e => new EventDetailModel
+            // {
+            //     EventId = e.EventId,
+            //     EventTitle = e.EventTitle,
+            //     Location = e.Location,
+            //     Date = e.Date,
+            //     StartTime = e.StartTime,
+            //     EndTime = e.EndTime,
+            //     Description = e.Description,
+            //     Image = e.Image,
+            //     IsAdultOnly = e.IsAdultOnly == 1?1:0,
+            //     EventType = e.EventType == 1?1:0,
+            //     HostId = e.HostId
+            // }).ToList();
+
+            //if (l_eventToView.Count == 0) // event does not exist
+            //{
+
+            //    return View("Error");
+            //}
+            if (!q_eventToView.Any()) // event does not exist
             {
 
                 return View("Error");
@@ -156,7 +181,10 @@ namespace WeLinkUp.Controllers
 
             else 
             {
-                eventDetailModel.Events = l_eventToView.FirstOrDefault();
+                //eventDetailModel.Events = l_eventToView.FirstOrDefault();
+                eventList = new List<EventDetailModel>(q_eventToView);
+                eventDetailModel = eventList.FirstOrDefault();
+                 
 
                 // get current user
                 var user = await _securityManager.GetUserAsync(User);
@@ -189,12 +217,14 @@ namespace WeLinkUp.Controllers
                 ViewData["Freeday"] = scheduleResult;
 
                 // check user's age if the event is adult only
-                if (eventDetailModel.Events.IsAdultOnly == 1) {
+                //if (eventDetailModel.Events.IsAdultOnly == 1) {
+                if (eventDetailModel.IsAdultOnly == 1)
+                {
                     int userAge = getAge(Convert.ToDateTime(user.DateofBirth));
-                    if (userAge < 18 ) // block from joining if the user is a teenager
+                    if (userAge < 18) // block from joining if the user is a teenager
                     {
                         ViewData["BlockTeenager"] = 1;
-                    } 
+                    }
                 }
                 // check user's attendance status
 
@@ -347,7 +377,7 @@ namespace WeLinkUp.Controllers
         {
             int result = 0;
        
-            int eventDayOfWeek = Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek);
+            int eventDayOfWeek = Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Date).DayOfWeek);
             System.Diagnostics.Debug.WriteLine(eventDayOfWeek);
             switch (eventDayOfWeek)
             {
