@@ -130,6 +130,7 @@ namespace WeLinkUp.Controllers
         [HttpGet("Event/EventDetail/{eventId:int?}")]
         public async Task<IActionResult> EventDetailAsync(int eventId, string errorMessage ="")
         {
+            
             ViewBag.MyErrorMessage = errorMessage;
             EventDetailModel eventDetailModel = new EventDetailModel();                      
 
@@ -185,6 +186,7 @@ namespace WeLinkUp.Controllers
                 }
 
                 eventDetailModel.AttendeeList = attendeeList;
+                
 
                 // check user's attendance status
 
@@ -212,6 +214,7 @@ namespace WeLinkUp.Controllers
             // get current user
             var user = await _securityManager.GetUserAsync(User);
             
+
 
             // get list of friends
             var query_getFriends_attendeeList = (from f in _context.FriendLists
@@ -298,29 +301,65 @@ namespace WeLinkUp.Controllers
             if (userAge < 18 && eventDetailModel.Events.IsAdultOnly == 1)
             {
                 var attendance = _context.AttendeeList.FirstOrDefault(a => a.UserId == user.Id && a.EventId == eventId);
-                // when the event does not exist
-                if (attendance == null)
+                attendance.Status = "Dissatisfy";
+                _context.SaveChanges();
+            }
+            else
+            {
+                if (user.Monday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 1)
                 {
-                    ViewBag.MyErrorMessage = "BABABABABABABABABAB";
-                    return RedirectToAction("EventDetail", new { eventId = eventId, errorMessage = "BABAABABABABAB" });
+                    ViewData["Freeday"] = 0; //0 for not free                   
+                }
+                else if (user.Tuesday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 2)
+                {
+                    ViewData["Freeday"] = 0;
+                }
+                else if (user.Wednesday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 3)
+                {
+                    ViewData["Freeday"] = 0;
+                }
+                else if (user.Thursday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 4)
+                {
+                    ViewData["Freeday"] = 0;
+                }
+                else if (user.Friday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 5)
+                {
+                    ViewData["Freeday"] = 0;
+                }
+                else if (user.Saturday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 6)
+                {
+                    ViewData["Freeday"] = 0;
+                }
+                else if (user.Sunday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 7)
+                {
+                    ViewData["Freeday"] = 0;
                 }
                 else
                 {
-                    attendance.Status = "Confirmed";
-                    _context.SaveChanges();
-                } 
-                
-                
+                    // after passing the validation
+                    try
+                    {
+                        var attendance = _context.AttendeeList.FirstOrDefault(a => a.UserId == user.Id && a.EventId == eventId);
+                        if (attendance == null) // user is not invited or event does not exist
+                        {
+                            return RedirectToAction("EventDetail", new { eventId = eventId }); ;
+                        }
+                        else
+                        {
+                            attendance.Status = "Confirmed";
+                            _context.SaveChanges();
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        System.Diagnostics.Debug.WriteLine(e.Message);
+                        return RedirectToAction("EventDetail", new { eventId = eventId }); ;
+                    }
+                }
             }
-            catch (NullReferenceException e) 
-            {
-                System.Diagnostics.Debug.WriteLine(e.ToString());
-                System.Diagnostics.Debug.WriteLine("NOTHING FOUND ON EVENT");
-                ViewBag.MyErrorMessage = "BABABABABABABABABAB";
-                return View("EventDetail", new { eventId = eventId });
-            }
-            return RedirectToAction("EventDetail", new { eventId = eventId }); 
-         
+            return RedirectToAction("EventDetail", new { eventId = eventId });
+
         }
 
         public int getAge(DateTime birthdate) 
@@ -332,6 +371,41 @@ namespace WeLinkUp.Controllers
             if (birthdate.Date > DateTime.Now.AddYears(-age)) age--;
 
             return age;
+        }
+
+        public async Task checkScheduleAsync(EventDetailModel eventDetailModel) 
+        {
+            // get current user
+            var user = await _securityManager.GetUserAsync(User);
+
+            if (user.Monday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 1)
+            {
+                ViewData["Freeday"] = 0; //0 for not free                   
+            }
+            else if (user.Tuesday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 2)
+            {
+                ViewData["Freeday"] = 0;
+            }
+            else if (user.Wednesday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 3)
+            {
+                ViewData["Freeday"] = 0;
+            }
+            else if (user.Thursday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 4)
+            {
+                ViewData["Freeday"] = 0;
+            }
+            else if (user.Friday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 5)
+            {
+                ViewData["Freeday"] = 0;
+            }
+            else if (user.Saturday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 6)
+            {
+                ViewData["Freeday"] = 0;
+            }
+            else if (user.Sunday = false && Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek) == 7)
+            {
+                ViewData["Freeday"] = 0;
+            }
         }
         
 
