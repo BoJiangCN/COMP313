@@ -183,14 +183,18 @@ namespace WeLinkUp.Controllers
                 }
 
                 eventDetailModel.AttendeeList = attendeeList;
+
+                // check if user is free for this event
                 int scheduleResult = checkScheduleAsync(eventDetailModel, user.Id);
                 ViewData["Freeday"] = scheduleResult;
 
-                int userAge = getAge(Convert.ToDateTime(user.DateofBirth));
-                System.Diagnostics.Debug.WriteLine(userAge);
-                if (userAge < 18 && eventDetailModel.Events.IsAdultOnly == 1) 
-                {
-                    ViewData["BlockTeenager"] = 1;
+                // check user's age if the event is adult only
+                if (eventDetailModel.Events.IsAdultOnly == 1) {
+                    int userAge = getAge(Convert.ToDateTime(user.DateofBirth));
+                    if (userAge < 18 ) // block from joining if the user is a teenager
+                    {
+                        ViewData["BlockTeenager"] = 1;
+                    } 
                 }
                 // check user's attendance status
 
@@ -210,7 +214,7 @@ namespace WeLinkUp.Controllers
                 return View(eventDetailModel);
             }
         }
-        //commit
+        
         public async Task InviteFriendsAsync(CreateEvent e) 
         {
             System.Diagnostics.Debug.WriteLine("Calling Invite Friends");
@@ -342,9 +346,7 @@ namespace WeLinkUp.Controllers
         public int checkScheduleAsync(EventDetailModel eventDetailModel, string userId) 
         {
             int result = 0;
-            // get current user
-            
-
+       
             int eventDayOfWeek = Convert.ToInt32(Convert.ToDateTime(eventDetailModel.Events.Date).DayOfWeek);
             System.Diagnostics.Debug.WriteLine(eventDayOfWeek);
             switch (eventDayOfWeek)
@@ -358,31 +360,31 @@ namespace WeLinkUp.Controllers
                     break;
                 case 1: // monday
                     var users1 = from u in _context.Users
-                                 where (u.Id == userId && u.Sunday == true)
+                                 where (u.Id == userId && u.Monday == true)
                                  select u;
                     if (users1.Any()) { result = 1; }
                     break;
                 case 2: // tuesday
                     var users2 = from u in _context.Users
-                                 where (u.Id == userId && u.Sunday == true)
+                                 where (u.Id == userId && u.Tuesday == true)
                                  select u;
                     if (users2.Any()) { result = 1; }
                     break;
                 case 3: // wednesday
                     var users3 = from u in _context.Users
-                                 where (u.Id == userId && u.Sunday == true)
+                                 where (u.Id == userId && u.Wednesday == true)
                                  select u;
                     if (users3.Any()) { result = 1; }
                     break;
                 case 4: // thursday
                     var users4 = from u in _context.Users
-                                 where (u.Id == userId && u.Sunday == true)
+                                 where (u.Id == userId && u.Thursday == true)
                                  select u;
                     if (users4.Any()) { result = 1; }
                     break;
                 case 5: // friday
                     var users5 = from u in _context.Users
-                                 where (u.Id == userId && u.Sunday == true)
+                                 where (u.Id == userId && u.Friday == true)
                                  select u;
                     if (users5.Any()) { result = 1; }
                     break;
