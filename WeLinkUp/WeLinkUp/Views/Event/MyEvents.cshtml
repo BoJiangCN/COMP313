@@ -1,0 +1,13 @@
+@model List<WeLinkUp.Models.CreateEvent>
+
+<html>
+<body>
+    @foreach (CreateEvent e in Model) {
+            <form>
+                <input type="text" value="@e.EventTitle" />
+                <input type="submit" value="Details" />
+                <input type="hidden" value="@e.EventId" name="Id"/>
+            </form>
+            }
+</body>
+</html>

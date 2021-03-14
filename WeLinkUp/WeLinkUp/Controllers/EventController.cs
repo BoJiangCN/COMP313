@@ -115,6 +115,22 @@ namespace WeLinkUp.Controllers
             }
 
         }
+        
+        public async Task<IActionResult> MyEvents()
+        {
+            List<CreateEvent> myEvents = new List<CreateEvent>();
+            // get current user
+            var user = await _securityManager.GetUserAsync(User);
+            List<CreateEvent> events = _context.Events.Where(e => e.HostId == user.Id)
+                .Select(e => new CreateEvent
+                {
+                    EventId = e.EventId,
+                    EventTitle = e.EventTitle,            
+                    HostId = e.HostId
+                }).ToList();
+
+            return View(events);
+        }
 
         [HttpGet]
         public IActionResult EventSummary()
