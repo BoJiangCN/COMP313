@@ -1,0 +1,11 @@
+@model List<WeLinkUp.Models.Notification>
+
+
+<html>
+<body>
+    @foreach (Notification message in Model)
+    {
+        <p>@message.Message @message.Date</p>
+    }
+</body>
+</html>
