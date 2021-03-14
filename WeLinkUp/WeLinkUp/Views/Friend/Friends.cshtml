@@ -2,13 +2,91 @@
 
 
 <html>
-    <body>
-        @foreach (ApplicationUser user in Model)
-        {
-        <form>
-            <input type="text" value="@user.UserName"/>
-            <input type="submit" value="Send Message" />
-        </form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+    <style>
+        body, h1, h2, h3, h4, h5 {
+            font-family: "Lato", sans-serif
         }
-    </body>
+
+        .image {
+            height: 200px;
+            width: 100%;
+            object-fit: contain;
+        }
+
+        .w3-row {
+            margin-left: 20%;
+            width: 60%;
+        }
+
+        .w3-col l8 s12 {
+            width: 20%;
+        }
+
+        img.profile {
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            table td {
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            table tr:nth-child(2n) {
+                background-color: white;
+            }
+
+            table tr:nth-child(2n+1) {
+                background-color: #F7F3EF;
+            }
+    </style>
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <header class="w3-container w3-center w3-padding-32">
+        <h1><b>Manage Friend</b></h1>
+    </header>
+    <div class="w3-row">
+        <div class="w3-container">
+            <h3><b>Friend List</b></h3>
+            <table>
+                <tr>
+                    <th> </th>
+                    <th> User </th>
+                    <th> Action </th>
+                </tr>
+
+                @foreach (ApplicationUser user in Model)
+                {
+                    <tr>
+                        <td>
+                            <img class="profile" src="@Url.Content("~/images/UserProfile/" + user.Image)" alt="" />
+                        </td>
+
+                        <td>@user.UserName</td>
+                        <td><button>Remove</button> </td>
+
+
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+</body>
 </html>

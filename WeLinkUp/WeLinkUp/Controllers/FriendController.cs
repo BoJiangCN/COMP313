@@ -37,7 +37,7 @@ namespace WeLinkUp.Controllers
             foreach (FriendLists friend in friends)
             {
                 ApplicationUser userFriend = _context.Users.Where(us => us.Id == friend.FriendId)
-                    .Select(fr => new ApplicationUser { UserName = fr.UserName }).FirstOrDefault();
+                    .Select(fr => new ApplicationUser { UserName = fr.UserName, Image = fr.Image }).FirstOrDefault();
                 userFriends.Add(userFriend);
             }
 
