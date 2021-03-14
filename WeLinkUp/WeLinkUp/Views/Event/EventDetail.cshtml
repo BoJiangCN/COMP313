@@ -52,7 +52,7 @@
                 </div>
                 <div class="w3-container">
                     <h3><b>@Model.EventTitle</b></h3>
-                    <h5>Title description, <span class="w3-opacity">@Model.Date</span></h5>
+                    <h5>@Model.Description</h5>
                 </div>
                 <hr />
 
@@ -147,9 +147,9 @@
             <!-- DateTime -->
             <div class="w3-card w3-margin w3-margin-top">
                 <div class="w3-container w3-white">
-                    <h4><b>Date</b></h4>                   
+                    <h4><b>Date</b></h4>
                     <p>@Model.DayOfWeek, @Model.Date</p>
-                    <p>@Model.StartTime To @Model.EndTime</p>
+                    <p>@Model.StartTimeToShow To @Model.EndTimeToShow</p>
                 </div>
             </div><hr>
 

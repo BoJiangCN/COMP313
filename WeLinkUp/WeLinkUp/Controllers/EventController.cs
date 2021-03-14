@@ -202,10 +202,42 @@ namespace WeLinkUp.Controllers
 
             else 
             {
-                //eventDetailModel.Events = l_eventToView.FirstOrDefault();
+                
                 eventList = new List<EventDetailModel>(q_eventToView);
                 eventDetailModel = eventList.FirstOrDefault();
                 eventDetailModel.DayOfWeek = Convert.ToDateTime(eventDetailModel.Date).DayOfWeek.ToString();
+                try
+                {
+                    int amOrPm = Convert.ToInt32(eventDetailModel.StartTime[..2]);
+                    if (amOrPm < 12)
+                    {
+                        eventDetailModel.StartTimeToShow = eventDetailModel.StartTime + " AM";
+                    }
+                    else if (amOrPm == 12) 
+                    {
+                        eventDetailModel.StartTimeToShow = "12" + eventDetailModel.StartTime[2..5] + " PM";
+                    }
+                    else
+                    {
+                        eventDetailModel.StartTimeToShow = (amOrPm - 12) + eventDetailModel.StartTime[2..5] + " PM";
+                    }
+
+                    amOrPm = Convert.ToInt32(eventDetailModel.EndTime[..2]);
+                    if (amOrPm < 12)
+                    {
+                        eventDetailModel.EndTimeToShow = eventDetailModel.StartTime + " AM";
+                    }
+                    else if (amOrPm == 12)
+                    {
+                        eventDetailModel.EndTimeToShow = "12" + eventDetailModel.StartTime[2..5] + " PM";
+                    }
+                    else
+                    {
+                        eventDetailModel.EndTimeToShow = (amOrPm - 12) + eventDetailModel.StartTime[2..5] + " PM";
+                    }
+
+                }
+                catch { }
 
                 // get current user
                 var user = await _securityManager.GetUserAsync(User);
