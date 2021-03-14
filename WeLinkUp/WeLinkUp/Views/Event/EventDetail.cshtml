@@ -33,17 +33,24 @@
         }
         img.profile {
             border-radius: 50%;
-            height: 60px;
-            width: 60px;
+            height: 50px;
+            width: 50px;
         }
         table {
             border-collapse: collapse;
-            border: 1px solid #090808;
+            /*border: 1px solid #090808;*/
             width: 100%;
         }
         table td {
             text-align: center;
             vertical-align: middle;
+        }
+            table tr:nth-child(2n) {
+                background-color: white;
+            }
+
+        table tr:nth-child(2n+1) {
+        background-color: #E1D1C2;
         }
     </style>
 </head>
@@ -76,6 +83,8 @@
                     <h3><b>Invitation List</b></h3>
 
                     <b># of invitation </b><span class="w3-tag">@Model.NumberOfInvitation</span>
+                    
+                    <br />
                     <table>
                         <tr>
                             <th> </th>
@@ -152,7 +161,7 @@
 
 
                             }
-
+                            <br/>
                         </div>
                     </div>
                 </div>
