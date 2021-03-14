@@ -53,7 +53,7 @@
                 if (ViewData["Freeday"].ToString() == "0")
                 {
                     <p1>viewData Freeday is 0</p1>
-                    <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="location.href = '@Url.Action("JoinEvent", new { eventId = Model.Events.EventId })'; return false; timeAlert()">Join Event</button>
+                    <button name="joinEvent" id="btnJoinEvent" class="btn btn-secondary" onclick="timeAlert(); location.href = '@Url.Action("JoinEvent", new { eventId = Model.Events.EventId })'; return false;">Join Event</button>
                 }
                 else
                 {
