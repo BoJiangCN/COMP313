@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    @*<link href="~/scss/UserList.css" rel="stylesheet" />*@
+
 
     <style>
         body, h1, h2, h3, h4, h5 {
@@ -31,10 +31,19 @@
         .w3-col l8 s12 {
             width: 20%;
         }
-        img {
+        img.profile {
             border-radius: 50%;
             height: 60px;
             width: 60px;
+        }
+        table {
+            border-collapse: collapse;
+            border: 1px solid #090808;
+            width: 100%;
+        }
+        table td {
+            text-align: center;
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -63,7 +72,7 @@
                 </div>
                 <hr />
 
-                <div class="w3-padding-large w3-left">
+                <div class="w3-container">
                     <h3><b>Invitation List</b></h3>
 
                     <b># of invitation </b><span class="w3-tag">@Model.NumberOfInvitation</span>
@@ -76,42 +85,19 @@
 
                         @foreach (AttendeeList user in Model.AttendeeList)
                         {
-                    <tr>
-                        <td>
-                            <img src="@Url.Content("~/images/UserProfile/" + user.Image)" alt="" />
-                        </td>
-
-                        <td>@user.Username</td>
-                        <td>@user.Status</td>
-
-
-                    </tr>
-                        }
-                    </table>
-                    @*<div class="table-users">
-                        <table>
                             <tr>
-                                <th> </th>
-                                <th>Username</th>
-                                <th>Status</th>
+                                <td>
+                                    <img class="profile" src="@Url.Content("~/images/UserProfile/" + user.Image)" alt="" />
+                                </td>
+
+                               <td>@user.Username</td>
+                                <td>@user.Status</td>
+
 
                             </tr>
-                            @foreach (AttendeeList user in Model.AttendeeList)
-                            {
-                                <tr>
-                                    <td> <img src="@Url.Content("~/images/UserProfile/" + user.Image)" alt="" /></td>
-                                    <td>@user.Username</td>
-                                    <td>@user.Status</td>
-
-                                </tr>
-                               
-                               
-                            }
-
-
-
-                        </table>
-                    </div>*@
+                        }
+                    </table>
+              
 
 
                 </div>
