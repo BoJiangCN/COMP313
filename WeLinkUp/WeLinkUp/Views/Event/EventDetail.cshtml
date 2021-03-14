@@ -54,73 +54,80 @@
                     <h3><b>@Model.EventTitle</b></h3>
                     <h5>Title description, <span class="w3-opacity">@Model.Date</span></h5>
                 </div>
+                <hr />
 
-
-                <h3><b>Invitation List</b></h3> <p><span class="w3-padding-large w3-right"><b># of invitation </b> <span class="w3-tag">@Model.NumberOfInvitation</span></span></p>
-                @foreach (AttendeeList user in Model.AttendeeList)
-                {
-                    <form>
-                        <input type="text" value="@user.Username" />
-                        <input type="text" value="@user.Status" />
-                    </form>
-                }
-            
-
-            <div class="w3-container">
-                <div class="w3-row">
-                    <div class="w3-col m8 s12">
-                        @if (DateTime.Compare(DateTime.Now.Date, Convert.ToDateTime(Model.Date)) > 0)
-                        {
-                            <h3>Event is already passed1</h3>
-                        }
-                        else if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Date)) == 0 && DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.EndTime)) > 0)
-                        {
-                            <h3>@DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.EndTime))</h3>
-                            <h3>Event is already passed2</h3>
-                        }
-
-                        else
-                        {
-
-                            @if (ViewData["Attendance"].ToString() == "1")
+                <div class="w3-padding-large w3-left">
+                    <h3><b>Invitation List</b></h3>
+          
+                  
+                            <b># of invitation </b><span class="w3-tag">@Model.NumberOfInvitation</span>
+                            @foreach (AttendeeList user in Model.AttendeeList)
                             {
-                                @if (ViewData["BlockTeenager"] != null && ViewData["BlockTeenager"].ToString() == "1")
+                                <form>
+                                    <input type="text" value="@user.Username" />
+                                    <input type="text" value="@user.Status" />
+                                </form>
+                            }
+                            
+                    
+            
+                </div>
+                <div class="w3-container">
+                    <div class="w3-row">
+                        <div class="w3-col m8 s12">
+                            @if (DateTime.Compare(DateTime.Now.Date, Convert.ToDateTime(Model.Date)) > 0)
+                            {
+                                <h3>Event is already passed1</h3>
+                            }
+                            else if (DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.Date)) == 0 && DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.EndTime)) > 0)
+                            {
+                                <h3>@DateTime.Compare(DateTime.Now, Convert.ToDateTime(Model.EndTime))</h3>
+                                <h3>Event is already passed2</h3>
+                            }
+
+                            else
+                            {
+
+                                @if (ViewData["Attendance"].ToString() == "1")
                                 {
-                                    <button disabled>This event is adult only</button>
-                                }
-                                else
-                                {
-                                    if (ViewData["Freeday"].ToString() == "0")
+                                    @if (ViewData["BlockTeenager"] != null && ViewData["BlockTeenager"].ToString() == "1")
                                     {
-                                        <hr />
-                                        <button name="joinEvent" id="btnJoinEvent" class="w3-button w3-padding-large w3-white w3-border" onclick="timeAlert(); location.href = '@Url.Action("JoinEvent", new { eventId = Model.EventId })'; return false;"><b>Join Event</b></button>
+                                        <button disabled>This event is adult only</button>
                                     }
                                     else
                                     {
-                                        <hr />
-                                        <button name="joinEvent" id="btnJoinEvent" class="w3-button w3-padding-large w3-white w3-border" onclick="location.href = '@Url.Action("JoinEvent", new { eventId = Model.EventId })'; return false;"><b>Join Event</b></button>
+                                        if (ViewData["Freeday"].ToString() == "0")
+                                        {
+                                            <br />
+                                            <button name="joinEvent" id="btnJoinEvent" class="w3-button w3-padding-large w3-white w3-border" onclick="timeAlert(); location.href = '@Url.Action("JoinEvent", new { eventId = Model.EventId })'; return false;"><b>Join Event</b></button>
+                                        }
+                                        else
+                                        {
+                                            <br />
+                                            <button name="joinEvent" id="btnJoinEvent" class="w3-button w3-padding-large w3-white w3-border" onclick="location.href = '@Url.Action("JoinEvent", new { eventId = Model.EventId })'; return false;"><b>Join Event</b></button>
+                                        }
                                     }
                                 }
+
+                                else if (ViewData["Attendance"].ToString() == "2")
+                                {
+                                    <p><b>You are coming to this event</b></p>
+                                }
+
+                                else if (Model.HostId.Equals(signInManager.UserManager.GetUserId(User)))
+                                {
+                                    <br />
+                                    <button name="modifyEvent" id="btnModifyEvent" class="w3-button w3-padding-large w3-white w3-border">Modify Event</button>
+                                    <button name="cancelEvent" id="btnCancelEvent" class="w3-button w3-padding-large w3-white w3-border">Cancel Event</button>
+                                }
+
+
                             }
 
-                            else if (ViewData["Attendance"].ToString() == "2")
-                            {
-                                <p>You are coming to this event</p>
-                            }
-
-                            else if (Model.HostId.Equals(signInManager.UserManager.GetUserId(User)))
-                            {
-                                <button name="modifyEvent" id="btnModifyEvent" class="w3-button w3-padding-large w3-white w3-border">Modify Event</button>
-                                <button name="cancelEvent" id="btnCancelEvent" class="w3-button w3-padding-large w3-white w3-border">Cancel Event</button>
-                            }
-
-
-                        }
-             
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
             
 
         <hr>
