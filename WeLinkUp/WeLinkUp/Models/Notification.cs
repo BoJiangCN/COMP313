@@ -15,7 +15,7 @@ namespace WeLinkUp.Models
 
         public string SenderId { get; set; }
         public string Message { get; set; }
-        public int EventId { get; set; }
-
+        public int EventId { get; set; }       
+        public DateTime Date { get; set; }
     }
 }
