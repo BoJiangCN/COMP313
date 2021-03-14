@@ -491,7 +491,17 @@ namespace WeLinkUp.Controllers
 
             return result;
         }
-        
+
+
+        [HttpGet]
+        public IActionResult Notification()
+        {
+            List<Notification> notifications = _context.Notifications.Select(n => new Notification
+            { NotificationId = n.NotificationId, EventId = n.EventId, Message = n.Message }).ToList();
+            List<Notification> userNotification = new List<Notification>();
+            return View(notifications);
+
+        }
 
 
 
