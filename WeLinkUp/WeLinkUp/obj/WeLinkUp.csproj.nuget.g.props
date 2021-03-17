@@ -5,14 +5,12 @@
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\pc\.nuget\packages\;C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages;C:\Program Files (x86)\Microsoft\Xamarin\NuGet\</NuGetPackageFolders>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\ashas\.nuget\packages\;C:\Microsoft\Xamarin\NuGet\;C:\Program Files\dotnet\sdk\NuGetFallbackFolder</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
-    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">5.9.0</NuGetToolVersion>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">5.8.1</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <SourceRoot Include="C:\Users\pc\.nuget\packages\" />
-    <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
-    <SourceRoot Include="C:\Program Files (x86)\Microsoft\Xamarin\NuGet\" />
+    <SourceRoot Include="$([MSBuild]::EnsureTrailingSlash($(NuGetPackageFolders)))" />
   </ItemGroup>
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -22,7 +20,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.bundle.js</Link>
     </Content>
@@ -30,7 +27,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.bundle.js.map</Link>
     </Content>
@@ -38,7 +34,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.bundle.min.js</Link>
     </Content>
@@ -46,7 +41,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.bundle.min.js.map</Link>
     </Content>
@@ -54,7 +48,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.js</Link>
     </Content>
@@ -62,7 +55,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.js.map</Link>
     </Content>
@@ -70,7 +62,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.min.js</Link>
     </Content>
@@ -78,7 +69,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.min.js.map</Link>
     </Content>
@@ -86,7 +76,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_alert.scss</Link>
     </Content>
@@ -94,7 +83,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_badge.scss</Link>
     </Content>
@@ -102,7 +90,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_breadcrumb.scss</Link>
     </Content>
@@ -110,7 +97,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_button-group.scss</Link>
     </Content>
@@ -118,7 +104,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_buttons.scss</Link>
     </Content>
@@ -126,7 +111,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_card.scss</Link>
     </Content>
@@ -134,7 +118,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_carousel.scss</Link>
     </Content>
@@ -142,7 +125,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_close.scss</Link>
     </Content>
@@ -150,7 +132,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_code.scss</Link>
     </Content>
@@ -158,7 +139,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_custom-forms.scss</Link>
     </Content>
@@ -166,7 +146,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_dropdown.scss</Link>
     </Content>
@@ -174,7 +153,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_forms.scss</Link>
     </Content>
@@ -182,7 +160,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_functions.scss</Link>
     </Content>
@@ -190,7 +167,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_grid.scss</Link>
     </Content>
@@ -198,7 +174,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_images.scss</Link>
     </Content>
@@ -206,7 +181,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_input-group.scss</Link>
     </Content>
@@ -214,7 +188,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_jumbotron.scss</Link>
     </Content>
@@ -222,7 +195,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_list-group.scss</Link>
     </Content>
@@ -230,7 +202,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_media.scss</Link>
     </Content>
@@ -238,7 +209,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_mixins.scss</Link>
     </Content>
@@ -246,7 +216,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_modal.scss</Link>
     </Content>
@@ -254,7 +223,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_nav.scss</Link>
     </Content>
@@ -262,7 +230,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_navbar.scss</Link>
     </Content>
@@ -270,7 +237,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_pagination.scss</Link>
     </Content>
@@ -278,7 +244,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_popover.scss</Link>
     </Content>
@@ -286,7 +251,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_print.scss</Link>
     </Content>
@@ -294,7 +258,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_progress.scss</Link>
     </Content>
@@ -302,7 +265,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_reboot.scss</Link>
     </Content>
@@ -310,7 +272,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_root.scss</Link>
     </Content>
@@ -318,7 +279,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_spinners.scss</Link>
     </Content>
@@ -326,7 +286,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_tables.scss</Link>
     </Content>
@@ -334,7 +293,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_toasts.scss</Link>
     </Content>
@@ -342,7 +300,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_tooltip.scss</Link>
     </Content>
@@ -350,7 +307,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_transitions.scss</Link>
     </Content>
@@ -358,7 +314,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_type.scss</Link>
     </Content>
@@ -366,7 +321,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_utilities.scss</Link>
     </Content>
@@ -374,7 +328,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\_variables.scss</Link>
     </Content>
@@ -382,7 +335,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\bootstrap-grid.scss</Link>
     </Content>
@@ -390,7 +342,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\bootstrap-reboot.scss</Link>
     </Content>
@@ -398,7 +349,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\bootstrap.scss</Link>
     </Content>
@@ -406,7 +356,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_alert.scss</Link>
     </Content>
@@ -414,7 +363,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_background-variant.scss</Link>
     </Content>
@@ -422,7 +370,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_badge.scss</Link>
     </Content>
@@ -430,7 +377,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_border-radius.scss</Link>
     </Content>
@@ -438,7 +384,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_box-shadow.scss</Link>
     </Content>
@@ -446,7 +391,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_breakpoints.scss</Link>
     </Content>
@@ -454,7 +398,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_buttons.scss</Link>
     </Content>
@@ -462,7 +405,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_caret.scss</Link>
     </Content>
@@ -470,7 +412,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_clearfix.scss</Link>
     </Content>
@@ -478,7 +419,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_deprecate.scss</Link>
     </Content>
@@ -486,7 +426,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_float.scss</Link>
     </Content>
@@ -494,7 +433,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_forms.scss</Link>
     </Content>
@@ -502,7 +440,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_gradients.scss</Link>
     </Content>
@@ -510,7 +447,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_grid-framework.scss</Link>
     </Content>
@@ -518,7 +454,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_grid.scss</Link>
     </Content>
@@ -526,7 +461,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_hover.scss</Link>
     </Content>
@@ -534,7 +468,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_image.scss</Link>
     </Content>
@@ -542,7 +475,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_list-group.scss</Link>
     </Content>
@@ -550,7 +482,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_lists.scss</Link>
     </Content>
@@ -558,7 +489,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_nav-divider.scss</Link>
     </Content>
@@ -566,7 +496,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_pagination.scss</Link>
     </Content>
@@ -574,7 +503,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_reset-text.scss</Link>
     </Content>
@@ -582,7 +510,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_resize.scss</Link>
     </Content>
@@ -590,7 +517,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_screen-reader.scss</Link>
     </Content>
@@ -598,7 +524,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_size.scss</Link>
     </Content>
@@ -606,7 +531,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_table-row.scss</Link>
     </Content>
@@ -614,7 +538,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_text-emphasis.scss</Link>
     </Content>
@@ -622,7 +545,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_text-hide.scss</Link>
     </Content>
@@ -630,7 +552,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_text-truncate.scss</Link>
     </Content>
@@ -638,7 +559,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_transition.scss</Link>
     </Content>
@@ -646,7 +566,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\mixins\_visibility.scss</Link>
     </Content>
@@ -654,7 +573,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_align.scss</Link>
     </Content>
@@ -662,7 +580,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_background.scss</Link>
     </Content>
@@ -670,7 +587,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_borders.scss</Link>
     </Content>
@@ -678,7 +594,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_clearfix.scss</Link>
     </Content>
@@ -686,7 +601,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_display.scss</Link>
     </Content>
@@ -694,7 +608,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_embed.scss</Link>
     </Content>
@@ -702,7 +615,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_flex.scss</Link>
     </Content>
@@ -710,7 +622,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_float.scss</Link>
     </Content>
@@ -718,7 +629,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_interactions.scss</Link>
     </Content>
@@ -726,7 +636,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_overflow.scss</Link>
     </Content>
@@ -734,7 +643,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_position.scss</Link>
     </Content>
@@ -742,7 +650,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_screenreaders.scss</Link>
     </Content>
@@ -750,7 +657,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_shadows.scss</Link>
     </Content>
@@ -758,7 +664,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_sizing.scss</Link>
     </Content>
@@ -766,7 +671,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_spacing.scss</Link>
     </Content>
@@ -774,7 +678,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_stretched-link.scss</Link>
     </Content>
@@ -782,7 +685,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_text.scss</Link>
     </Content>
@@ -790,7 +692,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\utilities\_visibility.scss</Link>
     </Content>
@@ -798,7 +699,6 @@
       <NuGetPackageId>bootstrap.sass</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\scss\vendor\_rfs.scss</Link>
     </Content>
@@ -808,7 +708,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\css\bootstrap-grid.css</Link>
     </Content>
@@ -816,7 +715,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\css\bootstrap-grid.css.map</Link>
     </Content>
@@ -824,7 +722,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\css\bootstrap-grid.min.css</Link>
     </Content>
@@ -832,7 +729,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\css\bootstrap-grid.min.css.map</Link>
     </Content>
@@ -840,7 +736,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\css\bootstrap-reboot.css</Link>
     </Content>
@@ -848,7 +743,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\css\bootstrap-reboot.css.map</Link>
     </Content>
@@ -856,7 +750,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\css\bootstrap-reboot.min.css</Link>
     </Content>
@@ -864,7 +757,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\css\bootstrap-reboot.min.css.map</Link>
     </Content>
@@ -872,7 +764,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\css\bootstrap.css</Link>
     </Content>
@@ -880,7 +771,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\css\bootstrap.css.map</Link>
     </Content>
@@ -888,7 +778,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\css\bootstrap.min.css</Link>
     </Content>
@@ -896,7 +785,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\css\bootstrap.min.css.map</Link>
     </Content>
@@ -904,7 +792,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.bundle.js</Link>
     </Content>
@@ -912,7 +799,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.bundle.js.map</Link>
     </Content>
@@ -920,7 +806,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.bundle.min.js</Link>
     </Content>
@@ -928,7 +813,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.bundle.min.js.map</Link>
     </Content>
@@ -936,7 +820,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.js</Link>
     </Content>
@@ -944,7 +827,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.js.map</Link>
     </Content>
@@ -952,7 +834,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.min.js</Link>
     </Content>
@@ -960,7 +841,6 @@
       <NuGetPackageId>bootstrap</NuGetPackageId>
       <NuGetPackageVersion>4.6.0</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
-      <Pack>false</Pack>
       <Private>False</Private>
       <Link>wwwroot\js\bootstrap.min.js.map</Link>
     </Content>
@@ -971,12 +851,12 @@
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design\5.0.3\build\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design\5.0.3\build\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgAjaxMin Condition=" '$(PkgAjaxMin)' == '' ">C:\Users\pc\.nuget\packages\ajaxmin\5.14.5506.26202</PkgAjaxMin>
-    <PkgMicrosoft_Extensions_ApiDescription_Server Condition=" '$(PkgMicrosoft_Extensions_ApiDescription_Server)' == '' ">C:\Users\pc\.nuget\packages\microsoft.extensions.apidescription.server\3.0.0</PkgMicrosoft_Extensions_ApiDescription_Server>
-    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\pc\.nuget\packages\microsoft.codeanalysis.analyzers\2.9.4</PkgMicrosoft_CodeAnalysis_Analyzers>
-    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\pc\.nuget\packages\microsoft.entityframeworkcore.tools\5.0.3</PkgMicrosoft_EntityFrameworkCore_Tools>
-    <PkgjQuery Condition=" '$(PkgjQuery)' == '' ">C:\Users\pc\.nuget\packages\jquery\3.0.0</PkgjQuery>
-    <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">C:\Users\pc\.nuget\packages\awssdk.core\3.5.2.10</PkgAWSSDK_Core>
-    <PkgAWSSDK Condition=" '$(PkgAWSSDK)' == '' ">C:\Users\pc\.nuget\packages\awssdk\2.3.55.2</PkgAWSSDK>
+    <PkgAjaxMin Condition=" '$(PkgAjaxMin)' == '' ">C:\Users\ashas\.nuget\packages\ajaxmin\5.14.5506.26202</PkgAjaxMin>
+    <PkgMicrosoft_Extensions_ApiDescription_Server Condition=" '$(PkgMicrosoft_Extensions_ApiDescription_Server)' == '' ">C:\Users\ashas\.nuget\packages\microsoft.extensions.apidescription.server\3.0.0</PkgMicrosoft_Extensions_ApiDescription_Server>
+    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\ashas\.nuget\packages\microsoft.codeanalysis.analyzers\2.9.4</PkgMicrosoft_CodeAnalysis_Analyzers>
+    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\ashas\.nuget\packages\microsoft.entityframeworkcore.tools\5.0.3</PkgMicrosoft_EntityFrameworkCore_Tools>
+    <PkgjQuery Condition=" '$(PkgjQuery)' == '' ">C:\Users\ashas\.nuget\packages\jquery\3.0.0</PkgjQuery>
+    <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">C:\Users\ashas\.nuget\packages\awssdk.core\3.5.2.10</PkgAWSSDK_Core>
+    <PkgAWSSDK_S3 Condition=" '$(PkgAWSSDK_S3)' == '' ">C:\Users\ashas\.nuget\packages\awssdk.s3\3.5.3</PkgAWSSDK_S3>
   </PropertyGroup>
 </Project>

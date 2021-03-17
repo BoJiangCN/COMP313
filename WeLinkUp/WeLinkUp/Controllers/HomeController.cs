@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Amazon.S3;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -68,18 +69,8 @@ namespace WeLinkUp.Controllers
             
             if (ModelState.IsValid)
             {
-                //code for add imgae to db
-                string wwwroot = _webHostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(user.ImageFile.FileName);
-                string extension = Path.GetExtension(user.ImageFile.FileName);
-                user.Image = fileName = fileName + extension;
-                string path = Path.Combine(wwwroot + "/images/UserProfile/", fileName);
-
-                using (var fileStream = new FileStream(path, FileMode.Create))
-                {
-                    user.ImageFile.CopyTo(fileStream);
-
-                }
+                //Image
+                user.Image = await GetImage(user);
 
                 if (sunday == "true")
                 {
@@ -173,6 +164,32 @@ namespace WeLinkUp.Controllers
             }
             return View(user);
 
+        }
+
+        public async Task<string> GetImage(User user)
+        {
+            //code for save imgae to s3 bucket               
+            string AWS_bucketName = "softwareprojectnew2";
+            string AWS_defaultFolder = "UserProfile";
+
+            var s3Client = new AmazonS3Client(Amazon.RegionEndpoint.USEast1);
+            var bucketName = AWS_bucketName;
+            var keyName = AWS_defaultFolder;
+            keyName = keyName + "/" + user.ImageFile.FileName;
+            user.Image = user.ImageFile.FileName;
+            var fs = user.ImageFile.OpenReadStream();
+            var request = new Amazon.S3.Model.PutObjectRequest
+            {
+                BucketName = bucketName,
+                Key = keyName,
+                InputStream = fs,
+                ContentType = user.ImageFile.ContentType,
+                CannedACL = S3CannedACL.PublicRead
+
+            };
+            await s3Client.PutObjectAsync(request);     
+           var path = string.Format("http://{0}.s3.amazonaws.com/{1}", bucketName, keyName);
+           return user.Image = Path.GetFileName(path);
         }
 
 

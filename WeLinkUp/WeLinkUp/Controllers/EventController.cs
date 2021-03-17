@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Amazon.S3;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -45,19 +46,10 @@ namespace WeLinkUp.Controllers
 
             if (ModelState.IsValid)
             {
-                
+
                 //code for add imgae to db
-                string wwwroot = _webHostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(e.ImageFile.FileName);
-                string extension = Path.GetExtension(e.ImageFile.FileName);
-                e.Image = fileName = fileName + extension;
-                string path = Path.Combine(wwwroot + "/images/EventPicture/", fileName);
-
-                using (var fileStream = new FileStream(path, FileMode.Create))
-                {
-                    e.ImageFile.CopyTo(fileStream);
-
-                }
+                //Image
+                e.Image = await GetImage(e);
 
                 // get current user to get its id(host)
                 var user = await _securityManager.GetUserAsync(User);
@@ -115,7 +107,32 @@ namespace WeLinkUp.Controllers
             }
 
         }
-        
+        public async Task<string> GetImage(CreateEvent e)
+        {
+            //code for save imgae to s3 bucket               
+            string AWS_bucketName = "softwareprojectnew2";
+            string AWS_defaultFolder = "EventPicture";
+
+            var s3Client = new AmazonS3Client(Amazon.RegionEndpoint.USEast1);
+            var bucketName = AWS_bucketName;
+            var keyName = AWS_defaultFolder;
+            keyName = keyName + "/" + e.ImageFile.FileName;
+            e.Image = e.ImageFile.FileName;
+            var fs = e.ImageFile.OpenReadStream();
+            var request = new Amazon.S3.Model.PutObjectRequest
+            {
+                BucketName = bucketName,
+                Key = keyName,
+                InputStream = fs,
+                ContentType = e.ImageFile.ContentType,
+                CannedACL = S3CannedACL.PublicRead
+
+            };
+            await s3Client.PutObjectAsync(request);
+            var path = string.Format("http://{0}.s3.amazonaws.com/{1}", bucketName, keyName);
+            return e.Image = Path.GetFileName(path);
+        }
+
         [HttpPost]
         public IActionResult Detail(string id)
         {

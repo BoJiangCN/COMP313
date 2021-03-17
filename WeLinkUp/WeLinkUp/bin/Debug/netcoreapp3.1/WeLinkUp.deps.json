@@ -24,8 +24,8 @@
     ".NETCoreApp,Version=v3.1": {
       "WeLinkUp/1.0.0": {
         "dependencies": {
-          "AWSSDK": "2.3.55.2",
           "AWSSDK.Core": "3.5.2.10",
+          "AWSSDK.S3": "3.5.3",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.3",
           "Microsoft.EntityFrameworkCore": "5.0.3",
           "Microsoft.EntityFrameworkCore.Design": "5.0.3",
@@ -33,7 +33,9 @@
           "Microsoft.EntityFrameworkCore.Tools": "5.0.3",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.5",
           "Swashbuckle.AspNetCore": "5.6.3",
+          "WebCompiler": "1.0.1",
           "bootstrap": "4.6.0",
+          "bootstrap.sass": "4.6.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -308,15 +310,15 @@
           "WeLinkUp.dll": {}
         }
       },
-      "AWSSDK/2.3.55.2": {
+      "AjaxMin/5.14.5506.26202": {
         "runtime": {
-          "lib/net45/AWSSDK.dll": {
-            "assemblyVersion": "2.3.55.2",
-            "fileVersion": "2.3.55.2"
+          "lib/net40/AjaxMin.dll": {
+            "assemblyVersion": "5.14.5506.26196",
+            "fileVersion": "5.14.5506.26196"
           }
         },
         "compile": {
-          "lib/net45/AWSSDK.dll": {}
+          "lib/net40/AjaxMin.dll": {}
         }
       },
       "AWSSDK.Core/3.5.2.10": {
@@ -330,10 +332,41 @@
           "lib/netcoreapp3.1/AWSSDK.Core.dll": {}
         }
       },
+      "AWSSDK.S3/3.5.3": {
+        "dependencies": {
+          "AWSSDK.Core": "3.5.2.10"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.S3.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.5.3.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.S3.dll": {}
+        }
+      },
       "bootstrap/4.6.0": {
         "dependencies": {
           "jQuery": "3.0.0",
           "popper.js": "1.16.1"
+        }
+      },
+      "bootstrap.sass/4.6.0": {
+        "dependencies": {
+          "jQuery": "3.0.0",
+          "popper.js": "1.16.1"
+        }
+      },
+      "HtmlAgilityPack/1.4.9": {
+        "runtime": {
+          "lib/Net45/HtmlAgilityPack.dll": {
+            "assemblyVersion": "1.4.9.0",
+            "fileVersion": "1.4.9.0"
+          }
+        },
+        "compile": {
+          "lib/Net45/HtmlAgilityPack.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -2356,6 +2389,21 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
+      "WebCompiler/1.0.1": {
+        "dependencies": {
+          "AjaxMin": "5.14.5506.26202",
+          "HtmlAgilityPack": "1.4.9"
+        },
+        "runtime": {
+          "lib/WebCompiler.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/WebCompiler.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
         "compile": {
           "Microsoft.AspNetCore.Antiforgery.dll": {}
@@ -3960,12 +4008,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "AWSSDK/2.3.55.2": {
+    "AjaxMin/5.14.5506.26202": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-zy/6psTOx9c8LaZqL1tUtiGKMpd35b16TNRctz/N6Qc6hqFeOjyZ5WVhn89szJkkZtotcMFyfq58Y2RfyRxxUg==",
-      "path": "awssdk/2.3.55.2",
-      "hashPath": "awssdk.2.3.55.2.nupkg.sha512"
+      "sha512": "sha512-ayrhrlFSQEAw+1w7cdUGozbZ8BxakITQcTezeLKByp69zk0tdto8/Jt3U2ieCq3U1dlvwXGvlthMaTJXeHEaFw==",
+      "path": "ajaxmin/5.14.5506.26202",
+      "hashPath": "ajaxmin.5.14.5506.26202.nupkg.sha512"
     },
     "AWSSDK.Core/3.5.2.10": {
       "type": "package",
@@ -3974,12 +4022,33 @@
       "path": "awssdk.core/3.5.2.10",
       "hashPath": "awssdk.core.3.5.2.10.nupkg.sha512"
     },
+    "AWSSDK.S3/3.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tzXHjyEAowqCSythMIsPhqxYUDVlLQJloyvjPLOan06kAs5DnGd6jMzHiaUjKiBmCLTNzxML9q5IpeBp0kHPlA==",
+      "path": "awssdk.s3/3.5.3",
+      "hashPath": "awssdk.s3.3.5.3.nupkg.sha512"
+    },
     "bootstrap/4.6.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-nGsIRcbAcBybxBeoL5H6Uax8bb+nrT+tbx3/3n1yXCWq/s+fgEvdo0BAYIq1GmbBizA2KKShyFNiJaSanonIIQ==",
       "path": "bootstrap/4.6.0",
       "hashPath": "bootstrap.4.6.0.nupkg.sha512"
+    },
+    "bootstrap.sass/4.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Q50MhOBgWRKTAtFIb7Y4fUNqSjCtwFZyTvPAaihKEbAPtXO1Pbymub+7r0dU54UlzMewznfV9Elfsuv0vhs8Sw==",
+      "path": "bootstrap.sass/4.6.0",
+      "hashPath": "bootstrap.sass.4.6.0.nupkg.sha512"
+    },
+    "HtmlAgilityPack/1.4.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-anZIsi7bbHZ35ZZzvCA+gVWC/mEXVhcJjJvxr3wzUEDsOE4uk0Fa0ZiaxVn83AZpVKVO4RHyqamPkzzJbMUgmQ==",
+      "path": "htmlagilitypack/1.4.9",
+      "hashPath": "htmlagilitypack.1.4.9.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",
@@ -5170,6 +5239,13 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    },
+    "WebCompiler/1.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CmF2lXuwPrXocH2bgaB5RxkxR4phakfFt7w9clxrDqiFMDbqRuKZQQ/X2Rflrvep8BcVIZCLrIdTVEimRBlF+Q==",
+      "path": "webcompiler/1.0.1",
+      "hashPath": "webcompiler.1.0.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
       "type": "referenceassembly",
