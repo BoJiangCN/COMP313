@@ -44,5 +44,22 @@ namespace WeLinkUp.Controllers
 
             return View(userFriends);
         }
+
+        //Search User from database
+        public IActionResult SearchUser(string searchString)
+        {
+            var user = from s in _context.Users select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+                user = _context.Users.Where(s => s.UserName.Contains(searchString));
+            }
+            if (user.Count() == 0)
+            {
+                ViewBag.result = "Sorry " + searchString + " does not exist in database!";
+                return View();
+            }
+            return View(user.ToList());
+        }
     }
 }
