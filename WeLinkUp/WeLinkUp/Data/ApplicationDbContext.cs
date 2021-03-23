@@ -26,6 +26,6 @@ namespace WeLinkUp.Data
 
         public DbSet<Notification> Notifications { get; set; }
 
-        public DbSet<ViewCalendarModel> Calendar { get; set; }
+        public DbSet<Calendar> Calendar { get; set; }
     }
 }

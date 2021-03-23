@@ -35,21 +35,20 @@ namespace WeLinkUp.Controllers
             System.Diagnostics.Debug.WriteLine("end:" +end);
             // get current user to get its id(host)
             var user = await _securityManager.GetUserAsync(User);
-
-            return (from c in _context.Calendar
+            var schedule = (from c in _context.Calendar
                             join e in _context.Events on c.EventId equals e.EventId
-                            where c.UserId == user.Id
-                              select new ViewCalendarModel
+                            where c.UserId == user.Id 
+                            select new ViewCalendarModel
                             {
-                                Id = c.Id,
-                                UserId = c.UserId,
-                                EventId = e.EventId,
-                                EventTitle = e.EventTitle,
+                                Id = c.CalendarId,
                                 Start = DateTime.Parse(e.Date + " " + e.StartTime),
                                 End = DateTime.Parse(e.Date + " " + e.EndTime),
-                                Text = e.EventTitle
-
+                                Text = e.EventTitle,
+                                Color = e.HostId == user.Id ? "#EA9999" : e.EventType == 1 ? "#FFE599" : "#A2C4C9"
                             });
+
+          
+            return schedule;
             
             //return from e in _context.Events where !((e.End <= start) || (e.Start >= end)) select e;
         }

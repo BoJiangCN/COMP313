@@ -84,7 +84,7 @@ namespace WeLinkUp.Controllers
                 _context.Events.Add(newEvent);
                 _context.SaveChanges();
 
-                var newCalendar = new ViewCalendarModel
+                var newCalendar = new Calendar
                 {
                     EventId = newEvent.EventId,
                     UserId = user.Id
