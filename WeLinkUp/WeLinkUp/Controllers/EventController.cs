@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Amazon.Runtime;
 using Amazon.S3;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -83,7 +84,14 @@ namespace WeLinkUp.Controllers
                 _context.Events.Add(newEvent);
                 _context.SaveChanges();
 
-                
+                var newCalendar = new ViewCalendarModel
+                {
+                    EventId = newEvent.EventId,
+                    UserId = user.Id
+                };
+                _context.Calendar.Add(newCalendar);
+                _context.SaveChanges();
+
                 // invite friends if the event is a group event
                 if (e.EventType == 1)
                 {
@@ -112,8 +120,14 @@ namespace WeLinkUp.Controllers
             //code for save imgae to s3 bucket               
             string AWS_bucketName = "softwareprojectnew2";
             string AWS_defaultFolder = "EventPicture";
+            AWSCredentials credentials;
+            string accessKeyID = "AKIAVMUZV2K6MFVWGKOK";
+            string secretKey = "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";
 
-            var s3Client = new AmazonS3Client(Amazon.RegionEndpoint.USEast1);
+            credentials = new BasicAWSCredentials(accessKeyID.Trim(), secretKey.Trim());
+            AmazonS3Client s3Client = new AmazonS3Client(credentials, Amazon.RegionEndpoint.USEast1);
+
+           // var s3Client = new AmazonS3Client(Amazon.RegionEndpoint.USEast1);
             var bucketName = AWS_bucketName;
             var keyName = AWS_defaultFolder;
             keyName = keyName + "/" + e.ImageFile.FileName;

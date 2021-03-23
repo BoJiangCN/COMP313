@@ -3,23 +3,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using WeLinkUp.Data;
+using WeLinkUp.Models;
 
 namespace WeLinkUp.Controllers
 {
     [Authorize]
     public class CalendarController : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _securityManager;
+
+        public CalendarController(ApplicationDbContext context, UserManager<ApplicationUser> secMgr)
+        {
+            this._context = context;
+            this._securityManager = secMgr;
+        }
+        [HttpGet]
+        public IActionResult Calendar()
         {
             return View();
         }
 
         [HttpGet]
-
-        public IActionResult Calendar()
+        [Route("api/Events")]
+        public async Task<IEnumerable<ViewCalendarModel>> GetEventsAsync([FromQuery] DateTime start, [FromQuery] DateTime end)
         {
-            return View();
+            System.Diagnostics.Debug.WriteLine("start:" +start);
+            System.Diagnostics.Debug.WriteLine("end:" +end);
+            // get current user to get its id(host)
+            var user = await _securityManager.GetUserAsync(User);
+
+            return (from c in _context.Calendar
+                            join e in _context.Events on c.EventId equals e.EventId
+                            where c.UserId == user.Id
+                              select new ViewCalendarModel
+                            {
+                                Id = c.Id,
+                                UserId = c.UserId,
+                                EventId = e.EventId,
+                                EventTitle = e.EventTitle,
+                                Start = DateTime.Parse(e.Date + " " + e.StartTime),
+                                End = DateTime.Parse(e.Date + " " + e.EndTime),
+                                Text = e.EventTitle
+
+                            });
+            
+            //return from e in _context.Events where !((e.End <= start) || (e.Start >= end)) select e;
         }
     }
 }
