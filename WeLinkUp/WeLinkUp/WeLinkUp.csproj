@@ -30,11 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\EventPicture\" />
-    <Folder Include="wwwroot\images\UserProfile\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="compilerconfig.json" />
   </ItemGroup>
 
