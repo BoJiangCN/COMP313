@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="wwwroot\icons\fonts\daypiloticons.svg" />
   </ItemGroup>
 
 </Project>
