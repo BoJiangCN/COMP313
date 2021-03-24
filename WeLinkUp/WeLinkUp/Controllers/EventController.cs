@@ -441,6 +441,13 @@ namespace WeLinkUp.Controllers
                         _context.SaveChanges();
                     }
 
+                    Calendar calendar = new Calendar();
+                    calendar.EventId = eventId;
+                    calendar.UserId = user.Id;
+                    _context.Calendar.Add(calendar);
+                    _context.SaveChanges();
+
+
                 }
                 catch (Exception e)
                 {
