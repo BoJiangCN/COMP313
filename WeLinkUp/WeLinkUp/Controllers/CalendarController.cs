@@ -45,7 +45,7 @@ namespace WeLinkUp.Controllers
                                 Start = DateTime.Parse(e.Date + " " + e.StartTime),
                                 End = DateTime.Parse(e.Date + " " + e.EndTime),
                                 Text = e.EventTitle,
-                                Color = e.HostId == user.Id ? "#EA9999" : e.EventType == 1 ? "#FFE599" : "#A2C4C9"
+                                Color = e.EventType == 0 ? "#A2C4C9": e.HostId == user.Id ? "#EA9999" : "#FFE599" //red, yellow, blue
                             }).ToList().Where(a => !((a.End <= start) || (a.Start >= end)));
 
           
