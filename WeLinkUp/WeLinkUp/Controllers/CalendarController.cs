@@ -127,7 +127,7 @@ namespace WeLinkUp.Controllers
                                                      {
                                                          RecipientId = f.FriendId,
                                                          SenderId = f.UserId,
-                                                         Message = "Event [" + @event.EventTitle + "] by ["+ u.UserName +"] has been cancelled.",
+                                                         Message = "Event [" + @event.EventTitle + "] by ["+ user.UserName +"] has been cancelled.",
                                                          NotificationDate = DateTime.Now.ToString()
                                                      }); 
                 // convert to List<Notification>

@@ -84,6 +84,7 @@ namespace WeLinkUp.Controllers
                 _context.Events.Add(newEvent);
                 _context.SaveChanges();
 
+                // save event in calendar
                 var newCalendar = new Calendar
                 {
                     EventId = newEvent.EventId,
