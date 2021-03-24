@@ -19,7 +19,38 @@
         var dp = new DayPilot.Month("dp");
         dp.init();
         dp.events.load("/api/events");
-    </script>
+        dp.onBeforeEventRender = function (args) {
+            args.data.backColor = args.data.color;
+            args.data.areas = [
+                { top: 3, right: 3, bottom: 3, icon: "icon-triangle-down", visibility: "Hover", action: "ContextMenu", style: "font-size: 12px; background-color: rgba(255, 255, 255, .5); border: 1px solid #aaa; padding: 3px; cursor:pointer;" }
+            ];
+        };
 
+        dp.contextMenu = new DayPilot.Menu({
+            items: [
+                {
+                    text: "Delete",
+                    onClick: function (args) {
+                        var e = args.source;
+                        DayPilot.Http.ajax({
+                            method: 'DELETE',
+                            url: '/api/events/' + e.id(),
+                            success: function (ajax) {
+                                dp.events.remove(e);
+                                dp.message("Event deleted");
+                            }
+                        });
+                    }
+                },
+
+                // ...
+            ]
+        });
+        dp.init();
+
+
+
+    </script>
+    
 </body>
 </html>

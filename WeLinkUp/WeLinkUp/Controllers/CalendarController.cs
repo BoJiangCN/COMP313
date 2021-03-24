@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -45,12 +46,124 @@ namespace WeLinkUp.Controllers
                                 End = DateTime.Parse(e.Date + " " + e.EndTime),
                                 Text = e.EventTitle,
                                 Color = e.HostId == user.Id ? "#EA9999" : e.EventType == 1 ? "#FFE599" : "#A2C4C9"
-                            });
+                            }).ToList().Where(a => !((a.End <= start) || (a.Start >= end)));
 
           
             return schedule;
             
-            //return from e in _context.Events where !((e.End <= start) || (e.Start >= end)) select e;
+        }
+
+        // DELETE: api/Events/id
+        [HttpDelete("api/Events/{id}")]
+        public async Task<IActionResult> DeleteEvent([FromRoute] int id)
+        {            
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // get current user to get its id(host)
+            var user = await _securityManager.GetUserAsync(User);
+
+            // 1. get event id 
+            var @event = (from c in _context.Calendar
+                            join e in _context.Events on c.EventId equals e.EventId
+                            where c.CalendarId == id
+                            select new
+                            {
+                              EventId = e.EventId,
+                              HostId = e.HostId,
+                              EventTitle = e.EventTitle
+                            }).FirstOrDefault();
+
+            if (@event ==null) // if event is not found
+            {
+                return NotFound();
+            }
+            // 2. check if user is the host
+            if (@event.HostId == user.Id) // 3. if host -> remove from calendar for everyone, delete event, send notification, etc
+            {
+                // remove event from everyone's calendar
+                var calendar = _context.Calendar.Where(c => c.EventId == @event.EventId);
+                foreach (var c in calendar)
+                {
+                    _context.Calendar.Remove(c);
+                }
+                await _context.SaveChangesAsync();
+                System.Diagnostics.Debug.WriteLine("calendar removed" + @event.EventId);
+                // remove attendee
+                var attendee = _context.AttendeeList.Where(a => a.EventId == @event.EventId);
+                foreach (var a in attendee)
+                {
+                    _context.AttendeeList.Remove(a);
+                }
+                await _context.SaveChangesAsync();
+                System.Diagnostics.Debug.WriteLine("attendee removed" + @event.EventId);
+                // remove invitation
+                var notification = _context.Notifications.Where(n => n.EventId == @event.EventId);
+                foreach (var n in notification)
+                {
+                    _context.Notifications.Remove(n);
+                }
+                await _context.SaveChangesAsync();
+                System.Diagnostics.Debug.WriteLine("invitation removed" + @event.EventId);
+                // delete event
+                var eventToDelete = (from e in _context.Events
+                                     where e.EventId == @event.EventId
+                                     select new CreateEvent
+                                     {
+                                         EventId = e.EventId
+                                     }).FirstOrDefault();
+
+
+                _context.Events.Remove(eventToDelete);
+                await _context.SaveChangesAsync();
+                System.Diagnostics.Debug.WriteLine("event removed" + @event.EventId);
+                // send cancellation notification
+                var query_getFriends_notification = (from f in _context.FriendLists
+                                                     join u in _context.Users on f.FriendId equals u.Id
+                                                     where f.UserId == user.Id
+                                                     select new Notification
+                                                     {
+                                                         RecipientId = f.FriendId,
+                                                         SenderId = f.UserId,
+                                                         Message = "Event [" + @event.EventTitle + "] by ["+ u.UserName +"] has been cancelled.",
+                                                         NotificationDate = DateTime.Now.ToString()
+                                                     }); 
+                // convert to List<Notification>
+                List<Notification> notifications = new List<Notification>(query_getFriends_notification);
+                // Add to Notification
+                foreach (Notification n in notifications)
+                {
+                    _context.Notifications.Add(n);
+                }
+                await _context.SaveChangesAsync();
+                System.Diagnostics.Debug.WriteLine("invitation sent" + @event.EventId);
+            }
+            else 
+            {
+            
+            }
+            
+            // 4. if attendee -> remove from calendar, change attendee status
+
+
+
+            
+           
+
+            //var @event = await _context.Events.SingleOrDefaultAsync(m => m.Id == id);
+            //if (@event == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //_context.Events.Remove(@event);
+            //await _context.SaveChangesAsync();
+
+            return Ok(@event);
+            //return Ok();
+
         }
     }
 }
