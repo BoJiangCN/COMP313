@@ -32,10 +32,11 @@ namespace WeLinkUp.Controllers
         [Route("api/Events")]
         public async Task<IEnumerable<ViewCalendarModel>> GetEventsAsync([FromQuery] DateTime start, [FromQuery] DateTime end)
         {
-            System.Diagnostics.Debug.WriteLine("start:" +start);
-            System.Diagnostics.Debug.WriteLine("end:" +end);
+
             // get current user to get its id(host)
             var user = await _securityManager.GetUserAsync(User);
+
+            // populate schedule on calendar
             var schedule = (from c in _context.Calendar
                             join e in _context.Events on c.EventId equals e.EventId
                             where c.UserId == user.Id 
@@ -45,9 +46,9 @@ namespace WeLinkUp.Controllers
                                 Start = DateTime.Parse(e.Date + " " + e.StartTime),
                                 End = DateTime.Parse(e.Date + " " + e.EndTime),
                                 Text = e.EventTitle,
-                                Color = e.EventType == 0 ? "#A2C4C9": e.HostId == user.Id ? "#EA9999" : "#FFE599" //red, yellow, blue
+                                Color = e.EventType == 0 ? "#A2C4C9": e.HostId == user.Id ? "#EA9999" : "#FFE599"  
                             }).ToList().Where(a => !((a.End <= start) || (a.Start >= end)));
-
+                            // Personal event: blue / Attending event: yellow / Event I'm hosting: red
           
             return schedule;
             
@@ -140,29 +141,25 @@ namespace WeLinkUp.Controllers
                 await _context.SaveChangesAsync();
                 System.Diagnostics.Debug.WriteLine("invitation sent" + @event.EventId);
             }
-            else 
+            else // 4. if attendee -> remove from calendar, change attendee status
             {
-            
+                // remove event from user's calendar
+                var calendar = _context.Calendar.Where(c => c.EventId == @event.EventId && c.UserId == user.Id).FirstOrDefault();                
+                _context.Calendar.Remove(calendar);
+                await _context.SaveChangesAsync();
+                System.Diagnostics.Debug.WriteLine("calendar removed" + @event.EventId);
+
+                // update invitation status
+                var attendee = _context.AttendeeList.Where(a => a.EventId == @event.EventId && a.UserId == user.Id).FirstOrDefault();
+                attendee.Status = "Invited";
+                _context.AttendeeList.Update(attendee);
+                await _context.SaveChangesAsync();
+                System.Diagnostics.Debug.WriteLine("status updated" + @event.EventId);
             }
             
-            // 4. if attendee -> remove from calendar, change attendee status
-
-
-
-            
-           
-
-            //var @event = await _context.Events.SingleOrDefaultAsync(m => m.Id == id);
-            //if (@event == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //_context.Events.Remove(@event);
-            //await _context.SaveChangesAsync();
 
             return Ok(@event);
-            //return Ok();
+
 
         }
     }

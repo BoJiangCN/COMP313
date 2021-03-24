@@ -46,12 +46,8 @@ namespace WeLinkUp
             //method to register the profile.
             var options = new CredentialProfileOptions
             {
-                //AccessKey = "AKIAVMUZV2K6MFVWGKOK",
-                //SecretKey = "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"
                 AccessKey = Configuration.GetConnectionString("AWSAccessKey"),
                 SecretKey = Configuration.GetConnectionString("AWSSecretKey"),
-
-
             };
             var profile = new CredentialProfile("default", options);
             profile.Region = RegionEndpoint.USEast1;
