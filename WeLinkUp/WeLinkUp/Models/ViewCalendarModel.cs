@@ -12,7 +12,7 @@ namespace WeLinkUp.Models
  
         public int Id { get; set; }
    
-
+        public int Resource { get; set; }
         public DateTime Start { get; set; }
      
         public DateTime End { get; set; }

@@ -10,15 +10,16 @@
     <br />
     <h1>Calendar page</h1>
     <script src="~/js/daypilot/daypilot-all.min.js" asp-append-version="true"></script>
+    <link href="icons/style.css" rel="stylesheet" type="text/css">
     <!--Hope this is helpful with the calendar parts-->
     <!--https://code.daypilot.org/95109/html5-monthly-calendar-and-asp-net-core?fbclid=IwAR0fdsE_MjaaeOhIJhxLESwuvCHxOv7uXJF4V3Mse-BMKJvdVkmYpuMu9wE-->
     <div id="dp"></div>
 
     <script>
 
+
         var dp = new DayPilot.Month("dp");
-        dp.init();
-        dp.events.load("/api/events");
+       
         dp.onBeforeEventRender = function (args) {
             args.data.backColor = args.data.color;
             args.data.areas = [
@@ -26,8 +27,13 @@
             ];
         };
 
+        dp.onEventClicked = function (args) {
+            window.location.href = '/Event/EventDetail/' + args.e.data.resource;  
+
+        };
+        
         dp.contextMenu = new DayPilot.Menu({
-            items: [
+            items: [               
                 {
                     text: "Delete",
                     onClick: function (args) {
@@ -41,16 +47,18 @@
                             }
                         });
                     }
-                },
+                }
 
                 // ...
             ]
         });
         dp.init();
+      
 
+        dp.events.load("/api/events");
 
 
     </script>
-    
+
 </body>
 </html>

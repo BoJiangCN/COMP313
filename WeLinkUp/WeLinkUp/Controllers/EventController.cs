@@ -204,9 +204,7 @@ namespace WeLinkUp.Controllers
         public async Task<IActionResult> EventDetailAsync(int eventId)
         {
 
-            EventDetailModel eventDetailModel = new EventDetailModel();
-
-            var q_eventToView = (from e in _context.Events
+            EventDetailModel eventDetailModel = (from e in _context.Events
                                 join u in _context.Users on e.HostId equals u.Id
                                 where e.EventId == eventId
                                 select new EventDetailModel
@@ -223,12 +221,10 @@ namespace WeLinkUp.Controllers
                                     EventType = e.EventType == 1 ? 1 : 0,
                                     Host = u.UserName,
                                     HostId = e.HostId
-                                });
-
-            List<EventDetailModel> eventList = new List<EventDetailModel>();
+                                }).FirstOrDefault();
 
            
-            if (!q_eventToView.Any()) // event does not exist
+            if (eventDetailModel == null) // event does not exist
             {
 
                 return View("Error");
@@ -236,9 +232,7 @@ namespace WeLinkUp.Controllers
 
             else 
             {
-                
-                eventList = new List<EventDetailModel>(q_eventToView);
-                eventDetailModel = eventList.FirstOrDefault();
+
                 eventDetailModel.DayOfWeek = Convert.ToDateTime(eventDetailModel.Date).DayOfWeek.ToString();
                 try
                 {

@@ -46,7 +46,8 @@ namespace WeLinkUp.Controllers
                                 Start = DateTime.Parse(e.Date + " " + e.StartTime),
                                 End = DateTime.Parse(e.Date + " " + e.EndTime),
                                 Text = e.EventTitle,
-                                Color = e.EventType == 0 ? "#A2C4C9": e.HostId == user.Id ? "#EA9999" : "#FFE599"  
+                                Color = e.EventType == 0 ? "#A2C4C9": e.HostId == user.Id ? "#EA9999" : "#FFE599",
+                                Resource = e.EventId
                             }).ToList().Where(a => !((a.End <= start) || (a.Start >= end)));
                             // Personal event: blue / Attending event: yellow / Event I'm hosting: red
           
@@ -162,5 +163,6 @@ namespace WeLinkUp.Controllers
 
 
         }
+
     }
 }
