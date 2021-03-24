@@ -120,15 +120,9 @@ namespace WeLinkUp.Controllers
         {
             //code for save imgae to s3 bucket               
             string AWS_bucketName = "softwareprojectnew2";
-            string AWS_defaultFolder = "EventPicture";
-            AWSCredentials credentials;
-            string accessKeyID = "AKIAVMUZV2K6MFVWGKOK";
-            string secretKey = "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";
-
-            credentials = new BasicAWSCredentials(accessKeyID.Trim(), secretKey.Trim());
-            AmazonS3Client s3Client = new AmazonS3Client(credentials, Amazon.RegionEndpoint.USEast1);
-
-           // var s3Client = new AmazonS3Client(Amazon.RegionEndpoint.USEast1);
+            string AWS_defaultFolder = "EventPicture";            
+            var s3Client = new AmazonS3Client(Amazon.RegionEndpoint.USEast1);
+            
             var bucketName = AWS_bucketName;
             var keyName = AWS_defaultFolder;
             keyName = keyName + "/" + e.ImageFile.FileName;

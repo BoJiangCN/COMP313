@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using WeLinkUp.Data;
 using WeLinkUp.Models;
 using Microsoft.AspNetCore.Identity;
+using Amazon.Runtime.CredentialManagement;
+using Amazon;
 
 namespace WeLinkUp
 {
@@ -40,7 +42,18 @@ namespace WeLinkUp
 
             //Navigate users to login page if they are trying to access to authorized page while not logged in
             services.ConfigureApplicationCookie(options => options.LoginPath = "/Home/LogIn");
+            //method to register the profile.
+            var options = new CredentialProfileOptions
+            {
+                AccessKey = "AKIAVMUZV2K6MFVWGKOK",
+                SecretKey = "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"
 
+
+            };
+            var profile = new CredentialProfile("default", options);
+            profile.Region = RegionEndpoint.USEast1;
+            var netSDKFile = new NetSDKCredentialsFile();
+            netSDKFile.RegisterProfile(profile);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
