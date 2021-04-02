@@ -698,3 +698,4 @@ C:\SEMESTER6\Software Project2\FinalProject\Version5.12\COMP313-Team5\WeLinkUp\W
 C:\SEMESTER6\Software Project2\FinalProject\Version5.12\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.pdb
 C:\SEMESTER6\Software Project2\FinalProject\Version5.12\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.genruntimeconfig.cache
 C:\SEMESTER6\Software Project2\FinalProject\Version5.12\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Event\ProfileInfo.cshtml.g.cs
+C:\SEMESTER6\Software Project2\FinalProject\Version5.12\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Event\EditProfile.cshtml.g.cs

@@ -541,6 +541,12 @@ namespace WeLinkUp.Controllers
 
         }
 
+        //Edit profile
+        public IActionResult EditProfile()
+        {
+            return View();
+        }
+
     }
 
       
