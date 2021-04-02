@@ -159,7 +159,7 @@
                                 {
                                     <br />
                                     <button name="modifyEvent" id="btnModifyEvent" class="w3-button w3-padding-large w3-white w3-border">Modify Event</button>
-                                    <button name="cancelEvent" id="btnCancelEvent" class="w3-button w3-padding-large w3-white w3-border">Cancel Event</button>
+                                    <button name="cancelEvent" id="btnCancelEvent" class="w3-button w3-padding-large w3-white w3-border" onclick="location.href = '@Url.Action("CancelEvent", new { eventId = Model.EventId })'; return false;">Cancel Event</button>
                                 }
 
 
