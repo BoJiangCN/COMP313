@@ -91,6 +91,35 @@ namespace WeLinkUp.Controllers
 
             return RedirectToAction("Friends");
         }
+        
+            
+        public async Task<IActionResult> Message(string friendId)
+        {     
+            var user = await _securityManager.GetUserAsync(User);
+
+            List<Notification> messages = _context.Notifications.Where(m => m.RecipientId == user.Id && m.SenderId == friendId || m.RecipientId == friendId && m.SenderId == user.Id)
+            .Select(m => new Notification
+            {
+                Message = m.Message,
+                RecipientId = m.RecipientId,
+                SenderId = m.SenderId,
+                NotificationId = m.NotificationId,
+                Date = m.Date
+            }).OrderBy(m => m.Date).ToList();
+
+
+
+            foreach(Notification n in messages)
+            {
+                if (n.Date == null)
+                {
+                    messages.Remove(n);
+                }
+            }
+
+         
+            return View("MessageView", messages);
+        }
 
        
 
