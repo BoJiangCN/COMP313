@@ -85,7 +85,16 @@
                         </td>
 
                         <td>@user.UserName</td>
-                        <td><button>Remove</button> </td>
+
+                        <td>
+                            @Html.ActionLink(
+                               "Remove",
+                               "DelteFriend",
+                               "Friend",
+                               new { confirm = true, friendId = user.Id },
+                               new { onclick = "return confirm('Do you really want to remove "+ user.UserName +"?')" })
+                        </td>
+
 
 
                     </tr>
@@ -93,6 +102,9 @@
             </table>
         </div>
     </div>
+   
+    
+
 
 </body>
 </html>

@@ -61,5 +61,21 @@ namespace WeLinkUp.Controllers
             }
             return View(user.ToList());
         }
+        public ActionResult DelteFriend(bool confirm, string friendId)
+        {
+            if (confirm)
+            {
+                //do something
+                System.Diagnostics.Debug.WriteLine("#############Yes");
+                System.Diagnostics.Debug.WriteLine(friendId);
+            }
+            else
+            {
+                //do something
+                System.Diagnostics.Debug.WriteLine("#############No");
+            }
+            return RedirectToAction("Friends");
+        }
     }
+
 }
