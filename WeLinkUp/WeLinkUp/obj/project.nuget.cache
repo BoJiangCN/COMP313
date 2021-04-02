@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WveHfc5eQLxBYb4xccw/EqnJ8MHbbNipVGgvrJYJJWtmY18zrxGS99AXk2RxcjNJE8Oqdax3H551XMFHWUZElg==",
+  "dgSpecHash": "yCceYn6tp+roXacUog4DVWLQHvS4jkaEeJW7aUZBYoqchQmZYnN3PfQCkGSSxuS0+2oArN6yAloqJGg8lfGGqA==",
   "success": true,
-  "projectFilePath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\Version5.11\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+  "projectFilePath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\Version5.12\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ashas\\.nuget\\packages\\ajaxmin\\5.14.5506.26202\\ajaxmin.5.14.5506.26202.nupkg.sha512",
     "C:\\Users\\ashas\\.nuget\\packages\\awssdk.core\\3.5.2.10\\awssdk.core.3.5.2.10.nupkg.sha512",

@@ -530,7 +530,16 @@ namespace WeLinkUp.Controllers
 
         }
 
+        //Display All Account Information
+        [HttpGet]
+        public async Task<IActionResult> ProfileInfo()
+        {
+            var userId = _securityManager.GetUserId(User);
+            ApplicationUser users = await _securityManager.FindByIdAsync(userId);
+            ViewBag.user = users;
+            return View(users);
 
+        }
 
     }
 
