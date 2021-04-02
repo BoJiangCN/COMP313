@@ -104,14 +104,14 @@ namespace WeLinkUp.Controllers
                 RecipientId = m.RecipientId,
                 SenderId = m.SenderId,
                 NotificationId = m.NotificationId,
-                Date = m.Date
-            }).OrderBy(m => m.Date).ToList();
+                NotificationDate= m.NotificationDate
+            }).OrderBy(m => m.NotificationDate).ToList();
 
 
 
             foreach(Notification n in messages)
             {
-                if (n.Date == null)
+                if (n.NotificationDate == null)
                 {
                     messages.Remove(n);
                 }

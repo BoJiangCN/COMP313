@@ -236,5 +236,22 @@ namespace WeLinkUp.Controllers
 
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
+
+        //Display All Account Information
+        [HttpGet]
+        public async Task<IActionResult> ProfileInfo()
+        {
+            var userId = _securityManager.GetUserId(User);
+            ApplicationUser users = await _securityManager.FindByIdAsync(userId);
+            ViewBag.user = users;
+            return View(users);
+
+        }
+
+        //Edit profile
+        public IActionResult EditProfile()
+        {
+            return View();
+        }
     }
 }

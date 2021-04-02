@@ -27,5 +27,7 @@ namespace WeLinkUp.Data
         public DbSet<Notification> Notifications { get; set; }
 
         public DbSet<Calendar> Calendar { get; set; }
+
+        public DbSet<WeLinkUp.Models.User> User { get; set; }
     }
 }

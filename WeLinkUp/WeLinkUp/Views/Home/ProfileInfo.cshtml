@@ -1,0 +1,77 @@
+﻿@model WeLinkUp.Models.ApplicationUser
+
+@{ ViewData["Title"] = "ProfileInfo"; }
+<br />
+<br />
+<br />
+<h1 class="w3-content">Profile Information</h1>
+<div class="center">
+    <div class="w3-content">
+        <label>Profile picture</label>
+        <br />
+        <img class="profile" src="@Url.Content("http://softwareprojectnew2.s3.amazonaws.com/UserProfile/" + Model.Image)" alt="" />
+        <div class="w3-content w3-margin w3-white">
+            <label> Username: </label>
+
+            @ViewBag.user
+            <br />
+            <label>Email: </label>
+
+            @Html.DisplayFor(model => model.Email)
+            <br />
+            <label>DateofBirth: </label>
+
+            @Html.DisplayFor(model => model.DateofBirth)
+            <br />
+            <label> Freetime:</label>
+            <br />
+
+
+            @Html.DisplayNameFor(model => model.Sunday)
+
+            @Html.DisplayFor(model => model.Sunday)
+            <br />
+
+
+            @Html.DisplayNameFor(model => model.Monday)
+
+            @Html.DisplayFor(model => model.Monday)
+            <br />
+
+
+            @Html.DisplayNameFor(model => model.Tuesday)
+
+            @Html.DisplayFor(model => model.Tuesday)
+            <br />
+
+
+            @Html.DisplayNameFor(model => model.Wednesday)
+
+            @Html.DisplayFor(model => model.Wednesday)
+            <br />
+
+
+            @Html.DisplayNameFor(model => model.Thursday)
+
+            @Html.DisplayFor(model => model.Thursday)
+            <br />
+
+
+            @Html.DisplayNameFor(model => model.Friday)
+
+            @Html.DisplayFor(model => model.Friday)
+            <br />
+
+
+            @Html.DisplayNameFor(model => model.Saturday)
+
+            @Html.DisplayFor(model => model.Saturday)
+
+
+        </div>
+    </div>
+</div>
+<div class="w3-content">
+    <a asp-action="EditProfile" asp-route-id="@Model.Id">Edit</a>
+
+</div>
