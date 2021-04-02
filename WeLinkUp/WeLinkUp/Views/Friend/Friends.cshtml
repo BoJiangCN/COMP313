@@ -79,25 +79,24 @@
 
                 @foreach (ApplicationUser user in Model)
                 {
-                    <tr>
-                        <td>
-                            <img class="profile" src="@Url.Content("~/images/UserProfile/" + user.Image)" alt="" />
-                        </td>
+            <tr>
+                <td>
+                    <img class="profile" src="@Url.Content("~/images/UserProfile/" + user.Image)" alt="" />
+                </td>
 
-                        <td>@user.UserName</td>
-
-                        <td>
-                            @Html.ActionLink(
-                               "Remove",
-                               "DelteFriend",
-                               "Friend",
-                               new { confirm = true, friendId = user.Id },
-                               new { onclick = "return confirm('Do you really want to remove "+ user.UserName +"?')" })
-                        </td>
-
+                <td>@user.UserName</td>
+                <td>
+                    @Html.ActionLink(
+                       "Remove",
+                       "DelteFriend",
+                       "Friend",
+                       new { confirm = true, friendId = user.Id },
+                       new { onclick = "return confirm('Do you really want to remove " + user.UserName + "?')" })
+                </td>
 
 
-                    </tr>
+
+            </tr>
                 }
             </table>
         </div>

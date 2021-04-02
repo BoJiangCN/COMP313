@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using WeLinkUp.Data;
 using WeLinkUp.Models;
 
@@ -15,11 +17,13 @@ namespace WeLinkUp.Controllers
     {
         private readonly UserManager<ApplicationUser> _securityManager;
         private readonly ApplicationDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public FriendController(UserManager<ApplicationUser> secMgr, ApplicationDbContext context)
+        public FriendController(UserManager<ApplicationUser> secMgr, ApplicationDbContext context, IConfiguration configuration)
         {
             this._securityManager = secMgr;
             this._context = context;
+            this._configuration = configuration;
         }
 
         [HttpGet]
@@ -37,7 +41,7 @@ namespace WeLinkUp.Controllers
             foreach (FriendLists friend in friends)
             {
                 ApplicationUser userFriend = _context.Users.Where(us => us.Id == friend.FriendId)
-                    .Select(fr => new ApplicationUser { UserName = fr.UserName, Image = fr.Image }).FirstOrDefault();
+                    .Select(fr => new ApplicationUser { UserName = fr.UserName, Image = fr.Image, Id = fr.Id }).FirstOrDefault();
                 userFriends.Add(userFriend);
             }
 
@@ -61,21 +65,35 @@ namespace WeLinkUp.Controllers
             }
             return View(user.ToList());
         }
-        public ActionResult DelteFriend(bool confirm, string friendId)
+        public async Task<ActionResult> DelteFriendAsync(bool confirm, string friendId)
         {
             if (confirm)
             {
-                //do something
-                System.Diagnostics.Debug.WriteLine("#############Yes");
-                System.Diagnostics.Debug.WriteLine(friendId);
+
+                // get current user
+                var user = await _securityManager.GetUserAsync(User);
+                
+                // delete friend from both users' side
+                using (SqlConnection sqlconnection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+                {
+                    string sqlquery = "DELETE FROM FriendLists where (UserId='"+user.Id+"' and FriendId='"+friendId+"') or " +
+                        "(FriendId='" + user.Id + "' and UserId='" + friendId + "')";
+                    
+                    System.Diagnostics.Debug.WriteLine(sqlquery);
+                    using (SqlCommand sqlcommand = new SqlCommand(sqlquery, sqlconnection))
+                    {
+                        sqlconnection.Open();
+                        sqlcommand.ExecuteNonQuery();
+
+                    }
+                }
             }
-            else
-            {
-                //do something
-                System.Diagnostics.Debug.WriteLine("#############No");
-            }
+
             return RedirectToAction("Friends");
         }
+
+       
+
     }
 
 }
