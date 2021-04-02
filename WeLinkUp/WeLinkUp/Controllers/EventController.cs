@@ -530,6 +530,89 @@ namespace WeLinkUp.Controllers
 
         }
 
+        public async Task<IActionResult> CancelEventAsync(int eventId)
+        {
+
+            // get current user
+            var user = await _securityManager.GetUserAsync(User);
+
+            System.Diagnostics.Debug.WriteLine("In cancel event");
+            System.Diagnostics.Debug.WriteLine("eventId: "+eventId);
+            // 1. get event
+            var @event = (from  e in _context.Events
+                          where e.EventId == eventId
+                          select new
+                          {
+                              EventId = e.EventId,
+                              HostId = e.HostId,
+                              EventTitle = e.EventTitle
+                          }).FirstOrDefault();
+            // 2. check if user is the host
+            if (@event.HostId == user.Id) // 3. if host -> remove from calendar for everyone, delete event, send notification, etc
+            {
+                // remove event from everyone's calendar
+                var calendar = _context.Calendar.Where(c => c.EventId == eventId);
+                foreach (var c in calendar)
+                {
+                    _context.Calendar.Remove(c);
+                }
+                await _context.SaveChangesAsync();
+                System.Diagnostics.Debug.WriteLine("calendar removed" + eventId);
+                // remove attendee
+                var attendee = _context.AttendeeList.Where(a => a.EventId == eventId);
+                foreach (var a in attendee)
+                {
+                    _context.AttendeeList.Remove(a);
+                }
+                await _context.SaveChangesAsync();
+                System.Diagnostics.Debug.WriteLine("attendee removed" + eventId);
+                // remove invitation
+                var notification = _context.Notifications.Where(n => n.EventId == eventId);
+                foreach (var n in notification)
+                {
+                    _context.Notifications.Remove(n);
+                }
+                await _context.SaveChangesAsync();
+                System.Diagnostics.Debug.WriteLine("invitation removed" + eventId);
+                // delete event
+                var eventToDelete = (from e in _context.Events
+                                     where e.EventId == eventId
+                                     select new CreateEvent
+                                     {
+                                         EventId = e.EventId
+                                     }).FirstOrDefault();
+
+
+                _context.Events.Remove(eventToDelete);
+                await _context.SaveChangesAsync();
+                System.Diagnostics.Debug.WriteLine("event removed" + eventId);
+                // send cancellation notification
+                var query_getFriends_notification = (from f in _context.FriendLists
+                                                     join u in _context.Users on f.FriendId equals u.Id
+                                                     where f.UserId == user.Id
+                                                     select new Notification
+                                                     {
+                                                         RecipientId = f.FriendId,
+                                                         SenderId = f.UserId,
+                                                         Message = "Event [" + @event.EventTitle + "] by [" + user.UserName + "] has been cancelled.",
+                                                         NotificationDate = DateTime.Now.ToString()
+                                                     });
+                // convert to List<Notification>
+                List<Notification> notifications = new List<Notification>(query_getFriends_notification);
+                // Add to Notification
+                foreach (Notification n in notifications)
+                {
+                    _context.Notifications.Add(n);
+                }
+                await _context.SaveChangesAsync();
+                System.Diagnostics.Debug.WriteLine("invitation sent" + eventId);
+                ViewBag.successMessage = "Success";
+                return RedirectToAction("Index","Home");
+            }
+            return Ok();
+
+        }
+
 
 
     }

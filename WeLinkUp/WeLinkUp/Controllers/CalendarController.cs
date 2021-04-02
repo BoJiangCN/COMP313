@@ -67,7 +67,7 @@ namespace WeLinkUp.Controllers
             // get current user to get its id(host)
             var user = await _securityManager.GetUserAsync(User);
 
-            // 1. get event id 
+            // 1. get event 
             var @event = (from c in _context.Calendar
                             join e in _context.Events on c.EventId equals e.EventId
                             where c.CalendarId == id
