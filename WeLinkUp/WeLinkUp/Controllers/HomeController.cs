@@ -242,10 +242,16 @@ namespace WeLinkUp.Controllers
         public async Task<IActionResult> ProfileInfo()
         {
             var userId = _securityManager.GetUserId(User);
-            ApplicationUser users = await _securityManager.FindByIdAsync(userId);
-            ViewBag.user = users;
-            return View(users);
-
+            if (userId == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                ApplicationUser users = await _securityManager.FindByIdAsync(userId);
+                ViewBag.user = users;
+                return View(users);
+            }
         }
 
         //Edit profile
