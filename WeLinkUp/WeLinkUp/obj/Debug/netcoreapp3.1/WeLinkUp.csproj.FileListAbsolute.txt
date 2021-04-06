@@ -339,6 +339,7 @@ C:\Users\ybinh\Desktop\Sem6\projectv5\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\
 C:\Users\ybinh\Desktop\Sem6\projectv5\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.pdb
 C:\Users\ybinh\Desktop\Sem6\projectv5\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.genruntimeconfig.cache
 D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Event\Error.cshtml.g.cs
+<<<<<<< Updated upstream
 C:\SEMESTER6\Software Project2\FinalProject\Version5.11\COMP313-Team5\WeLinkUp\WeLinkUp\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\SEMESTER6\Software Project2\FinalProject\Version5.11\COMP313-Team5\WeLinkUp\WeLinkUp\bin\Debug\netcoreapp3.1\appsettings.json
 C:\SEMESTER6\Software Project2\FinalProject\Version5.11\COMP313-Team5\WeLinkUp\WeLinkUp\bin\Debug\netcoreapp3.1\libman.json
@@ -518,3 +519,17 @@ C:\SEMESTER6\Software Project2\FinalProject\Version5.11\COMP313-Team5\WeLinkUp\W
 C:\SEMESTER6\Software Project2\FinalProject\Version5.11\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.pdb
 C:\SEMESTER6\Software Project2\FinalProject\Version5.11\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\WeLinkUp.genruntimeconfig.cache
 C:\SEMESTER6\Software Project2\FinalProject\Version5.11\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Friend\SearchUser.cshtml.g.cs
+=======
+D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\bin\Debug\netcoreapp3.1\libman.json
+D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\bin\Debug\netcoreapp3.1\AjaxMin.dll
+D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\bin\Debug\netcoreapp3.1\HtmlAgilityPack.dll
+D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\bin\Debug\netcoreapp3.1\WebCompiler.dll
+D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Event\EventList.cshtml.g.cs
+D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Event\Notification.cshtml.g.cs
+D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Friend\MessageView.cshtml.g.cs
+>>>>>>> Stashed changes
+D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\bin\Debug\netcoreapp3.1\AWSSDK.S3.dll
+D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Friend\SearchUser.cshtml.g.cs
+D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Home\EditProfile.cshtml.g.cs
+D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Home\ProfileInfo.cshtml.g.cs
+D:\COMP313\COMP313-Team5\WeLinkUp\WeLinkUp\obj\Debug\netcoreapp3.1\Razor\Views\Event\EditEvent.cshtml.g.cs

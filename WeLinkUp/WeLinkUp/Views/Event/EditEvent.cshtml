@@ -1,0 +1,99 @@
+﻿@model WeLinkUp.Models.CreateEvent
+
+@{ ViewData["Title"] = "EditEvent"; }
+<br />
+<br />
+<h1 class="w3-content">Edit Profile</h1>
+
+<hr />
+<body>
+    <br />
+    <br />
+
+    <form class="w3-content" id="editEvent" asp-action="EditEvent" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label>Event title</label>
+            <input asp-for="EventTitle" class="w3-input w3-border" />
+            <span asp-validation-for="EventTitle" class="text-danger"></span>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label>Location</label>
+            <input asp-for="Location" id="autocomplete" placeholder="" class="w3-input w3-border" />
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Date</label>
+            <input asp-for="Date" class="w3-input w3-border" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Start time</label>
+            <input asp-for="StartTime" class="w3-input w3-border" />
+            <span asp-validation-for="StartTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>End time</label>
+            <input asp-for="EndTime" class="w3-input w3-border" />
+            <span asp-validation-for="EndTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input asp-for="Description" class="w3-input w3-border" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-control">
+            <label>Image</label>
+            <input type="file" id="files" asp-for="ImageFile" class="w3-input w3-border" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+        <input asp-for="HostId" type="hidden" />
+        <div class="form-group">
+            <label>Is Adult only event?</label>
+            <br />
+            <label class="custom-checkbox">
+                <input type="checkbox" name="isAdultOnlyChecked" value="true" />
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Is Adult only event?</label>
+            <br />
+            <label class="custom-radio">
+                <input type="radio" asp-for="EventType" value="1" checked />Group Event
+                <input type="radio" asp-for="EventType" value="0" />Personal Event
+            </label>
+        </div>
+        <input type="submit" value="Save" />
+
+    </form>
+    <script>
+        let autocomplete;
+        function initAutocomplete() {
+            autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('autocomplete'),
+                {
+                    types: ['establishment'],
+                    componentRestrictions: { 'country': ['CA'] },
+                    fields: ['place_id', 'geometry', 'name']
+                }
+            );
+            autocomplete.addListener('place_changed', onPlaceChanged);
+        }
+        function onPlaceChanged() {
+            var place = autocomplete.getPlace();
+
+            if (!place.geometry) {
+                //User didn't select a prediction, reset input field
+                document.getElementById('autocomplete').placeholder = 'Enter a place';
+            } else {
+                //display details about valid place
+                document.getElementById('details').innerHTML = place.name;
+            }
+        }
+    </script>
+    <script type="text/javascript" async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVc2_xQaqBhhTwuaAvk6oi1EcCSMqKIhQ&libraries=places&callback=initAutocomplete">
+    </script>
+</body>

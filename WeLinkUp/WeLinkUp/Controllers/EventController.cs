@@ -613,9 +613,95 @@ namespace WeLinkUp.Controllers
 
         }
 
-        
+        public IActionResult EditEvent()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EventInfo(int id)
+        {
+            var eventInfo = _context.Events.Find(id);
+            ViewBag.events = eventInfo;
+            return View(eventInfo);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditEventAsync(CreateEvent e, bool isAdultOnlyChecked)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                //code for add imgae to db
+                //Image
+                e.Image = await GetImage(e);
+
+                // get current user to get its id(host)
+                var user = await _securityManager.GetUserAsync(User);
 
 
+                if (isAdultOnlyChecked == true)
+                {
+                    e.IsAdultOnly = 1; //true
+                }
+                else
+                {
+                    e.IsAdultOnly = 0; //false
+                }
+                //Create new event instance
+                var newEvent = new CreateEvent
+                {
+                    EventTitle = e.EventTitle,
+                    Location = e.Location,
+                    Date = e.Date,
+                    StartTime = e.StartTime,
+                    EndTime = e.EndTime,
+                    Description = e.Description,
+                    Image = e.Image,
+                    IsAdultOnly = e.IsAdultOnly,
+                    EventType = e.EventType,
+                    HostId = user.Id
+
+                };
+
+                //save event in database
+                _context.Events.Update(newEvent);
+                _context.SaveChanges();
+
+                // save event in calendar
+                var newCalendar = new Calendar
+                {
+                    EventId = newEvent.EventId,
+                    UserId = user.Id
+                };
+                _context.Calendar.Update(newCalendar);
+                _context.SaveChanges();
+
+                // invite friends if the event is a group event
+                if (e.EventType == 1)
+                {
+                    await InviteFriendsAsync(newEvent);
+                }
+
+                // show Event Detail Page
+                return RedirectToAction("EventDetail", new { eventId = newEvent.EventId });
+
+            }
+            else
+            {
+                var errors = ModelState
+                    .Where(x => x.Value.Errors.Count > 0)
+                    .Select(x => new { x.Key, x.Value.Errors })
+                    .ToArray();
+                System.Diagnostics.Debug.WriteLine("Number of Errors: " + ModelState.ErrorCount);
+                System.Diagnostics.Debug.WriteLine(errors[0]);
+
+
+                return View();
+            }
+
+        }
     }
 
 

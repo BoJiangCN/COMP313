@@ -158,7 +158,7 @@
                                 else if (Model.HostId.Equals(signInManager.UserManager.GetUserId(User)))
                                 {
                                     <br />
-                                    <button name="modifyEvent" id="btnModifyEvent" class="w3-button w3-padding-large w3-white w3-border">Modify Event</button>
+                                    <a asp-action="EditEvent" asp-route-id="@Model.EventId" class="w3-button w3-padding-large w3-white w3-border">Edit Event</a>
                                     <button name="cancelEvent" id="btnCancelEvent" class="w3-button w3-padding-large w3-white w3-border" onclick="location.href = '@Url.Action("CancelEvent", new { eventId = Model.EventId })'; return false;">Cancel Event</button>
                                 }
 
