@@ -38,9 +38,13 @@ namespace WeLinkUp.Controllers
         {
             return View();
         }
-
-
-
+        [HttpPost]
+        public IActionResult Detail(string id)
+        {
+            return RedirectToAction("EventDetail", new { eventId = id });
+        }
+     
+       
         [HttpPost]
         public async Task<IActionResult> CreateEventAsync(CreateEvent e, bool isAdultOnlyChecked)
         {
@@ -142,11 +146,7 @@ namespace WeLinkUp.Controllers
             return e.Image = Path.GetFileName(path);
         }
 
-        [HttpPost]
-        public IActionResult Detail(string id)
-        {
-            return RedirectToAction("EventDetail", new { eventId = id });
-        }
+      
 
         public async Task<IActionResult> UpcomingEvents()
         {
@@ -520,16 +520,6 @@ namespace WeLinkUp.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult Notification()
-        {
-            List<Notification> notifications = _context.Notifications.Select(n => new Notification
-            { NotificationId = n.NotificationId, EventId = n.EventId, Message = n.Message }).ToList();
-            List<Notification> userNotification = new List<Notification>();
-            return View(notifications);
-
-        }
-
         public async Task<IActionResult> CancelEventAsync(int eventId)
         {
 
@@ -626,6 +616,7 @@ namespace WeLinkUp.Controllers
             return View(eventInfo);
         }
 
+        
         [HttpPost]
         public async Task<IActionResult> EditEventAsync(CreateEvent e, bool isAdultOnlyChecked)
         {

@@ -10058,25 +10058,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ashas\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\pc\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\SEMESTER6\\Software Project2\\FinalProject\\Version5.12\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+      "projectUniqueName": "D:\\project\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
       "projectName": "WeLinkUp",
-      "projectPath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\Version5.12\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
-      "packagesPath": "C:\\Users\\ashas\\.nuget\\packages\\",
-      "outputPath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\Version5.12\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\obj\\",
+      "projectPath": "D:\\project\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+      "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+      "outputPath": "D:\\project\\COMP313-Team5\\WeLinkUp\\WeLinkUp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\ashas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -10174,7 +10175,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   },

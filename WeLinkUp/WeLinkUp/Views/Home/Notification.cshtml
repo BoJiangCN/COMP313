@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WeLinkUp.Models.Notification>
+
+@{ ViewData["Title"] = "Notification";
+}
+
+<h1>Notification</h1>
+
+<div>
+    @if (ViewBag.result != null)
+    {
+<span class="text-danger">@ViewBag.result</span> }
+
+else
+{
+
+
+<table class="table">
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Message)
+    </td>
+
+    <td>
+        <form method="post" asp-action="Detail" asp-controller="Event">
+            <input type="hidden" value="@item.EventId" name="Id" />
+            <input type="submit" value="Details" />
+        </form>
+    <td>@item.RecipientId</td>
+
+
+
+</tr>
+}
+    </tbody>
+</table>}
+</div>     

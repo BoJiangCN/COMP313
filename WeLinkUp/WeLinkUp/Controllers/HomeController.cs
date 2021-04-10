@@ -23,17 +23,19 @@ namespace WeLinkUp.Controllers
         //1
         private readonly UserManager<ApplicationUser> _securityManager;
         private readonly SignInManager<ApplicationUser> _loginManager;
+        private readonly ApplicationDbContext _context;
 
         private readonly IConfiguration _configuration;       
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public HomeController(IConfiguration configuration, IWebHostEnvironment webHostEnvironment, UserManager<ApplicationUser> secMgr, SignInManager<ApplicationUser> loginManager)
+        public HomeController(ApplicationDbContext context,IConfiguration configuration, IWebHostEnvironment webHostEnvironment, UserManager<ApplicationUser> secMgr, SignInManager<ApplicationUser> loginManager)
         {
             this._configuration = configuration;
             this._webHostEnvironment = webHostEnvironment;
             this._securityManager = secMgr;
             this._loginManager = loginManager;
-            
+
+            this._context = context;
         }
 
         public IActionResult Index()
@@ -259,5 +261,37 @@ namespace WeLinkUp.Controllers
         {
             return View();
         }
+
+
+        //get the list notification for the user
+        [HttpGet]
+        public async Task<IActionResult> Notification(Notification notification)
+        {
+            var user = await _securityManager.GetUserAsync(User);
+
+            
+
+             List<Notification> messages = _context.Notifications.Where(m => m.RecipientId == user.Id)
+             .Select(m => new Notification
+             {
+                 Message = m.Message,
+                 EventId = m.EventId,
+                 //RecipientId = m.RecipientId
+
+                 // NotificationDate = m.NotificationDate.ToString()
+             }).OrderBy(m => m.Message).ToList();
+
+            //
+            return View(messages);
+
+        }
+
+        //get the details of event per notification
+        [HttpPost]
+        public IActionResult NotificationDetails(string id)
+        {
+            return RedirectToAction("EventDetail", new { eventId = id });
+        }
+
     }
 }
