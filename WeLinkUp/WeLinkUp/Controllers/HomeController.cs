@@ -257,10 +257,52 @@ namespace WeLinkUp.Controllers
         }
 
         //Edit profile
-        public IActionResult EditProfile()
+        [HttpGet]
+        public async Task<IActionResult> EditProfile()
         {
-            return View();
+            var userId = _securityManager.GetUserId(User);
+            if (userId == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                ApplicationUser users = await _securityManager.FindByIdAsync(userId);
+                ViewBag.user = users;
+                return View(users);
+            }
         }
+
+            [HttpPost]
+        public async Task<IActionResult> EditProfile(User model)
+        {
+            var userId = _securityManager.GetUserId(User);
+            ApplicationUser users = await _securityManager.FindByIdAsync(userId);
+
+            //users.UserName = model.Username;
+            users.Email = model.Email;
+            users.Image = model.Image;
+            users.DateofBirth = model.DateofBirth;
+            users.Sunday = model.Sunday;
+            users.Monday = model.Monday;
+            users.Tuesday = model.Tuesday;
+            users.Wednesday = model.Wednesday;
+            users.Thursday = model.Thursday;
+            users.Friday = model.Friday;
+            users.Saturday = model.Saturday;
+
+            var result = await _securityManager.UpdateAsync(users);
+
+            if (ModelState.IsValid)
+            {
+                return View(result);
+            }
+            return View("Index");
+
+        }
+
+
+
 
 
         //get the list notification for the user

@@ -8,6 +8,7 @@ namespace WeLinkUp.Models
 {
     public class ApplicationUser : IdentityUser
     {
+      
         public string Image { get; set; }
         public string DateofBirth { get; set; }
         //public string Freetime { get; set; }        
