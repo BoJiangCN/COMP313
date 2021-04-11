@@ -302,26 +302,19 @@ namespace WeLinkUp.Controllers
         }
 
 
-
-
-
         //get the list notification for the user
         [HttpGet]
         public async Task<IActionResult> Notification(Notification notification)
         {
             var user = await _securityManager.GetUserAsync(User);
 
-            
-
              List<Notification> messages = _context.Notifications.Where(m => m.RecipientId == user.Id)
              .Select(m => new Notification
              {
                  Message = m.Message,
                  EventId = m.EventId,
-                 //RecipientId = m.RecipientId
-
-                 // NotificationDate = m.NotificationDate.ToString()
-             }).OrderBy(m => m.Message).ToList();
+                 NotificationId = m.NotificationId
+             }).OrderByDescending(m=>m.NotificationId).ToList();
 
             //
             return View(messages);

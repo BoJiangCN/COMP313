@@ -2,40 +2,54 @@
 
 @{ ViewData["Title"] = "Notification";
 }
+<html>
+<head>
+    <style>
+        body {
+            font-family: "Lato", sans-serif
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Notification</h1>
 
-<h1>Notification</h1>
+    <div>
+        @if (ViewBag.result != null)
+        {
+            <span class="text-danger">@ViewBag.result</span> }
 
-<div>
-    @if (ViewBag.result != null)
-    {
-<span class="text-danger">@ViewBag.result</span> }
-
-else
-{
-
-
-<table class="table">
-    <tbody>
-
-        @foreach (var item in Model)
+        else
         {
 
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Message)
-    </td>
 
-    <td>
-        <form method="post" asp-action="Detail" asp-controller="Event">
-            <input type="hidden" value="@item.EventId" name="Id" />
-            <input type="submit" value="Details" />
-        </form>
-    <td>@item.RecipientId</td>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Message</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Message)
+                            </td>
+
+                            <td>
+                                @if (item.EventId != 0)
+                                {
+                                    <form method="post" asp-action="Detail" asp-controller="Event">
+                                        <input type="hidden" value="@item.EventId" name="Id" />
+                                        <input type="submit" value="Check Event" />
+                                    </form>
+                                }
 
 
-
-</tr>
-}
-    </tbody>
-</table>}
-</div>     
+                        </tr>
+                    }
+                </tbody>
+            </table>}
+    </div>
+</body>
+</html>   
