@@ -274,12 +274,12 @@ namespace WeLinkUp.Controllers
         }
 
             [HttpPost]
-        public async Task<IActionResult> EditProfile(User model)
+        public async Task<IActionResult> EditProfile(User model, IFormFile file)
         {
             var userId = _securityManager.GetUserId(User);
             ApplicationUser users = await _securityManager.FindByIdAsync(userId);
 
-            //users.UserName = model.Username;
+            users.Image = await EditImage(model, file);
             users.Email = model.Email;
             users.Image = model.Image;
             users.DateofBirth = model.DateofBirth;
@@ -301,6 +301,34 @@ namespace WeLinkUp.Controllers
 
         }
 
+        //Edit profile Image
+        public async Task<string> EditImage(User user, IFormFile file)
+        {
+            //code for save imgae to s3 bucket               
+            string AWS_bucketName = "softwareprojectnew2";
+            string AWS_defaultFolder = "UserProfile";
+
+            var s3Client = new AmazonS3Client(Amazon.RegionEndpoint.USEast1);
+            var bucketName = AWS_bucketName;
+            var keyName = AWS_defaultFolder;
+
+            keyName = keyName + "/" + file.FileName;
+
+            var fs = file.OpenReadStream();
+            var request = new Amazon.S3.Model.PutObjectRequest
+            {
+                BucketName = bucketName,
+                Key = keyName,
+                InputStream = fs,
+                ContentType = file.ContentType,
+                CannedACL = S3CannedACL.PublicRead
+
+            };
+            await s3Client.PutObjectAsync(request);
+            var result = string.Format("http://{0}.s3.amazonaws.com/{1}", bucketName, keyName);
+            
+            return user.Image = Path.GetFileName(result);
+        }
 
         //get the list notification for the user
         [HttpGet]

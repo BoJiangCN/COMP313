@@ -10065,11 +10065,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\SEMESTER6\\Software Project2\\FinalProject\\version5.13\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+      "projectUniqueName": "C:\\SEMESTER6\\Software Project2\\FinalProject\\version5.14\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
       "projectName": "WeLinkUp",
-      "projectPath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\version5.13\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
+      "projectPath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\version5.14\\WeLinkUp\\WeLinkUp\\WeLinkUp.csproj",
       "packagesPath": "C:\\Users\\ashas\\.nuget\\packages\\",
-      "outputPath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\version5.13\\WeLinkUp\\WeLinkUp\\obj\\",
+      "outputPath": "C:\\SEMESTER6\\Software Project2\\FinalProject\\version5.14\\WeLinkUp\\WeLinkUp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

@@ -8,7 +8,7 @@
 <div class="" w3-justify">
     <div class="w3-content">
         <div class="col-md-4">
-            <form asp-action="EditProfile">
+            <form asp-action="EditProfile" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
                 @*<div class="form-group">
@@ -65,8 +65,8 @@
                 <div class="form-group">
                     
                     <img class="profile" src="@Url.Content("http://softwareprojectnew2.s3.amazonaws.com/UserProfile/" + Model.Image)" alt="" width="280" height="280"/>
-                    <input type="file" asp-for="Image" class="form-control" />
-                    <span asp-validation-for="Image" class="text-danger"></span>
+                    <input type="file" name="file" class="form-control" />
+                    
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Save" class="btn btn-primary" />
