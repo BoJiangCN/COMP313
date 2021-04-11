@@ -92,6 +92,25 @@ namespace WeLinkUp.Controllers
             return RedirectToAction("Friends");
         }
         
+           public async Task<ActionResult> AddFriendAsync(bool confirm, string friendId)
+        {
+            if (confirm)
+            {
+
+                // get current user
+                var user = await _securityManager.GetUserAsync(User);
+                var fList = new FriendLists{
+                    UserId = user.Id,
+                    FriendId = friendId
+                };
+
+                _context.FriendLists.Add(fList);
+                _context.SaveChanges();
+
+            }
+
+            return RedirectToAction("Friends");
+        }
             
         public async Task<IActionResult> Message(string friendId)
         {     
