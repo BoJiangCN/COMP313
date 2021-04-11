@@ -278,21 +278,37 @@ namespace WeLinkUp.Controllers
         {
             var userId = _securityManager.GetUserId(User);
             ApplicationUser users = await _securityManager.FindByIdAsync(userId);
+            if (file == null)
+            {
+                users.Email = model.Email;
+                //users.Image = model.Image;
+                users.DateofBirth = model.DateofBirth;
+                users.Sunday = model.Sunday;
+                users.Monday = model.Monday;
+                users.Tuesday = model.Tuesday;
+                users.Wednesday = model.Wednesday;
+                users.Thursday = model.Thursday;
+                users.Friday = model.Friday;
+                users.Saturday = model.Saturday;
+                
+            }
 
-            users.Image = await EditImage(model, file);
-            users.Email = model.Email;
-            users.Image = model.Image;
-            users.DateofBirth = model.DateofBirth;
-            users.Sunday = model.Sunday;
-            users.Monday = model.Monday;
-            users.Tuesday = model.Tuesday;
-            users.Wednesday = model.Wednesday;
-            users.Thursday = model.Thursday;
-            users.Friday = model.Friday;
-            users.Saturday = model.Saturday;
-
+            if(file!=null)
+            {
+                users.Image = await EditImage(model, file);
+                users.Email = model.Email;
+                users.Image = model.Image;
+                users.DateofBirth = model.DateofBirth;
+                users.Sunday = model.Sunday;
+                users.Monday = model.Monday;
+                users.Tuesday = model.Tuesday;
+                users.Wednesday = model.Wednesday;
+                users.Thursday = model.Thursday;
+                users.Friday = model.Friday;
+                users.Saturday = model.Saturday;
+             
+            }
             var result = await _securityManager.UpdateAsync(users);
-
             if (ModelState.IsValid)
             {
                 return View(result);
@@ -304,6 +320,7 @@ namespace WeLinkUp.Controllers
         //Edit profile Image
         public async Task<string> EditImage(User user, IFormFile file)
         {
+           
             //code for save imgae to s3 bucket               
             string AWS_bucketName = "softwareprojectnew2";
             string AWS_defaultFolder = "UserProfile";
