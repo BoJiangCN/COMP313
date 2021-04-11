@@ -63,8 +63,8 @@
                 </div>
               
                 <div class="form-group">
-                    <label asp-for="Image" class="control-label"></label>
-                    <img class="profile" src="@Url.Content("http://softwareprojectnew2.s3.amazonaws.com/UserProfile/" + Model.Image)" alt="" />
+                    
+                    <img class="profile" src="@Url.Content("http://softwareprojectnew2.s3.amazonaws.com/UserProfile/" + Model.Image)" alt="" width="280" height="280"/>
                     <input type="file" asp-for="Image" class="form-control" />
                     <span asp-validation-for="Image" class="text-danger"></span>
                 </div>

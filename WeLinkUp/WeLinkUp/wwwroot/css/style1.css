@@ -1,0 +1,80 @@
+﻿
+body, h1, h2, h3, h4, h5 {
+    font-family: "Lato", sans-serif
+}
+
+.image {
+    height: 200px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.w3-row {
+    margin-left: 20%;
+    width: 60%;
+}
+
+.w3-col l8 s12 {
+    width: 20%;
+}
+
+img.profile {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    table tr:nth-child(2n) {
+        background-color: white;
+    }
+
+    table tr:nth-child(2n+1) {
+        background-color: #F7F3EF;
+    }
+
+form.example input[type=text] {
+    padding: 5px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float:inherit;
+    width: 30%;
+    background: #f1f1f1;
+}
+
+/* Style the submit button */
+form.example button {
+    float: inherit;
+    width: 5%;
+    padding: 5px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+}
+
+    form.example button:hover {
+        background: #0b7dda;
+    }
+
+/* Clear floats */
+form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.text-danger {
+    color: red;
+}

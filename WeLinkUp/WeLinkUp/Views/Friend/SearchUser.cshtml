@@ -3,54 +3,8 @@
     ViewData["Title"] = "SearchUser";
 }
 <head>
-    <style>
-        body, h1, h2, h3, h4, h5 {
-            font-family: "Lato", sans-serif
-        }
-
-        .image {
-            height: 200px;
-            width: 100%;
-            object-fit: contain;
-        }
-
-        .w3-row {
-            margin-left: 20%;
-            width: 60%;
-        }
-
-        .w3-col l8 s12 {
-            width: 20%;
-        }
-
-        img.profile {
-            border-radius: 50%;
-            height: 50px;
-            width: 50px;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-            table td {
-                text-align: center;
-                vertical-align: middle;
-            }
-
-            table tr:nth-child(2n) {
-                background-color: white;
-            }
-
-            table tr:nth-child(2n+1) {
-                background-color: #F7F3EF;
-            }
-        
-        .text-danger {
-            color: red;
-        }    
-</style>
+    <link href="~/css/style1.css" rel="stylesheet" />
+  
 </head>
 <body>
     <br />
@@ -91,11 +45,12 @@
                             </td>
                             <td>@Html.DisplayFor(modelItem => item.UserName)</td>
 
-                            <td> <a asp-action="Friends"  asp-route-id="@item.Id">Add</a> </td>
+                            <td> <a asp-action="Friends" asp-route-id="@item.Id">Add</a> </td>
                         </tr>
                     }
 
                 </table>}
         </div>
     </div>
+    <div class="w3-center"><a href="##" onClick="history.go(-1); return false;"> Go Back</a></div>
 </body>
